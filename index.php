@@ -52,18 +52,18 @@
       <th align="center" style="color: rgba(255,255,255,1)">客戶名稱</th>
       <th align="center" style="color: rgba(255,255,255,1)">付款條件</th>
       <th align="center" style="color: rgba(255,255,255,1)">類別</th>
-      <th align="center" style="color: rgba(255,255,255,1)">1</th>
-      <th align="center" style="color: rgba(255,255,255,1)">2</th>
-      <th align="center" style="color: rgba(255,255,255,1)">3</th>
-      <th align="center" style="color: rgba(255,255,255,1)">4</th>
-      <th align="center" style="color: rgba(255,255,255,1)">5</th>
-      <th align="center" style="color: rgba(255,255,255,1)">6</th>
-      <th align="center" style="color: rgba(255,255,255,1)">7</th>
-      <th align="center" style="color: rgba(255,255,255,1)">8</th>
-      <th align="center" style="color: rgba(255,255,255,1)">9</th>
-      <th align="center" style="color: rgba(255,255,255,1)">10</th>
-      <th align="center" style="color: rgba(255,255,255,1)">11</th>
-      <th align="center" style="color: rgba(255,255,255,1)">12</th>
+      <th align="center" style="color: rgba(255,255,255,1)">一月</th>
+      <th align="center" style="color: rgba(255,255,255,1)">二月</th>
+      <th align="center" style="color: rgba(255,255,255,1)">三月</th>
+      <th align="center" style="color: rgba(255,255,255,1)">四月</th>
+      <th align="center" style="color: rgba(255,255,255,1)">五月</th>
+      <th align="center" style="color: rgba(255,255,255,1)">六月</th>
+      <th align="center" style="color: rgba(255,255,255,1)">七月</th>
+      <th align="center" style="color: rgba(255,255,255,1)">八月</th>
+      <th align="center" style="color: rgba(255,255,255,1)">九月</th>
+      <th align="center" style="color: rgba(255,255,255,1)">十月</th>
+      <th align="center" style="color: rgba(255,255,255,1)">十一月</th>
+      <th align="center" style="color: rgba(255,255,255,1)">十二月</th>
       <th align="center" style="color: rgba(255,255,255,1)">逾期合計</th>
       <th align="center" style="color: rgba(255,255,255,1)">應收合計</th>
       <th align="center" style="color: rgba(255,255,255,1)">預收合計</th>
