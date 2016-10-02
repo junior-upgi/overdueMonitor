@@ -1,0 +1,7 @@
+SELECT
+    [YEAR]
+    ,[MONTH]
+    ,SUM(AMTN_PENDING) AS AMTN_PENDING
+    ,[STATUS]
+FROM UPGI_OverdueMonitor.dbo.pending
+GROUP BY [YEAR],[MONTH],[STATUS];

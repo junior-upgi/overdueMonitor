@@ -1,0 +1,22 @@
+SELECT
+	d.CUS_NO
+	,d.CUS_SNM
+	,d.SAL_REP_NO
+	,d.SAL_NAME
+	,CASE
+		WHEN d.SAL_REP_NO IS NULL THEN '未設定責任業務'
+		ELSE '設定業務非現行業務單位成員'
+	END AS ISSUE
+FROM (
+	SELECT
+		a.CUS_NO
+		,a.CUS_SNM
+		,a.SAL_NO AS SAL_REP_NO
+		,a.SAL_NAME
+		,b.CUS_NO AS OBSERVED_CUS_NO
+		,c.SAL_NO AS ACTIVE_SAL_NO
+	FROM UPGI_OverdueMonitor.dbo.clientData a
+		LEFT JOIN UPGI_OverdueMonitor.dbo.outstanding b ON a.CUS_NO=b.CUS_NO
+		LEFT JOIN UPGI_OverdueMonitor.dbo.activeSalesStaff c ON a.SAL_NO=c.SAL_NO
+	WHERE (b.CUS_NO IS NOT NULL AND a.SAL_NO IS NULL) OR (b.CUS_NO IS NOT NULL AND c.SAL_NO IS NULL)) d
+GROUP BY d.CUS_NO,d.CUS_SNM,d.SAL_REP_NO,d.SAL_NAME;

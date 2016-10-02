@@ -1,0 +1,1 @@
+SELECT CUS_NO FROM UPGI_OverdueMonitor.dbo.overdueClientTotal;

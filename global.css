@@ -1,0 +1,69 @@
+@import url(http://fonts.googleapis.com/earlyaccess/notosanstc.css);
+* {
+    font-family: 'Noto Sans TC', Consolas;
+}
+
+#table {
+    border-collapse: separate;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: rgb(211, 202, 221);
+}
+
+
+/* Padding and font style */
+
+td.overdue {
+    color: #FF3636;
+}
+
+td.pending {
+    color: #3E90FF;
+}
+
+#table td,
+#table th {
+    padding: 5px 10px;
+    font-size: 12px;
+    font-family: Verdana;
+    /*color: rgb(95, 74, 121);*/
+    border-top-color: #FF0004;
+    border-bottom-color: #FF0004;
+}
+
+
+/* Alternating background colors */
+
+#table tr:nth-child(4n-1) {
+    background-color: rgb(223, 216, 232);
+}
+
+#table tr:nth-child(4n-2) {
+    background-color: rgb(223, 216, 232);
+}
+
+#table tr:nth-child(4n-3) {
+    background-color: #b3cbff;
+}
+
+#table tr:nth-child(4n-4) {
+    background-color: #b3cbff;
+}
+
+.tableTop th {
+    color: white;
+    background-color: rgb(128, 102, 160);
+}
+
+.HTL {
+    width: 50%;
+    float: left;
+    color: rgb(95, 74, 121);
+}
+
+.HTR {
+    width: 50%;
+    float: right;
+    text-align: right;
+    color: rgb(95, 74, 121);
+}
