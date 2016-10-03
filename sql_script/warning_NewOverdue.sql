@@ -1,13 +1,13 @@
 SELECT
     '【逾期款項發生警訊】' AS title
-	,'【逾期款監控系統】致業務員：'+b.SAL_NAME+' - 客戶【'+b.CUS_SNM+'】以於昨日產生逾期款項 $'+FORMAT(a.AMTN_OUT,N'N0','zh-TW')+' ('+a.PS_NO+')。請注意！' AS content
+	,'【逾期款監控系統】致業務員：'+ISNULL(b.SAL_NAME,'趙婉伶(代)')+' - 客戶【'+b.CUS_SNM+'】以於昨日產生逾期款項 $'+FORMAT(a.AMTN_OUT,N'N0','zh-TW')+' ('+a.PS_NO+')。請注意！' AS content
     ,1 AS messageID
     ,1 AS systemID
     ,'05060001' AS uid
-	,b.SAL_NO AS recipientID
+	,ISNULL(b.SAL_NO,'08030005') AS recipientID
     ,'http://upgi.ddns.net/overdue-monitor/index.php' AS url
     ,'alarm.mp3' AS audioFile
-	,b.SAL_NAME
+	,ISNULL(b.SAL_NAME,'趙婉伶(代)') AS SAL_NAME
     ,a.CUS_NO
 	,b.CUS_SNM
 	,b.TERM_DESC
