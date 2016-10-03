@@ -1,4 +1,4 @@
-SELECT 
+SELECT
 	f.CUS_NO
 	,f.CUS_SNM
 	,f.TERM_DESC
