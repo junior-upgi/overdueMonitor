@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/junior-upgi/overdueMonitorPHP/issues"
   },
-  "homepage": "https://github.com/junior-upgi/overdueMonitorPHP#readme"
+  "homepage": "https://github.com/junior-upgi/overdueMonitorPHP#readme",
+  "dependencies": {
+    "express": "*",
+    "body-parser": "*",
+    "mysql": "*"
+  }
 }
