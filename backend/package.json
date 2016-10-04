@@ -19,5 +19,8 @@
   "dependencies": {
     "mssql": "*",
     "mysql": "*"
+  },
+  "devDependencies": {
+    "jslint": "*"
   }
 }
