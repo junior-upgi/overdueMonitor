@@ -43,7 +43,7 @@ mssql.connect(mssqlConfig, function (err) {
                 if (err) throw err;
                 recipientID = data[0].userID;
                 // write the mobileMessagingSystem.broadcastStatus table
-                mysqlConn.query("INSERT INTO mobileMessagingSystem.broadcastStatus (`ID`,`messageID`,`recipientID`,`primaryRecipient`,`url`,`audioFile`,`permanent`,`created_at`) VALUES ('" + broadcastStatusID + "','" + messageID + "','" + recipientID + "','1',NULL,'siren.mp3',0,NOW());", function (err) {
+                mysqlConn.query("INSERT INTO mobileMessagingSystem.broadcastStatus (`ID`,`messageID`,`recipientID`,`primaryRecipient`,`url`,`audioFile`,`permanent`,`created_at`) VALUES ('" + broadcastStatusID + "','" + messageID + "','" + recipientID + "','1','" + item.url + "','" + item.audioFile + "',0,NOW());", function (err) {
                     if (err) throw err;
                 });
                 closeDataConnection(mysqlConn, mssql);
