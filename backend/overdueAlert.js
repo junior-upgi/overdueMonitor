@@ -31,7 +31,7 @@ mssql.connect(mssqlConfig, function (err) {
             var recipientID = "";
             var messageID = utility.uuidGenerator();
             var broadcastStatusID = utility.uuidGenerator();
-            // establish connection to MySQL
+            // establish connection to mobileMessagingSystem server
             var mysqlConn = mysql.createConnection(mysqlConfig);
             mysqlConn.connect();
             // write to the mobileMessagingSystem.message table
