@@ -2,6 +2,8 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var mysql = require('mysql');
+var salesList = [];
+var queryString;
 
 var connection = mysql.createConnection({
     host: 'upgi.ddns.net',
@@ -13,16 +15,10 @@ var connection = mysql.createConnection({
 
 connection.connect();
 
-app.get('/', function (req, res) {
-    res.send('server started');
-});
+queryString = "SELECT a.userID,c.erpID FROM upgiSystem.userGroupMembership a INNER JOIN (SELECT ID FROM upgiSystem.userGroup WHERE reference='Sales') b ON a.userGroupID=b.ID LEFT JOIN upgiSystem.user c ON a.userID=c.ID WHERE a.deprecated IS NULL;";
 
-app.listen(3000);
-console.log('server started');
-
-connection.query("SELECT a.userID,c.erpID FROM upgiSystem.userGroupMembership a INNER JOIN (SELECT ID FROM upgiSystem.userGroup WHERE reference='Sales') b ON a.userGroupID=b.ID LEFT JOIN upgiSystem.user c ON a.userID=c.ID WHERE a.deprecated IS NULL;", function (err, rows, fields) {
+connection.query(queryString, function (err, rows, fields) {
     if (err) throw err;
-
     console.log(rows);
 });
 
