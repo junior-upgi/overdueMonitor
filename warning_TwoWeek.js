@@ -1,12 +1,14 @@
-// this APP will query the UPGI_OverdueMonitor.dbo.warning_NewOverdue and get newly incurred overdue's, and write data to the server to cause a mobile broadcast to the user.
+// this APP will query the UPGI_OverdueMonitor.dbo.warning_TwoWeek and get records that will become overdue within two weeks, and write data to the server to cause a mobile broadcast to the user.  Intented to run every Monday morning at 09:00 (once a week)
 var mysql = require('mysql');
 var mssql = require('mssql');
 
+var utility = require('./uuidGenerator.js');
+
 // host of ERP data
 var mssqlConfig = {
-    user: 'sunlikeReader',      // same account (production/development)
-    password: 'sunlikeReader',  // same password (production/development)
-    server: '192.168.99.1'      // 192.168.168.2 (current production ERP server - sunv9)
+    user: 'sunlikeReader', // same account (production/development)
+    password: 'sunlikeReader', // same password (production/development)
+    server: '192.168.99.1' // 192.168.168.2 (current production ERP server - sunv9)
 }
 
 // connect to ERP server
@@ -14,18 +16,18 @@ mssql.connect(mssqlConfig, function (err) {
     if (err) throw err;
     var request = new mssql.Request();
     // query the data source (data is already prepared by the query)
-    request.query('SELECT * FROM UPGI_OverdueMonitor.dbo.warning_NewOverdue;', function (err, resultset) {
+    request.query('SELECT * FROM UPGI_OverdueMonitor.dbo.warning_TwoWeek;', function (err, resultset) {
         if (err) throw err;
-        resultset.forEach(function (item, index) {      //loop through each individual record
+        resultset.forEach(function (item, index) { //loop through each individual record
             var recipientID = "";
-            var messageID = generateUUID();
-            var broadcastStatusID = generateUUID();
+            var messageID = utility.uuidGenerator();
+            var broadcastStatusID = utility.uuidGenerator();
             // host for the mobile messaging system 
             var mysqlConn = mysql.createConnection({
-                host: 'upgi.ddns.net',                  // if APP is placed on the production server, it should use 'localhost'
+                host: 'upgi.ddns.net', // when the APP is moved to the production server, should change to 'localhost'
                 port: '3306',
-                user: 'overdueMonitor',                 // this does not change, APP has to remote access production server
-                password: 'overdueMonitor',             // this does not change, APP has to remote access production server
+                user: 'overdueMonitor', // this does not change, APP has to remote access production server
+                password: 'overdueMonitor', // this does not change, APP has to remote access production server
                 charset: 'utf8_bin'
             });
             mysqlConn.connect();
@@ -49,7 +51,7 @@ mssql.connect(mssqlConfig, function (err) {
 });
 
 //function to generate UUID for the records
-function generateUUID() {
+/*function generateUUID() {
     var d = new Date().getTime();
     var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
         var r = (d + Math.random() * 16) % 16 | 0;
@@ -57,4 +59,4 @@ function generateUUID() {
         return (c == 'x' ? r : (r & 0x3 | 0x8)).toString(16);
     });
     return uuid;
-};
+};*/
