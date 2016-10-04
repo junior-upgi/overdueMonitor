@@ -1,5 +1,5 @@
 SELECT
-    '【逾期款項發生警訊】' AS title
+    '【逾期款項發生警訊】' AS manualTopic
 	,'【逾期款監控系統】致業務員：'+b.SAL_NAME+' - 客戶【'+b.CUS_SNM+'】以於昨日產生逾期款項 $'+FORMAT(a.AMTN_OUT,N'N0','zh-TW')+' ('+a.PS_NO+')。請注意！' AS content
     ,4 AS messageCategoryID
     ,1 AS systemCategoryID

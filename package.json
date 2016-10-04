@@ -17,8 +17,6 @@
   },
   "homepage": "https://github.com/junior-upgi/overdueMonitorPHP#readme",
   "dependencies": {
-    "body-parser": "*",
-    "express": "*",
     "mssql": "*",
     "mysql": "*"
   }
