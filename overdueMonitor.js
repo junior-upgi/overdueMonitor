@@ -4,20 +4,20 @@ var mssql = require('mssql');
 var mssqlConfig = {
     user: 'sunlikeReader',
     password: 'sunlikeReader',
-    server: '192.168.99.1'
+    server: '192.168.99.1' //192.168.168.2 (sunv9)
 }
 
 mssql.connect(mssqlConfig, function (err) {
-    if (err) console.log(err);
+    if (err) throw err;
     var request = new mssql.Request();
     request.query('SELECT * FROM UPGI_OverdueMonitor.dbo.warning_NewOverdue;', function (err, resultset) {
-        if (err) console.log(err);
+        if (err) throw err;
         resultset.forEach(function (item, index) {
             var recipientID = "";
             var messageID = generateUUID();
             var broadcastStatusID = generateUUID();
             var mysqlConn = mysql.createConnection({
-                host: 'upgi.ddns.net',
+                host: 'upgi.ddns.net', //production server should use 'localhost'
                 port: '3306',
                 user: 'overdueMonitor',
                 password: 'overdueMonitor',
