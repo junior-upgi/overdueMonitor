@@ -2,9 +2,9 @@ var mysql = require('mysql');
 var mssql = require('mssql');
 
 var mssqlConfig = {
-    user: 'sunlikeReader',
-    password: 'sunlikeReader',
-    server: '192.168.99.1' //192.168.168.2 (sunv9)
+    user: 'sunlikeReader',      //same account (production/development)
+    password: 'sunlikeReader',  //same password (production/development)
+    server: '192.168.99.1'      //192.168.168.2 (sunv9)
 }
 
 mssql.connect(mssqlConfig, function (err) {
@@ -19,8 +19,8 @@ mssql.connect(mssqlConfig, function (err) {
             var mysqlConn = mysql.createConnection({
                 host: 'upgi.ddns.net', //production server should use 'localhost'
                 port: '3306',
-                user: 'overdueMonitor',
-                password: 'overdueMonitor',
+                user: 'overdueMonitor', //production server has the same account
+                password: 'overdueMonitor', //the production server account uses the same password
                 charset: 'utf8_bin'
             });
             mysqlConn.connect();
@@ -49,19 +49,3 @@ function generateUUID() {
     });
     return uuid;
 };
-
-/*mssql.connect(mssqlConfig, function (err) {
-    if (err) console.log(err);
-    var request = new mssql.Request();
-    request.query("select * from UPGI_OverdueMonitor.dbo.warning_NewOverdue;", function (err, resultset) {
-        if (err) console.log(err);
-        console.log(resultset);
-        mysqlConn.connect();
-        mysqlConn.query("SELECT a.userID,c.erpID FROM upgiSystem.userGroupMembership a INNER JOIN (SELECT ID FROM upgiSystem.userGroup WHERE reference='Sales') b ON a.userGroupID=b.ID LEFT JOIN upgiSystem.user c ON a.userID=c.ID WHERE a.deprecated IS NULL;", function (err, rows, fields) {
-            if (err) throw err;
-            console.log(rows);
-        });
-        mysqlConn.end();
-        mssql.close();
-    });
-});*/
