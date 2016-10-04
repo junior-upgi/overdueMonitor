@@ -35,7 +35,7 @@ mssql.connect(mssqlConfig, function (err) {
             var mysqlConn = mysql.createConnection(mysqlConfig);
             mysqlConn.connect();
             // write to the mobileMessagingSystem.message table
-            mysqlConn.query("INSERT INTO mobileMessagingSystem.message (`ID`,`messageCategoryID`,`systemCategoryID`,`manualTopic`,`content`,`created_at`) VALUES ('" + messageID + "'," + item.messageCategoryID + "," + item.systemCategoryID + ",'" + item.manualTopic + "','" + item.content + "',NOW());", function (err) {
+            mysqlConn.query("INSERT INTO mobileMessagingSystem.message (`ID`,`messageCategoryID`,`systemCategoryID`,`manualTopic`,`content`,`created_at`) VALUES ('" + messageID + "'," + item.messageCategoryID + "," + item.systemCategoryID + ",'" + item.manualTopic + "','" + item.content + "','"+convertDateTime(item.generated)+"');", function (err) {
                 if (err) throw err;
             });
             // check the user ID used by the mobile messaging system (compare against the particular sales' ERP ID or 員工編號)
@@ -43,7 +43,7 @@ mssql.connect(mssqlConfig, function (err) {
                 if (err) throw err;
                 recipientID = data[0].userID;
                 // write the mobileMessagingSystem.broadcastStatus table
-                mysqlConn.query("INSERT INTO mobileMessagingSystem.broadcastStatus (`ID`,`messageID`,`recipientID`,`primaryRecipient`,`url`,`audioFile`,`permanent`,`created_at`) VALUES ('" + broadcastStatusID + "','" + messageID + "','" + recipientID + "','1','" + item.url + "','" + item.audioFile + "',0,NOW());", function (err) {
+                mysqlConn.query("INSERT INTO mobileMessagingSystem.broadcastStatus (`ID`,`messageID`,`recipientID`,`primaryRecipient`,`url`,`audioFile`,`permanent`,`created_at`) VALUES ('" + broadcastStatusID + "','" + messageID + "','" + recipientID + "','1','" + item.url + "','" + item.audioFile + "',0,'"+convertDateTime(item.generated)+"');", function (err) {
                     if (err) throw err;
                 });
                 closeDataConnection(mysqlConn, mssql);
@@ -56,3 +56,7 @@ function closeDataConnection(mysqlConn, mssqlConn) {
     mysqlConn.end();
     mssqlConn.close();
 }
+
+function convertDateTime(dateTimeVariable){
+    return dateTimeVariable.getFullYear()+'/'+dateTimeVariable.getMonth()+'/'+dateTimeVariable.getDate()+' '+dateTimeVariable.getHours()+':'+dateTimeVariable.getMinutes()+':'+dateTimeVariable.getSeconds();
+};
