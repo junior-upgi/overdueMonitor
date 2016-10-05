@@ -8,14 +8,14 @@ var utility = require('./uuidGenerator.js');
 var mssqlConfig = {
     user: 'sunlikeReader', // same account (production/development)
     password: 'sunlikeReader', // same password (production/development)
-    // '192.168.168.2' for production server, '192.168.99.1' for local test env.
-    server: '192.168.168.2'
+    // '192.168.168.2' for production server, 'localhost' for local test env.
+    server: 'localhost'
 }
 
 // host for the mobile messaging system 
 var mysqlConfig = {
     // 'localhost' on production server, 'upgi.ddns.net' on local test env.
-    host: 'localhost',
+    host: 'upgi.ddns.net',
     port: '3306',
     user: 'overdueMonitor', // this does not change, APP has to remote access production server
     password: 'overdueMonitor', // this does not change, APP has to remote access production server
@@ -27,12 +27,12 @@ mssql.connect(mssqlConfig, function (err) {
     if (err) throw err;
     var request = new mssql.Request();
     // query the data source (data is already prepared by the query)
-    request.query('SELECT * FROM UPGI_OverdueMonitor.dbo.warning_NewOverdue;', function (err, resultset) {
+    request.query('SELECT * FROM UPGI_OverdueMonitor.dbo.warning_NewOverdue;', function (err, resultSet) {
         if (err) throw err;
         console.log('-----------------------------------------------------------------------------------------------');
         console.log('scheduled overdue info broadcasting started at: '+new Date()+'...');
-        console.log('there are '+resultset.length()+' records...');
-        resultset.forEach(function (item, index) { //loop through each individual record
+        console.log('there are '+resultSet.length+' records...');
+        resultSet.forEach(function (item, index) { //loop through each individual record
             var recipientID = "";
             var messageID = utility.uuidGenerator();
             var broadcastStatusID = utility.uuidGenerator();
@@ -53,7 +53,7 @@ mssql.connect(mssqlConfig, function (err) {
                 });
                 closeDataConnection(mysqlConn, mssql);
             });
-            console.log('#1 '+item.verboseMessage);
+            console.log('#'+index+': '+item.verboseMessage);
         });
     });
 });
