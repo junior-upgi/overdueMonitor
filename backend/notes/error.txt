@@ -1,0 +1,5 @@
+please see the error in the photo.
+
+issue encountered when running the backend app...  this is caused by when an user in the `upgiSystem.user` table does not have a entry in the sales group in the table `userGroupMembership`.
+
+However, this did not cause an error in the local testing environment.  Only on the production server. 
