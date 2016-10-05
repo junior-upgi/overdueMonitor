@@ -29,6 +29,9 @@ mssql.connect(mssqlConfig, function (error) {
     // query invoice to become overdue within this week from the ERP server
     request.query('SELECT * FROM UPGI_OverdueMonitor.dbo.warning_WeeklySummary ORDER BY recipientID, DUE_DATE;', function (error, resultSet) {
         if (error) throw error;
+        console.log('-----------------------------------------------------------------------------------------------');
+        console.log('scheduled pending payment reminder broadcasting started at: '+new Date()+'...');
+        console.log('there are '+resultset.length()+' records...');
         resultSet.forEach(function (item, index) { //loop through individual records
             var recipientID = "";
             var messageID = utility.uuidGenerator();
@@ -50,6 +53,7 @@ mssql.connect(mssqlConfig, function (error) {
                 });
                 closeDataConnection(mysqlConn, mssql);
             });
+            console.log('#1 '+item.verboseMessage);
         });
     });
 });

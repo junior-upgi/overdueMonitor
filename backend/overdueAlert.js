@@ -29,6 +29,9 @@ mssql.connect(mssqlConfig, function (err) {
     // query the data source (data is already prepared by the query)
     request.query('SELECT * FROM UPGI_OverdueMonitor.dbo.warning_NewOverdue;', function (err, resultset) {
         if (err) throw err;
+        console.log('-----------------------------------------------------------------------------------------------');
+        console.log('scheduled overdue info broadcasting started at: '+new Date()+'...');
+        console.log('there are '+resultset.length()+' records...');
         resultset.forEach(function (item, index) { //loop through each individual record
             var recipientID = "";
             var messageID = utility.uuidGenerator();
@@ -50,6 +53,7 @@ mssql.connect(mssqlConfig, function (err) {
                 });
                 closeDataConnection(mysqlConn, mssql);
             });
+            console.log('#1 '+item.verboseMessage);
         });
     });
 });
