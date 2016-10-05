@@ -21,7 +21,6 @@
     "mysql": "*"
   },
   "devDependencies": {
-    "eslint": "*",
-    "jslint": "*"
+    "eslint": "*"
   }
 }
