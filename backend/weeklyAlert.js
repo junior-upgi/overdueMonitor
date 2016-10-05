@@ -30,7 +30,7 @@ mssql.connect(mssqlConfig, function (error) {
     request.query('SELECT * FROM UPGI_OverdueMonitor.dbo.warning_WeeklySummary ORDER BY recipientID, DUE_DATE;', function (error, resultSet) {
         if (error) throw error;
         console.log('-----------------------------------------------------------------------------------------------');
-        console.log('scheduled pending payment reminder broadcasting started at: '+new Date()+'...');
+        console.log('Scheduled pending payment reminder broadcasting started at: '+new Date()+'...');
         console.log('there are '+resultSet.length+' records...');
         resultSet.forEach(function (item, index) { //loop through individual records
             var recipientID = "";
@@ -55,6 +55,8 @@ mssql.connect(mssqlConfig, function (error) {
             });
             console.log('#'+index+': '+item.verboseMessage);
         });
+        console.log('Scheduled mobile broadcasting completed at: '+new Date());
+        console.log('-----------------------------------------------------------------------------------------------');
     });
 });
 

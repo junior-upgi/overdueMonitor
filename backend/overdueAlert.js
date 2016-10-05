@@ -55,6 +55,8 @@ mssql.connect(mssqlConfig, function (err) {
             });
             console.log('#'+index+': '+item.verboseMessage);
         });
+        console.log('Scheduled mobile broadcasting completed at: '+new Date());
+        console.log('-----------------------------------------------------------------------------------------------');
     });
 });
 
