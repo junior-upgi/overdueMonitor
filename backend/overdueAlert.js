@@ -8,12 +8,14 @@ var utility = require('./uuidGenerator.js');
 var mssqlConfig = {
     user: 'sunlikeReader', // same account (production/development)
     password: 'sunlikeReader', // same password (production/development)
-    server: '192.168.99.1' // 192.168.168.2 (current production ERP server - sunv9)
+    // '192.168.168.2' for production server, '192.168.99.1' for local test env.
+    server: '192.168.168.2'
 }
 
 // host for the mobile messaging system 
 var mysqlConfig = {
-    host: 'upgi.ddns.net', // when the APP is moved to the production server, should change to 'localhost'
+    // 'localhost' on production server, 'upgi.ddns.net' on local test env.
+    host: 'localhost',
     port: '3306',
     user: 'overdueMonitor', // this does not change, APP has to remote access production server
     password: 'overdueMonitor', // this does not change, APP has to remote access production server
