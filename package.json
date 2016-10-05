@@ -2,7 +2,7 @@
   "name": "overdue-monitor",
   "version": "1.0.0",
   "description": "Overdue monitor system",
-  "main": "overdueMonitor.js",
+  "main": "./backend/overdueMonitor.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -24,5 +24,11 @@
   },
   "devDependencies": {
     "eslint": "*"
+  },
+  "eslintConfig": {
+    "evn": {
+      "browser": true,
+      "node": true
+    }
   }
 }
