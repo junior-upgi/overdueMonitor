@@ -30,8 +30,8 @@ mssql.connect(mssqlConfig, function (err) {
     request.query('SELECT * FROM UPGI_OverdueMonitor.dbo.warning_NewOverdue;', function (err, resultSet) {
         if (err) throw err;
         console.log('-----------------------------------------------------------------------------------------------');
-        console.log('scheduled overdue info broadcasting started at: '+new Date()+'\n');
-        console.log('there are '+resultSet.length+' records...');
+        console.log('scheduled overdue info broadcasting started at: '+new Date());
+        console.log(resultSet.length+' records found\n');
         resultSet.forEach(function (item, index) { //loop through each individual record
             var recipientID = "";
             var messageID = utility.uuidGenerator();

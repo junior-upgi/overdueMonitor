@@ -30,8 +30,8 @@ mssql.connect(mssqlConfig, function (error) {
     request.query('SELECT * FROM UPGI_OverdueMonitor.dbo.warning_WeeklySummary ORDER BY recipientID, DUE_DATE;', function (error, resultSet) {
         if (error) throw error;
         console.log('-----------------------------------------------------------------------------------------------');
-        console.log('Scheduled pending payment reminder broadcasting started at: '+new Date()+'\n');
-        console.log('there are '+resultSet.length+' records...');
+        console.log('Scheduled pending payment reminder broadcasting started at: '+new Date());
+        console.log(+resultSet.length+' records found\n');
         resultSet.forEach(function (item, index) { //loop through individual records
             var recipientID = "";
             var messageID = utility.uuidGenerator();
