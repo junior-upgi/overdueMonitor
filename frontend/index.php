@@ -65,7 +65,7 @@
       <th align="center" style="color: rgba(255,255,255,1)">十一月</th>
       <th align="center" style="color: rgba(255,255,255,1)">十二月</th>
       <th align="center" style="color: rgba(255,255,255,1)">逾期合計</th>
-      <th align="center" style="color: rgba(255,255,255,1)">應收合計</th>
+      <th align="center" style="color: rgba(255,255,255,1)">未逾應收合計</th>
       <th align="center" style="color: rgba(255,255,255,1)">預收合計</th>
       <th align="center" style="color: rgba(255,255,255,1)">催收次數</th>
       <th align="center" style="color: rgba(255,255,255,1)">責任業務</th>
