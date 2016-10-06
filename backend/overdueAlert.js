@@ -6,19 +6,19 @@ var utility = require('./uuidGenerator.js');
 
 // host of ERP data
 var mssqlConfig = {
-    user: 'sunlikeReader', // same account (production/development)
-    password: 'sunlikeReader', // same password (production/development)
-    // '192.168.168.2' for production server, 'localhost' for local test env.
-    server: 'localhost'
+    // production server
+    user: 'overdueMonitor',
+    password: 'overdueMonitor',
+    server: '192.168.168.2'
 }
 
 // host for the mobile messaging system 
 var mysqlConfig = {
-    // 'localhost' on production server, 'upgi.ddns.net' on local test env.
-    host: 'upgi.ddns.net',
+    // 'localhost' on production server
+    host: 'localhost',
     port: '3306',
-    user: 'overdueMonitor', // this does not change, APP has to remote access production server
-    password: 'overdueMonitor', // this does not change, APP has to remote access production server
+    user: 'overdueMonitor',
+    password: 'overdueMonitor',
     charset: 'utf8_bin'
 };
 
