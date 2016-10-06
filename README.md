@@ -1,4 +1,6 @@
-deployment instructions for current master repo on the following servers: ERP SQL server (sunv9) and MySQL server (upgiserver86)
+Deployment instructions for current master repo on the following servers: ERP SQL server (sunv9) and MySQL server (upgiserver86)
+
+These instructions does not use symbolic link from user's project folder to the http docroot folder (files are manually copied into the server http docroot)
 
 
 cd /home/junior/htmlProject
