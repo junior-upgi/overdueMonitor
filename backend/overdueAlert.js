@@ -31,7 +31,7 @@ mssql.connect(mssqlConfig, function (err) {
         if (err) throw err;
         console.log('-----------------------------------------------------------------------------------------------');
         console.log('scheduled overdue info broadcasting started at: ' + new Date());
-        console.log(resultSet.length + ' records found\n');
+        console.log(resultSet.length + ' record(s) found\n');
         resultSet.forEach(function (item, index) { //loop through each individual record
             var recipientID = "";
             var messageID = utility.uuidGenerator();

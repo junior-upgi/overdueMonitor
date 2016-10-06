@@ -31,7 +31,7 @@ mssql.connect(mssqlConfig, function (error) {
         if (error) throw error;
         console.log('-----------------------------------------------------------------------------------------------');
         console.log('Scheduled pending payment reminder broadcasting started at: ' + new Date());
-        console.log(+resultSet.length + ' records found\n');
+        console.log(+resultSet.length + ' record(s) found\n');
         resultSet.forEach(function (item, index) { //loop through individual records
             var recipientID = "";
             var messageID = utility.uuidGenerator();
