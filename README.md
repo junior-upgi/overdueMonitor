@@ -1,8 +1,4 @@
-deployment instructions for current master repo on the following servers:
-
-  ERP SQL server (sunv9)
-
-  MySQL server (upgiserver86)
+deployment instructions for current master repo on the following servers: ERP SQL server (sunv9) and MySQL server (upgiserver86)
 
 
 cd /home/junior/htmlProject
