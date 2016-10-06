@@ -30,8 +30,8 @@ mssql.connect(mssqlConfig, function (err) {
     request.query('SELECT * FROM UPGI_OverdueMonitor.dbo.warning_NewOverdue;', function (err, resultSet) {
         if (err) throw err;
         console.log('-----------------------------------------------------------------------------------------------');
-        console.log('scheduled overdue info broadcasting started at: '+new Date());
-        console.log(resultSet.length+' records found\n');
+        console.log('scheduled overdue info broadcasting started at: ' + new Date());
+        console.log(resultSet.length + ' records found\n');
         resultSet.forEach(function (item, index) { //loop through each individual record
             var recipientID = "";
             var messageID = utility.uuidGenerator();
@@ -40,7 +40,7 @@ mssql.connect(mssqlConfig, function (err) {
             var mysqlConn = mysql.createConnection(mysqlConfig);
             mysqlConn.connect();
             // write to the mobileMessagingSystem.message table
-            mysqlConn.query("INSERT INTO mobileMessagingSystem.message (`ID`,`messageCategoryID`,`systemCategoryID`,`manualTopic`,`content`,`created_at`) VALUES ('" + messageID + "'," + item.messageCategoryID + "," + item.systemCategoryID + ",'" + item.manualTopic + "','" + item.content + "','"+convertDateTime(item.generated)+"');", function (err) {
+            mysqlConn.query("INSERT INTO mobileMessagingSystem.message (`ID`,`messageCategoryID`,`systemCategoryID`,`manualTopic`,`content`,`created_at`) VALUES ('" + messageID + "'," + item.messageCategoryID + "," + item.systemCategoryID + ",'" + item.manualTopic + "','" + item.content + "','" + convertDateTime(item.generated) + "');", function (err) {
                 if (err) throw err;
             });
             // check the user ID used by the mobile messaging system (compare against the particular sales' ERP ID or 員工編號)
@@ -48,14 +48,14 @@ mssql.connect(mssqlConfig, function (err) {
                 if (err) throw err;
                 recipientID = data[0].userID;
                 // write the mobileMessagingSystem.broadcastStatus table
-                mysqlConn.query("INSERT INTO mobileMessagingSystem.broadcastStatus (`ID`,`messageID`,`recipientID`,`primaryRecipient`,`url`,`audioFile`,`permanent`,`created_at`) VALUES ('" + broadcastStatusID + "','" + messageID + "','" + recipientID + "','1','" + item.url + "','" + item.audioFile + "',0,'"+convertDateTime(item.generated)+"');", function (err) {
+                mysqlConn.query("INSERT INTO mobileMessagingSystem.broadcastStatus (`ID`,`messageID`,`recipientID`,`primaryRecipient`,`url`,`audioFile`,`permanent`,`created_at`) VALUES ('" + broadcastStatusID + "','" + messageID + "','" + recipientID + "','1','" + item.url + "','" + item.audioFile + "',0,'" + convertDateTime(item.generated) + "');", function (err) {
                     if (err) throw err;
                 });
                 closeDataConnection(mysqlConn, mssql);
             });
-            console.log('#'+index+': '+item.verboseMessage);
+            console.log('#' + (index + 1) + ': ' + item.verboseMessage);
         });
-        console.log('\nScheduled mobile broadcasting completed at: '+new Date());
+        console.log('\nScheduled mobile broadcasting completed at: ' + new Date());
         console.log('-----------------------------------------------------------------------------------------------');
     });
 });
@@ -65,6 +65,6 @@ function closeDataConnection(mysqlConn, mssqlConn) {
     mssqlConn.close();
 }
 
-function convertDateTime(dateTimeVariable){
-    return dateTimeVariable.getFullYear()+'/'+dateTimeVariable.getMonth()+'/'+dateTimeVariable.getDate()+' '+dateTimeVariable.getHours()+':'+dateTimeVariable.getMinutes()+':'+dateTimeVariable.getSeconds();
+function convertDateTime(dateTimeVariable) {
+    return dateTimeVariable.getFullYear() + '/' + dateTimeVariable.getMonth() + '/' + dateTimeVariable.getDate() + ' ' + dateTimeVariable.getHours() + ':' + dateTimeVariable.getMinutes() + ':' + dateTimeVariable.getSeconds();
 };

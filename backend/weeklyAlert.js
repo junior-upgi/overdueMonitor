@@ -30,8 +30,8 @@ mssql.connect(mssqlConfig, function (error) {
     request.query('SELECT * FROM UPGI_OverdueMonitor.dbo.warning_WeeklySummary ORDER BY recipientID, DUE_DATE;', function (error, resultSet) {
         if (error) throw error;
         console.log('-----------------------------------------------------------------------------------------------');
-        console.log('Scheduled pending payment reminder broadcasting started at: '+new Date());
-        console.log(+resultSet.length+' records found\n');
+        console.log('Scheduled pending payment reminder broadcasting started at: ' + new Date());
+        console.log(+resultSet.length + ' records found\n');
         resultSet.forEach(function (item, index) { //loop through individual records
             var recipientID = "";
             var messageID = utility.uuidGenerator();
@@ -40,7 +40,7 @@ mssql.connect(mssqlConfig, function (error) {
             var mysqlConn = mysql.createConnection(mysqlConfig);
             mysqlConn.connect();
             // write to the mobileMessagingSystem.message table
-            mysqlConn.query("INSERT INTO mobileMessagingSystem.message (`ID`,`messageCategoryID`,`systemCategoryID`,`manualTopic`,`content`,`created_at`) VALUES ('" + messageID + "'," + item.messageCategoryID + "," + item.systemCategoryID + ",'" + item.manualTopic + "','" + item.content + "','"+convertDateTime(item.generated)+"');", function (error) {
+            mysqlConn.query("INSERT INTO mobileMessagingSystem.message (`ID`,`messageCategoryID`,`systemCategoryID`,`manualTopic`,`content`,`created_at`) VALUES ('" + messageID + "'," + item.messageCategoryID + "," + item.systemCategoryID + ",'" + item.manualTopic + "','" + item.content + "','" + convertDateTime(item.generated) + "');", function (error) {
                 if (error) throw error;
             });
             // check the user ID used by the mobile messaging system (compare against the particular sales' ERP ID or 員工編號)
@@ -48,14 +48,14 @@ mssql.connect(mssqlConfig, function (error) {
                 if (error) throw error;
                 recipientID = data[0].userID;
                 // write the mobileMessagingSystem.broadcastStatus table
-                mysqlConn.query("INSERT INTO mobileMessagingSystem.broadcastStatus (`ID`,`messageID`,`recipientID`,`primaryRecipient`,`url`,`audioFile`,`permanent`,`created_at`) VALUES ('" + broadcastStatusID + "','" + messageID + "','" + recipientID + "','1','" + item.url + "','" + item.audioFile + "',0,'"+convertDateTime(item.generated)+"');", function (error) {
+                mysqlConn.query("INSERT INTO mobileMessagingSystem.broadcastStatus (`ID`,`messageID`,`recipientID`,`primaryRecipient`,`url`,`audioFile`,`permanent`,`created_at`) VALUES ('" + broadcastStatusID + "','" + messageID + "','" + recipientID + "','1','" + item.url + "','" + item.audioFile + "',0,'" + convertDateTime(item.generated) + "');", function (error) {
                     if (error) throw error;
                 });
                 closeDataConnection(mysqlConn, mssql);
             });
-            console.log('#'+index+': '+item.verboseMessage);
+            console.log('#' + (index + 1) + ': ' + item.verboseMessage);
         });
-        console.log('\nScheduled mobile broadcasting completed at: '+new Date());
+        console.log('\nScheduled mobile broadcasting completed at: ' + new Date());
         console.log('-----------------------------------------------------------------------------------------------');
     });
 });
@@ -65,6 +65,6 @@ function closeDataConnection(mysqlConn, mssqlConn) {
     mssqlConn.close();
 };
 
-function convertDateTime(dateTimeVariable){
-    return dateTimeVariable.getFullYear()+'/'+dateTimeVariable.getMonth()+'/'+dateTimeVariable.getDate()+' '+dateTimeVariable.getHours()+':'+dateTimeVariable.getMinutes()+':'+dateTimeVariable.getSeconds();
+function convertDateTime(dateTimeVariable) {
+    return dateTimeVariable.getFullYear() + '/' + dateTimeVariable.getMonth() + '/' + dateTimeVariable.getDate() + ' ' + dateTimeVariable.getHours() + ':' + dateTimeVariable.getMinutes() + ':' + dateTimeVariable.getSeconds();
 };
