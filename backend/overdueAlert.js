@@ -1,4 +1,4 @@
-// this APP will query the UPGI_OverdueMonitor.dbo.warning_NewOverdue and get newly incurred overdue's, and write data to the server to cause a mobile broadcast to the user.  Intented to run every morning at 08:50
+// this APP will query the overdueMonitor.dbo.warning_NewOverdue and get newly incurred overdue's, and write data to the server to cause a mobile broadcast to the user.  Intented to run every morning at 08:50
 var mysql = require('mysql');
 var mssql = require('mssql');
 
@@ -9,7 +9,7 @@ var mssqlConfig = {
     // production server
     user: 'overdueMonitor',
     password: 'overdueMonitor',
-    server: '192.168.168.2'
+    server: '192.168.168.5'
 }
 
 // host for the mobile messaging system 
@@ -23,16 +23,16 @@ var mysqlConfig = {
 };
 
 // connect to ERP server
-mssql.connect(mssqlConfig, function (err) {
+mssql.connect(mssqlConfig, function(err) {
     if (err) throw err;
     var request = new mssql.Request();
     // query the data source (data is already prepared by the query)
-    request.query('SELECT * FROM UPGI_OverdueMonitor.dbo.warning_NewOverdue;', function (err, resultSet) {
+    request.query('SELECT * FROM overdueMonitor.dbo.warning_NewOverdue;', function(err, resultSet) {
         if (err) throw err;
         console.log('-----------------------------------------------------------------------------------------------');
         console.log('scheduled overdue info broadcasting started at: ' + new Date());
         console.log(resultSet.length + ' record(s) found\n');
-        resultSet.forEach(function (item, index) { //loop through each individual record
+        resultSet.forEach(function(item, index) { //loop through each individual record
             var recipientID = "";
             var messageID = utility.uuidGenerator();
             var broadcastStatusID = utility.uuidGenerator();
@@ -40,15 +40,15 @@ mssql.connect(mssqlConfig, function (err) {
             var mysqlConn = mysql.createConnection(mysqlConfig);
             mysqlConn.connect();
             // write to the mobileMessagingSystem.message table
-            mysqlConn.query("INSERT INTO mobileMessagingSystem.message (`ID`,`messageCategoryID`,`systemCategoryID`,`manualTopic`,`content`,`created_at`) VALUES ('" + messageID + "'," + item.messageCategoryID + "," + item.systemCategoryID + ",'" + item.manualTopic + "','" + item.content + "','" + convertDateTime(item.generated) + "');", function (err) {
+            mysqlConn.query("INSERT INTO mobileMessagingSystem.message (`ID`,`messageCategoryID`,`systemCategoryID`,`manualTopic`,`content`,`created_at`) VALUES ('" + messageID + "'," + item.messageCategoryID + "," + item.systemCategoryID + ",'" + item.manualTopic + "','" + item.content + "','" + convertDateTime(item.generated) + "');", function(err) {
                 if (err) throw err;
             });
             // check the user ID used by the mobile messaging system (compare against the particular sales' ERP ID or 員工編號)
-            mysqlConn.query("SELECT a.userID,c.erpID FROM upgiSystem.userGroupMembership a INNER JOIN (SELECT ID FROM upgiSystem.userGroup WHERE reference='Sales') b ON a.userGroupID=b.ID LEFT JOIN upgiSystem.user c ON a.userID=c.ID WHERE a.deprecated IS NULL AND c.erpID='" + item.recipientID + "';", function (err, data, fieldList) {
+            mysqlConn.query("SELECT a.userID,c.erpID FROM upgiSystem.userGroupMembership a INNER JOIN (SELECT ID FROM upgiSystem.userGroup WHERE reference='Sales') b ON a.userGroupID=b.ID LEFT JOIN upgiSystem.user c ON a.userID=c.ID WHERE a.deprecated IS NULL AND c.erpID='" + item.recipientID + "';", function(err, data, fieldList) {
                 if (err) throw err;
                 recipientID = data[0].userID;
                 // write the mobileMessagingSystem.broadcastStatus table
-                mysqlConn.query("INSERT INTO mobileMessagingSystem.broadcastStatus (`ID`,`messageID`,`recipientID`,`primaryRecipient`,`url`,`audioFile`,`permanent`,`created_at`) VALUES ('" + broadcastStatusID + "','" + messageID + "','" + recipientID + "','1','" + item.url + "','" + item.audioFile + "',0,'" + convertDateTime(item.generated) + "');", function (err) {
+                mysqlConn.query("INSERT INTO mobileMessagingSystem.broadcastStatus (`ID`,`messageID`,`recipientID`,`primaryRecipient`,`url`,`audioFile`,`permanent`,`created_at`) VALUES ('" + broadcastStatusID + "','" + messageID + "','" + recipientID + "','1','" + item.url + "','" + item.audioFile + "',0,'" + convertDateTime(item.generated) + "');", function(err) {
                     if (err) throw err;
                 });
                 closeDataConnection(mysqlConn, mssql);
