@@ -1,0 +1,1 @@
+SELECT CUS_NO FROM sunlikeerp.overdueMonitor.dbo.overdueClientTotal;
