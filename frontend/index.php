@@ -32,7 +32,7 @@
   <select name="YEAR" onchange='location.href=form.YEAR[form.YEAR.selectedIndex].value;'>
   <option value="?">選擇查詢年度</option>
     <?php
-      $sql = 'SELECT YEAR FROM UPGI_OverdueMonitor.dbo.observedYear;';
+      $sql = 'SELECT YEAR FROM overdueMonitor.dbo.observedYear;';
 			$resultSet = @$connection->query($sql);
       $resultSet->setFetchMode(PDO::FETCH_ASSOC);
 			while ($record = $resultSet->fetch()){
@@ -72,7 +72,7 @@
     </tr>
     
     <?php
-		$resultSet = @$connection->query("SELECT * FROM UPGI_OverdueMonitor.dbo.annualReportDetail where YEAR='".$Y."' order by CUS_SNM;");
+		$resultSet = @$connection->query("SELECT * FROM overdueMonitor.dbo.annualReportDetail where YEAR='".$Y."' order by CUS_SNM;");
 		if($resultSet->rowCount()!=0){
 		foreach ($resultSet->fetchAll(PDO::FETCH_ASSOC) as $record) {
 	?>
@@ -120,7 +120,7 @@
     <?php } ?>
   </tbody>
 <?php
-  $resultSet = @$connection->query("SELECT * FROM UPGI_OverdueMonitor.dbo.annualReportMonthlySummary where YEAR='".$Y."';");
+  $resultSet = @$connection->query("SELECT * FROM overdueMonitor.dbo.annualReportMonthlySummary where YEAR='".$Y."';");
   if($resultSet->rowCount()!=0){
     foreach ($resultSet->fetchAll(PDO::FETCH_ASSOC) as $record) {
 ?>
@@ -142,7 +142,7 @@
       <th class="overdue" align="center"><?php if($record["AMTN_OVERDUE_DEC"]!=NULL){echo number_format($record["AMTN_OVERDUE_DEC"],0);}?></th>
 <?php }} ?>
 <?php
-  $resultSet = @$connection->query("SELECT * FROM UPGI_OverdueMonitor.dbo.annualReportSummary where YEAR='".$Y."';");
+  $resultSet = @$connection->query("SELECT * FROM overdueMonitor.dbo.annualReportSummary where YEAR='".$Y."';");
   if($resultSet->rowCount()!=0){
     foreach ($resultSet->fetchAll(PDO::FETCH_ASSOC) as $record) {
 ?>
@@ -151,7 +151,7 @@
 <?php }} ?>
 <?php
   if($Y==2016){
-    $resultSet = @$connection->query("SELECT AMTN_DEPOSIT FROM UPGI_OverdueMonitor.dbo.overview;");
+    $resultSet = @$connection->query("SELECT AMTN_DEPOSIT FROM overdueMonitor.dbo.overview;");
     if($resultSet->rowCount()!=0){
       foreach ($resultSet->fetchAll(PDO::FETCH_ASSOC) as $record) {
 ?>
@@ -162,7 +162,7 @@
       <th rowspan="2" colspan="2"></th>
     </tr>
 <?php
-  $resultSet = @$connection->query("SELECT * FROM UPGI_OverdueMonitor.dbo.annualReportMonthlySummary where YEAR='".$Y."';");
+  $resultSet = @$connection->query("SELECT * FROM overdueMonitor.dbo.annualReportMonthlySummary where YEAR='".$Y."';");
   if($resultSet->rowCount()!=0){
     foreach ($resultSet->fetchAll(PDO::FETCH_ASSOC) as $record) {
 ?>
