@@ -1,5 +1,3 @@
---USE overdueMonitor;
-
 SELECT
 	g.CUS_NO
 	,g.CUS_SNM

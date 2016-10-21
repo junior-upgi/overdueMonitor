@@ -26,3 +26,19 @@ FROM (
 	FROM sunlikeerp.overdueMonitor.dbo.outstanding a
 	GROUP BY a.CUS_NO,YEAR(a.PS_DD),MONTH(a.PS_DD)) b
 	LEFT JOIN sunlikeerp.overdueMonitor.dbo.paymentTerm c ON b.CUS_NO=c.CUS_NO;
+
+/* 未完成
+SELECT
+	a.CUS_NO
+	,a.[YEAR]
+	,a.[MONTH]
+	,SUM(a.DURATION)/COUNT(*) AS DURATION
+	,SUM(a.AMTN_OUT) AS AMTN_OUT
+	,SUM(a.G_PERIOD_REMAIN)/COUNT(*) AS G_PERIOD_REMAIN
+	,a.[STATUS]
+	,SUM(a.G_PERIOD-a.DURATION)/COUNT(*)
+	,CASE WHEN a.[STATUS]=1 THEN 
+	ELSE 0 END AS LATE_COUNT
+FROM sunlikeerp.overdueMonitor.dbo.outstanding a
+GROUP BY a.CUS_NO,a.[YEAR],a.[MONTH],a.[STATUS];
+*/
