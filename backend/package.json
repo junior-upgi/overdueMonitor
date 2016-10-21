@@ -1,26 +1,26 @@
 {
-  "name": "overdue-monitor",
-  "version": "1.0.0",
-  "description": "Backend of overdue monitor system",
-  "main": "overdueMonitor.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/junior-upgi/overdueMonitorPHP.git"
-  },
-  "author": "Chia-Yu Tsai",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/junior-upgi/overdueMonitorPHP/issues"
-  },
-  "homepage": "https://github.com/junior-upgi/overdueMonitorPHP#readme",
-  "dependencies": {
-    "mssql": "*",
-    "mysql": "*"
-  },
-  "devDependencies": {
-    "eslint": "*"
-  }
+    "name": "overdue-monitor",
+    "version": "1.0.0",
+    "description": "Backend of overdue monitor system",
+    "main": "overdueMonitor.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/junior-upgi/overdueMonitor.git"
+    },
+    "author": "Chia-Yu Tsai",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/junior-upgi/overdueMonitor/issues"
+    },
+    "homepage": "https://github.com/junior-upgi/overdueMonitor#readme",
+    "dependencies": {
+        "mssql": "*",
+        "mysql": "*"
+    },
+    "devDependencies": {
+        "eslint": "*"
+    }
 }
