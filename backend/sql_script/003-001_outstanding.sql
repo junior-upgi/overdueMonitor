@@ -17,10 +17,10 @@ SELECT
 		WHEN DATEDIFF(dd,a.PS_DD,GETDATE())<(c.G_PERIOD+a.EXTENSION) THEN 0
 		ELSE 1 
 	END AS [STATUS]
-FROM sunlikeerp.overdueMonitor.dbo.billable AS a
+FROM overdueMonitor.dbo.billable AS a
 	LEFT JOIN (
 		SELECT ARP_NO,SUM(AMTN_CLS) AS AMTN_CLS
-		FROM sunlikeerp.overdueMonitor.dbo.payment
+		FROM overdueMonitor.dbo.payment
 		GROUP BY ARP_NO) AS b ON a.ARP_NO=b.ARP_NO
-	LEFT JOIN sunlikeerp.overdueMonitor.dbo.paymentTerm AS c ON a.CUS_NO=c.CUS_NO
+	LEFT JOIN overdueMonitor.dbo.paymentTerm AS c ON a.CUS_NO=c.CUS_NO
 WHERE (a.AMTN_NET-ISNULL(b.AMTN_CLS, 0))>0;

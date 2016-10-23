@@ -20,7 +20,7 @@ SELECT
     ,a.G_PERIOD_REMAIN
 	,DATEADD(day,c.G_PERIOD,a.PS_DD) AS DUE_DATE
 	,GETDATE() AS [generated]
-FROM sunlikeerp.overdueMonitor.dbo.outstanding a
-	LEFT JOIN sunlikeerp.overdueMonitor.dbo.clientData b ON a.CUS_NO=b.CUS_NO
-	LEFT JOIN sunlikeerp.overdueMonitor.dbo.paymentTerm c ON a.CUS_NO=c.CUS_NO
+FROM overdueMonitor.dbo.outstanding a
+	LEFT JOIN overdueMonitor.dbo.clientData b ON a.CUS_NO=b.CUS_NO
+	LEFT JOIN overdueMonitor.dbo.paymentTerm c ON a.CUS_NO=c.CUS_NO
 WHERE a.[STATUS]=0 AND (a.G_PERIOD_REMAIN BETWEEN 1 AND 7);

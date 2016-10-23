@@ -7,5 +7,5 @@ SELECT
     ,G_PERIOD_REMAIN
     ,[STATUS]
     ,LATE_COUNT
-FROM sunlikeerp.overdueMonitor.dbo.outstandingOverview
+FROM overdueMonitor.dbo.outstandingOverview
 WHERE [STATUS]=0;

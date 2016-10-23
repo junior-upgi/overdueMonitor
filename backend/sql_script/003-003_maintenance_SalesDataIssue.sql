@@ -28,10 +28,10 @@ FROM (
 			,a.TERM_DESC
 			,b.SAL AS SAL_NO
 			,c.NAME AS SAL_NAME
-		FROM sunlikeerp.overdueMonitor.dbo.paymentTerm a
-			LEFT JOIN sunlikeerp.DB_U105.dbo.CUST b ON a.CUS_NO=b.CUS_NO
-			LEFT JOIN sunlikeerp.DB_U105.dbo.SALM c ON b.SAL=c.SAL_NO) d
-		LEFT JOIN sunlikeerp.overdueMonitor.dbo.outstanding e ON d.CUS_NO=e.CUS_NO
-		LEFT JOIN sunlikeerp.overdueMonitor.dbo.activeSalesStaff f ON d.SAL_NO=f.SAL_NO
+		FROM overdueMonitor.dbo.paymentTerm a
+			LEFT JOIN DB_U105.dbo.CUST b ON a.CUS_NO=b.CUS_NO
+			LEFT JOIN DB_U105.dbo.SALM c ON b.SAL=c.SAL_NO) d
+		LEFT JOIN overdueMonitor.dbo.outstanding e ON d.CUS_NO=e.CUS_NO
+		LEFT JOIN overdueMonitor.dbo.activeSalesStaff f ON d.SAL_NO=f.SAL_NO
 	WHERE (e.CUS_NO IS NOT NULL AND d.SAL_NO IS NULL) OR (e.CUS_NO IS NOT NULL AND f.SAL_NO IS NULL)) g
 GROUP BY g.CUS_NO,g.CUS_SNM,g.SAL_REP_NO,g.SAL_NAME;

@@ -13,7 +13,7 @@ SELECT
 	END AS ISSUE
 	,a.SAL_NO
 	,a.SAL_NAME
-FROM sunlikeerp.overdueMonitor.dbo.clientData a
-	LEFT JOIN sunlikeerp.overdueMonitor.dbo.outstanding b ON a.CUS_NO=b.CUS_NO
+FROM overdueMonitor.dbo.clientData a
+	LEFT JOIN overdueMonitor.dbo.outstanding b ON a.CUS_NO=b.CUS_NO
 WHERE (b.CUS_NO IS NOT NULL AND a.TERM_DESC IS NULL) OR (b.CUS_NO IS NOT NULL AND a.LIM_NR IS NULL)
 GROUP BY a.CUS_NO,a.CUS_SNM,b.CUS_NO,a.TERM_DESC,b.G_PERIOD,a.LIM_NR,a.CRD_ID,a.SAL_NO,a.SAL_NAME;

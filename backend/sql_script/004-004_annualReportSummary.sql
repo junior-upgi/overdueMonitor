@@ -7,6 +7,6 @@ FROM (
 		[YEAR]
 		,CASE WHEN [STATUS]=1 THEN SUM(AMTN_OUT) END AS AMTN_OVERDUE
 		,CASE WHEN [STATUS]=0 THEN SUM(AMTN_OUT) END AS AMTN_PENDING
-	FROM sunlikeerp.overdueMonitor.dbo.outstandingOverview
+	FROM overdueMonitor.dbo.outstandingOverview
 	GROUP BY [STATUS],[YEAR]) a
 GROUP BY a.[YEAR];

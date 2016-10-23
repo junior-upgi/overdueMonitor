@@ -24,12 +24,12 @@ FROM (
 			,CAST(a.PS_DD AS DATE) AS PS_DD
 			,a.ACC_FP_NO
 			,CAST(SUM(b.AMTN_NET) AS INT) AS AMTN_NET
-		FROM sunlikeerp.DB_U105.dbo.MF_PSS a
-			INNER JOIN sunlikeerp.DB_U105.dbo.TF_PSS b ON a.PS_NO=b.PS_NO
+		FROM DB_U105.dbo.MF_PSS a
+			INNER JOIN DB_U105.dbo.TF_PSS b ON a.PS_NO=b.PS_NO
 		WHERE a.PS_ID='SA' AND a.PS_DD>='2016-01-01'
 		GROUP BY a.PS_NO,a.CUS_NO,a.PS_DD,a.ACC_FP_NO) a
-		LEFT JOIN sunlikeerp.DB_U105.dbo.MF_LZ b ON a.ACC_FP_NO=b.LZ_NO
-		LEFT JOIN sunlikeerp.overdueMonitor.dbo.ignoreBillable c ON (
+		LEFT JOIN DB_U105.dbo.MF_LZ b ON a.ACC_FP_NO=b.LZ_NO
+		LEFT JOIN overdueMonitor.dbo.ignoreBillable c ON (
 			a.CUS_NO=c.CUS_NO
 			AND b.ARP_NO=c.ARP_NO
 			AND b.LZ_NO=c.LZ_NO
@@ -44,5 +44,5 @@ FROM (
 		,CUS_NO
 		,AMTN_NET
 		,1 AS INSERTED
-	FROM sunlikeerp.overdueMonitor.dbo.includeBillable) d
-	LEFT JOIN sunlikeerp.overdueMonitor.dbo.outstandingExtension e ON (d.CUS_NO=e.CUS_NO AND d.PS_NO=e.PS_NO);
+	FROM overdueMonitor.dbo.includeBillable) d
+	LEFT JOIN overdueMonitor.dbo.outstandingExtension e ON (d.CUS_NO=e.CUS_NO AND d.PS_NO=e.PS_NO);

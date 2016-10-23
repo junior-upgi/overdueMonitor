@@ -8,7 +8,7 @@ SELECT
 	,c.AMTN_DEPOSIT
 	,b.SAL_NO
 	,b.SAL_NAME
-FROM sunlikeerp.overdueMonitor.dbo.overdueClientTotal a
-	INNER JOIN sunlikeerp.overdueMonitor.dbo.clientData b ON a.CUS_NO=b.CUS_NO
-	LEFT JOIN sunlikeerp.overdueMonitor.dbo.depositClientTotal c ON a.CUS_NO=c.CUS_NO
-	LEFT JOIN sunlikeerp.overdueMonitor.dbo.pendingClientTotal d ON a.CUS_NO=d.CUS_NO;
+FROM overdueMonitor.dbo.overdueClientTotal a
+	INNER JOIN overdueMonitor.dbo.clientData b ON a.CUS_NO=b.CUS_NO
+	LEFT JOIN overdueMonitor.dbo.depositClientTotal c ON a.CUS_NO=c.CUS_NO
+	LEFT JOIN overdueMonitor.dbo.pendingClientTotal d ON a.CUS_NO=d.CUS_NO;

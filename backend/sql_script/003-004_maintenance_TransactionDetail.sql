@@ -13,8 +13,8 @@ SELECT
 	,NULL AS G_PERIOD
 	,NULL AS G_PERIOD_REMAIN
 	,NULL AS STATUS
-FROM sunlikeerp.overdueMonitor.dbo.payment a
-	LEFT JOIN sunlikeerp.overdueMonitor.dbo.billable b ON a.ARP_NO=b.ARP_NO
+FROM overdueMonitor.dbo.payment a
+	LEFT JOIN overdueMonitor.dbo.billable b ON a.ARP_NO=b.ARP_NO
 WHERE b.PS_NO IS NOT NULL
 UNION
 SELECT
@@ -32,6 +32,6 @@ SELECT
 	,d.G_PERIOD
 	,d.G_PERIOD_REMAIN
 	,d.STATUS
-FROM sunlikeerp.overdueMonitor.dbo.outstanding d
+FROM overdueMonitor.dbo.outstanding d
 ORDER BY CUS_NO,PS_DD,PS_NO,ITM DESC,CLS_DD,G_PERIOD_REMAIN;
 /*order by statement must be removed in order to save this as view*/

@@ -3,5 +3,5 @@ SELECT
     ,SUM(AMTN_PENDING) AS AMTN_PENDING
     ,[STATUS]
     ,MAX(LATE_COUNT) AS LATE_COUNT
-FROM sunlikeerp.overdueMonitor.dbo.pending
+FROM overdueMonitor.dbo.pending
 GROUP BY CUS_NO,[STATUS];

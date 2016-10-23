@@ -21,7 +21,7 @@ SELECT
 	,f.AMTN_DEPOSIT
 	,f.SAL_NO
 	,f.SAL_NAME
-FROM sunlikeerp.overdueMonitor.dbo.overdueClientOverview f
+FROM overdueMonitor.dbo.overdueClientOverview f
 	LEFT JOIN (
 		SELECT
 			e.CUS_NO
@@ -52,10 +52,10 @@ FROM sunlikeerp.overdueMonitor.dbo.overdueClientOverview f
 			,SUM(CASE e.MONTH WHEN 12 THEN e.AMTN_PENDING ELSE NULL END) AS AMTN_PENDING_DEC
 		FROM (
 			SELECT b.CUS_NO,a.YEAR,a.MONTH,b.AMTN_OVERDUE,NULL AS AMTN_PENDING
-			FROM sunlikeerp.overdueMonitor.dbo.observedPeriod a LEFT JOIN sunlikeerp.overdueMonitor.dbo.overdue b ON (a.YEAR=b.YEAR AND a.MONTH=b.MONTH)
+			FROM overdueMonitor.dbo.observedPeriod a LEFT JOIN overdueMonitor.dbo.overdue b ON (a.YEAR=b.YEAR AND a.MONTH=b.MONTH)
 			WHERE b.CUS_NO IS NOT NULL
 			UNION
 			SELECT d.CUS_NO,c.YEAR,d.MONTH,NULL AS AMTN_OVERDUE,d.AMTN_PENDING
-			FROM sunlikeerp.overdueMonitor.dbo.observedPeriod c LEFT JOIN sunlikeerp.overdueMonitor.dbo.pending d ON (c.YEAR=d.YEAR AND c.MONTH=d.MONTH)
+			FROM overdueMonitor.dbo.observedPeriod c LEFT JOIN overdueMonitor.dbo.pending d ON (c.YEAR=d.YEAR AND c.MONTH=d.MONTH)
 			WHERE d.CUS_NO IS NOT NULL) e
 		GROUP BY e.CUS_NO,e.YEAR) g ON f.CUS_NO=g.CUS_NO;

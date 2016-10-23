@@ -3,5 +3,5 @@ SELECT
     ,[MONTH]
     ,SUM(AMTN_OVERDUE) AS AMTN_OVERDUE
     ,[STATUS]
-FROM sunlikeerp.overdueMonitor.dbo.overdue
+FROM overdueMonitor.dbo.overdue
 GROUP BY [YEAR],[MONTH],[STATUS];
