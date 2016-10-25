@@ -1,5 +1,5 @@
 SELECT
-    '【本週應收貨款提醒】' AS manualTopic
+    CAST('【本週應收貨款提醒】' AS VARCHAR(255)) AS manualTopic
 	,'致業務員：'+b.SAL_NAME+' - 【'+b.CUS_SNM+'】出貨金額 $'+FORMAT(a.AMTN_OUT,N'N0','zh-TW')+' 將於'+CAST(a.G_PERIOD_REMAIN AS VARCHAR)+'日後到期。' AS content
     ,4 AS messageCategoryID
     ,1 AS systemCategoryID

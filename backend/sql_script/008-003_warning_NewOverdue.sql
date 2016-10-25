@@ -1,5 +1,5 @@
 SELECT
-    '【逾期款項產生】' AS manualTopic
+    CAST('【逾期款項產生】' AS VARCHAR(255)) AS manualTopic
 	,'致業務員：'+b.SAL_NAME+' - 【'+b.CUS_SNM+'】產生逾期款 $'+FORMAT(a.AMTN_OUT,N'N0','zh-TW')+'。請注意！' AS content
     ,4 AS messageCategoryID
     ,1 AS systemCategoryID
