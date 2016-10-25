@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+
+<head>
+    <meta charset="utf-8" http-equiv="pragma" content="no-cache" />
+    <title>逾期款日報</title>
+    <link rel="stylesheet" type="text/css" href="global.css" />
+</head>
+
+<body>
+    <h1 style="font-size:36px;">逾期款日報</h1>
+    <h3 id="currentDate"></h3>
+    <div>
+        <div>
+            【逾期款項產生】
+            <ul id="newOverdueList">
+            </ul>
+        </div>
+        <div>
+            【當週逾期款項提醒】
+            <ul id="weeklyOverdueSummary">
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js" charset="utf-8"></script>
+<script>
+    $(document).ready(function() {
+        var currentDate = new Date();
+        $("#currentDate").text(currentDate.getFullYear() + '/' + (currentDate.getMonth() + 1) + '/' + currentDate.getDate());
+        $.getJSON("dataSource/overdueAlert.php", function(result) {
+            $.each(result, function(recordIndex, record) {
+                //console.log(record);
+                $("#newOverdueList").append("<li>" + record.content + "</li>");
+            });
+        });
+        $.getJSON("dataSource/weeklyAlert.php", function(result) {
+            $.each(result, function(recordIndex, record) {
+                //console.log(record);
+                $("#weeklyOverdueSummary").append("<li>" + record.content + "</li>");
+            });
+        });
+    });
+</script>
