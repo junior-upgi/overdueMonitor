@@ -52,12 +52,12 @@
                         $.getJSON("dataSource/transactionDetail.php?CUS_NO=" + $(this).data("client"), function(result) {
                             $("#dynamicTable").remove();
                             $(".selected").append("<table id=\"dynamicTable\" border=\"1\"></table>");
-                            $("#dynamicTable").append("<tr class=\"heading\"><th>銷貨編號</th><th>出貨日期</th><th>出貨金額</th><th>剩餘時間</th></tr>");
+                            $("#dynamicTable").append("<tr class=\"heading\"><th>銷貨編號</th><th>出貨日期</th><th>金額</th><th>寬限期</th><th>出貨<br>天數</th><th>剩餘</th></tr>");
                             $.each(result, function(recordIndex, record) {
                                 if (record.G_PERIOD_REMAIN == 0) {
-                                    $("#dynamicTable").append("<tr class=\"overdue\"><td>" + record.PS_NO + "</td><td>" + record.PS_DD + "</td><td>" + record.AMTN_OUT + "</td><td>" + record.G_PERIOD_REMAIN + "</td></tr>");
+                                    $("#dynamicTable").append("<tr class=\"overdue\"><td>" + record.PS_NO + "</td><td>" + record.PS_DD + "</td><td>" + record.AMTN_OUT + "</td><td>" + record.G_PERIOD + "</td><td>" + record.DURATION + "</td><td>" + record.G_PERIOD_REMAIN + "</td></tr>");
                                 } else {
-                                    $("#dynamicTable").append("<tr class=\"pending\"><td>" + record.PS_NO + "</td><td>" + record.PS_DD + "</td><td>" + record.AMTN_OUT + "</td><td>" + record.G_PERIOD_REMAIN + "</td></tr>");
+                                    $("#dynamicTable").append("<tr class=\"pending\"><td>" + record.PS_NO + "</td><td>" + record.PS_DD + "</td><td>" + record.AMTN_OUT + "</td><td>" + record.G_PERIOD + "</td><td>" + record.DURATION + "</td><td>" + record.G_PERIOD_REMAIN + "</td></tr>");
                                 }
                             });
                             $("tr.overdue").css("color", "red");
