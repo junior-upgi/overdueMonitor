@@ -38,4 +38,15 @@ sudo chown -R junior:junior /var/www/html/overdueMonitor
 
 sudo chmod -R 755 /var/www/html/overdueMonitor
 
+crontab -e
+
+=== insert the following lines into crontab ===============================================================================
+0 9 * * * nodejs /home/junior/project_upgilinuxvm1/overdueMonitor/backend/overdueAlert >> /home/junior/project_upgilinuxvm1/overdueMonitor/backend/log/overdueAlert.log
+50 8 * * 1 nodejs /home/junior/project_upgilinuxvm1/overdueMonitor/backend/weeklyAlert >> /home/junior/project_upgilinuxvm1/overdueMonitor/backend/log/weeklyAlert.log
+
+* * * * * php /home/junior/project_upgilinuxvm1/overdueMonitor/backend/test.php >> /home/junior/project_upgilinuxvm1/overdueMonitor/backend/log/test.log
+=========================================================================================================================
+
+=== check if test.log is getting entries per minute
+
 === done ===

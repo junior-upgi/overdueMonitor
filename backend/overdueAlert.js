@@ -15,7 +15,7 @@ var mssqlConfig = {
 // host for the mobile messaging system 
 var mysqlConfig = {
     // 'localhost' on production server
-    host: 'localhost',
+    host: '192.168.168.86',
     port: '3306',
     user: 'overdueMonitor',
     password: 'overdueMonitor',
