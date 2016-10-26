@@ -30,18 +30,24 @@
 </head>
 
 <body>
-    <h1>逾期款日報</h1>
-    <h4 id="currentDate"></h4>
+    <div>
+        <span style="display:inline-block;">
+            <h1>逾期款即時資訊</h1>
+        </span>
+        <span style="display:inline-block;">
+            <h2 id="currentDate"></h2>
+        </span>
+    </div>
     <div>
         <div>
-            <h2>【逾期款項產生】</h2>
-            <ul id="newOverdueList">
-            </ul>
+            <h2>【昨日新增逾期款項】</h2>
+            <ol id="newOverdueList">
+            </ol>
         </div>
         <div>
             <h2>【當週逾期款項提醒】</h2>
-            <ul id="weeklyOverdueSummary">
-            </ul>
+            <ol id="weeklyOverdueSummary">
+            </ol>
         </div>
     </div>
 </body>
@@ -66,6 +72,7 @@
                         $("#weeklyOverdueSummary").append("<li class=\"overdueItem\" data-client=\"" + record.CUS_NO + "\">" + record.content + "</li>");
                     }
                 });
+                $("li").css("font-size", "100%");
                 $(".weekOldOverdue").css("color", "red");
                 $(".overdueItem").click(function() {
                     if ($(this).hasClass("selected") == false) {
