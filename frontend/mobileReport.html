@@ -3,7 +3,30 @@
 
 <head>
     <meta charset="utf-8" http-equiv="pragma" content="no-cache" />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/1.4.5/numeral.min.js"></script>
     <title>逾期款日報</title>
+    <style>
+        @import url(http://fonts.googleapis.com/earlyaccess/notosanstc.css);
+        * {
+            font-family: 'Noto Sans TC', Consolas;
+        }
+        
+        tr th {
+            text-align: center;
+        }
+        
+        td,
+        th {
+            padding: 5px;
+        }
+        
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            font-size: 120%;
+            font-weight: bold;
+        }
+    </style>
 </head>
 
 <body>
@@ -52,12 +75,12 @@
                         $.getJSON("dataSource/transactionDetail.php?CUS_NO=" + $(this).data("client"), function(result) {
                             $("#dynamicTable").remove();
                             $(".selected").append("<table id=\"dynamicTable\" border=\"1\"></table>");
-                            $("#dynamicTable").append("<tr class=\"heading\"><th>銷貨編號</th><th>出貨日期</th><th>金額</th><th>寬限期</th><th>出貨<br>天數</th><th>剩餘</th></tr>");
+                            $("#dynamicTable").append("<tr class=\"heading\"><th>銷貨編號</th><th>出貨日期</th><th>金額</th><th>寬限期</th><th>出貨天數</th><th>剩餘</th></tr>");
                             $.each(result, function(recordIndex, record) {
                                 if (record.G_PERIOD_REMAIN == 0) {
-                                    $("#dynamicTable").append("<tr class=\"overdue\"><td>" + record.PS_NO + "</td><td>" + record.PS_DD + "</td><td>" + record.AMTN_OUT + "</td><td>" + record.G_PERIOD + "</td><td>" + record.DURATION + "</td><td>" + record.G_PERIOD_REMAIN + "</td></tr>");
+                                    $("#dynamicTable").append("<tr class=\"overdue\"><td>" + record.PS_NO + "</td><td>" + record.PS_DD + "</td><td style=\"text-align:right;\">" + numeral(record.AMTN_OUT).format("$0,0") + "</td><td style=\"text-align:right;\">" + record.G_PERIOD + "</td><td style=\"text-align:right;\">" + record.DURATION + "</td><td style=\"text-align:right;\">" + record.G_PERIOD_REMAIN + "</td></tr>");
                                 } else {
-                                    $("#dynamicTable").append("<tr class=\"pending\"><td>" + record.PS_NO + "</td><td>" + record.PS_DD + "</td><td>" + record.AMTN_OUT + "</td><td>" + record.G_PERIOD + "</td><td>" + record.DURATION + "</td><td>" + record.G_PERIOD_REMAIN + "</td></tr>");
+                                    $("#dynamicTable").append("<tr class=\"pending\"><td>" + record.PS_NO + "</td><td>" + record.PS_DD + "</td><td style=\"text-align:right;\">" + numeral(record.AMTN_OUT).format("$0,0") + "</td><td style=\"text-align:right;\">" + record.G_PERIOD + "</td><td style=\"text-align:right;\">" + record.DURATION + "</td><td style=\"text-align:right;\">" + record.G_PERIOD_REMAIN + "</td></tr>");
                                 }
                             });
                             $("tr.overdue").css("color", "red");
