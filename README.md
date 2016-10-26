@@ -1,50 +1,41 @@
-Deployment instructions for current master repo on the following servers: ERP SQL server (sunv9) and MySQL server (upgiserver86)
+Deployment instructions for upgilinuxvm1 server (deploy at a development environment)
 
-These instructions does not use symbolic link from user's project folder to the http docroot folder (files are manually copied into the server http docroot)
+environment requirement:
+node.js 6.9
+php 7.0
+apache 2.4
 
+=== start ===
 
-cd /home/junior/htmlProject
+cd /home/junior/project_upgilinuxvm1
 
 git clone https://github.com/junior-upgi/overdueMonitor.git
 
-cd /home/junior/htmlProject/overdueMonitor
-
-rm -rf .git
-
-rm .gitignore
-
-rm README.md
-
-rm jsconfig.json
-
-rm -rf misc
-
-
-cd /home/junior/htmlProject/overdueMonitor/backend
-
-rm -rf sql_script
-
-rm -rf notes
+cd /home/junior/project_upgilinuxvm1/overdueMonitor/backend
 
 npm install --prod
 
-rm package.json
-
+npm install --only=dev
 
 sudo su
 
 rm -rf /var/www/html/overdueMonitor
 
-cd /home/junior/htmlProject/overdueMonitor/frontend
+cd /home/junior/project_upgilinuxvm1/overdueMonitor/frontend
 
 mkdir /var/www/html/overdueMonitor
 
-cp /home/junior/htmlProject/overdueMonitor/frontend/* /var/www/html/overdueMonitor/ 
+nano /etc/fstab
 
-chown -R junior:junior /var/www/html/overdueMonitor
+=== insert the following line into fstab ================================================================================
+/home/junior/project_upgilinuxvm1/overdueMonitor/frontend /var/www/html/overdueMonitor none defaults,permissions,bind 0 0
+=========================================================================================================================
 
-chmod -R 755 /var/www/html/overdueMonitor
+=== reboot the system and make sure symbolic link is properly generated on
+=== the frontend file directory, then continue with the instructions 
 
-rm -rf /home/junior/htmlProject/overdueMonitor/frontend
+sudo chown -R junior:junior /var/www/html/overdueMonitor
 
-exit
+sudo chmod -R 755 /var/www/html/overdueMonitor
+
+=== done ===
