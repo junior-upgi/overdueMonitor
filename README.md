@@ -45,6 +45,9 @@ crontab -e
 50 8 * * 1 nodejs /home/junior/project_upgilinuxvm1/overdueMonitor/backend/weeklyAlert >> /home/junior/project_upgilinuxvm1/overdueMonitor/backend/log/weeklyAlert.log
 
 * * * * * php /home/junior/project_upgilinuxvm1/overdueMonitor/backend/test.php >> /home/junior/project_upgilinuxvm1/overdueMonitor/backend/log/test.log
+
+0 * * * * curl -X POST -H "Content-Type: application/json" -d '{"messageCategoryID":"3","systemCategoryID":"1","manualTopic":"逾期款日報","content":"請點選訊息以查閱今日逾期款狀況","recipientID":"05060001","userGroup":"Admin","url":"http://upgi.ddns.net:3355/overdueMonitor/mobileReport.html","audioFile":"alert.mp3"}' http://localhost:3939/broadcast >> /home/junior/project_upgilinuxvm1/overdueMonitor/backend/log/test.log
+0 9 * * * curl -X POST -H "Content-Type: application/json" -d '{"messageCategoryID":"3","systemCategoryID":"1","manualTopic":"逾期款日報","content":"請點選訊息以查閱今日逾期款狀況","recipientID":"08030005","userGroup":"Sales","url":"http://upgi.ddns.net:3355/overdueMonitor/mobileReport.html","audioFile":"alert.mp3"}' http://localhost:3939/broadcast >> /home/junior/project_upgilinuxvm1/overdueMonitor/backend/log/test.log
 =========================================================================================================================
 
 === check if test.log is getting entries per minute
