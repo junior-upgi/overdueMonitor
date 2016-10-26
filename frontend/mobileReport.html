@@ -30,13 +30,41 @@
 </head>
 
 <body>
-    <div>
-        <span style="display:inline-block;">
-            <h1>逾期款即時資訊</h1>
-        </span>
-        <span style="display:inline-block;">
-            <h2 id="currentDate"></h2>
-        </span>
+    <div style="text-align:center;">
+        <h1 style="margin:auto;clear:both;">逾期款即時資訊</h1>
+        <h2 id="currentDate" style="margin:auto;clear:both;"></h2>
+        <table border="1" style="width:auto;margin:auto;clear:both;">
+            <thead>
+                <caption>
+                    <h2>【整體款項統計】</h2>
+                </caption>
+                <tr>
+                    <th style="text-align:center;">未逾期應收款總額</th>
+                    <th style="text-align:center;">逾期款總額</th>
+                    <th style="text-align:center;">預收款總額</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td id="AMTN_PENDING_SUMMARY" style="text-align:center;"></td>
+                    <td id="AMTN_OVERDUE_SUMMARY" style="text-align:center;"></td>
+                    <td id="AMTN_DEPOSIT_SUMMARY" style="text-align:center;"></td>
+                </tr>
+            </tbody>
+        </table>
+        <table border="1" style="width:auto;margin:auto;clear:both;">
+            <thead>
+                <caption>
+                    <h2>【年度款項統計】</h2>
+                </caption>
+                <tr>
+                    <th style="text-align:center;">年度</th>
+                    <th style="text-align:center;">未逾期應收款總額</th>
+                    <th style="text-align:center;">逾期款總額</th>
+                </tr>
+            </thead>
+            <tbody id="annualReportSummary"></tbody>
+        </table>
     </div>
     <div>
         <div>
@@ -59,6 +87,16 @@
     $(document).ready(function() {
         var currentDate = new Date();
         $("#currentDate").text(currentDate.getFullYear() + '/' + (currentDate.getMonth() + 1) + '/' + currentDate.getDate());
+        $.getJSON("dataSource/overview.php", function(result) {
+            $("#AMTN_PENDING_SUMMARY").text(numeral(result[0].AMTN_PENDING).format("$0,0"));
+            $("#AMTN_OVERDUE_SUMMARY").text(numeral(result[0].AMTN_OVERDUE).format("$0,0"));
+            $("#AMTN_DEPOSIT_SUMMARY").text(numeral(result[0].AMTN_DEPOSIT).format("$0,0"));
+        });
+        $.getJSON("dataSource/annualReportSummary.php", function(result) {
+            $.each(result, function(recordIndex, record) {
+                $("#annualReportSummary").append("<tr><td style=\"text-align:center;\">" + record.YEAR + "</td><td style=\"text-align:center;\">" + numeral(record.AMTN_PENDING).format("$0,0") + "</td><td style=\"text-align:center;\">" + numeral(record.AMTN_OVERDUE).format("$0,0") + "</td></tr>");
+            });
+        });
         $.getJSON("dataSource/overdueAlert.php", function(result) {
             $.each(result, function(recordIndex, record) {
                 $("#newOverdueList").append("<li class=\"overdueItem newOverdue\" data-client=\"" + record.CUS_NO + "\">" + record.content + "</li>");
