@@ -3,121 +3,99 @@
 
 <head>
     <meta charset="utf-8" http-equiv="pragma" content="no-cache" />
-    <script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/1.4.5/numeral.min.js"></script>
     <title>逾期款日報</title>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/1.4.5/numeral.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.2/moment.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js" charset="utf-8"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/cosmo/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.2/locale/zh-tw.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.2/moment-with-locales.min.js"></script>
-    <!--<script src=""></script>-->
-    <style>
-        @import url(http://fonts.googleapis.com/earlyaccess/notosanstc.css);
-        * {
-            font-family: 'Noto Sans TC', Consolas;
-        }
-    </style>
 </head>
 
 <body>
-    <div>
-        <h1>逾期款即時資訊</h1>
-        <h2 id="currentDate"></h2>
-        <table border="1">
-            <thead>
-                <caption>
-                    <h2>【整體款項統計】</h2>
-                </caption>
-                <tr>
-                    <th>未逾期應收款總額</th>
-                    <th>逾期款總額</th>
-                    <th>預收款總額</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td id="AMTN_PENDING_SUMMARY"></td>
-                    <td id="AMTN_OVERDUE_SUMMARY"></td>
-                    <td id="AMTN_DEPOSIT_SUMMARY"></td>
-                </tr>
-            </tbody>
-        </table>
-        <table border="1">
-            <thead>
-                <caption>
-                    <h2>【年度款項統計】</h2>
-                </caption>
-                <tr>
-                    <th>年度</th>
-                    <th>未逾期應收款總額</th>
-                    <th>逾期款總額</th>
-                </tr>
-            </thead>
-            <tbody id="annualReportSummary"></tbody>
-        </table>
-    </div>
-    <div>
-        <div>
-            <h2>【昨日新增逾期款項】</h2>
-            <ol id="newOverdueList">
-            </ol>
-        </div>
-        <div>
-            <h2>【當週逾期款項提醒】</h2>
-            <ol id="weeklyOverdueSummary">
-            </ol>
-        </div>
-    </div>
+    <h1 class="text-primary">【<span id="currentDate"></span> 逾期款即時資訊】</h1>
+
+    <table class="table table-bordered">
+        <thead>
+            <caption class="text-primary">
+                <h2>【整體款項統計】</h3>
+            </caption>
+            <tr>
+                <th class="text-center">未逾期應收款總額</th>
+                <th class="text-center">逾期款總額</th>
+                <th class="text-center">預收款總額</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td id="AMTN_PENDING_SUMMARY" class="text-center"></td>
+                <td id="AMTN_OVERDUE_SUMMARY" class="text-center danger"></td>
+                <td id="AMTN_DEPOSIT_SUMMARY" class="text-center"></td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-striped table-hover table-bordered">
+        <thead>
+            <caption class="text-primary">
+                <h2>【年度款項統計】</h3>
+            </caption>
+            <tr>
+                <th class="text-center">年度</th>
+                <th class="text-center">未逾期應收款總額</th>
+                <th class="text-center">逾期款總額</th>
+            </tr>
+        </thead>
+        <tbody id="annualReportSummary"></tbody>
+    </table>
+    <h2 class="text-primary">【昨日新增逾期款項】</h2>
+    <ol id="newOverdueList"></ol>
+    <h2 class="text-primary">【當週逾期款項提醒】</h2>
+    <ol id="weeklyOverdueSummary"></ol>
 </body>
 
 </html>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js" charset="utf-8"></script>
 <script>
     $(document).ready(function() {
         var currentDate = new Date();
         $("#currentDate").text(moment().format("YYYY-MM-DD"));
         $.getJSON("dataSource/overview.php", function(result) {
             $("#AMTN_PENDING_SUMMARY").text(numeral(result[0].AMTN_PENDING).format("$0,0"));
-            $("#AMTN_OVERDUE_SUMMARY").text(numeral(result[0].AMTN_OVERDUE).format("$0,0"));
+            $("#AMTN_OVERDUE_SUMMARY").html("<strong>" + numeral(result[0].AMTN_OVERDUE).format("$0,0") + "</strong>");
             $("#AMTN_DEPOSIT_SUMMARY").text(numeral(result[0].AMTN_DEPOSIT).format("$0,0"));
         });
         $.getJSON("dataSource/annualReportSummary.php", function(result) {
             $.each(result, function(recordIndex, record) {
-                $("#annualReportSummary").append("<tr><td>" + record.YEAR + "</td><td>" + numeral(record.AMTN_PENDING).format("$0,0") + "</td><td>" + numeral(record.AMTN_OVERDUE).format("$0,0") + "</td></tr>");
+                $("#annualReportSummary").append("<tr><td class=\"text-center\">" + record.YEAR + "</td><td class=\"text-center\">" + numeral(record.AMTN_PENDING).format("$0,0") + "</td><td class=\"danger text-center\"><strong>" + numeral(record.AMTN_OVERDUE).format("$0,0") + "</strong></td></tr>");
             });
         });
         $.getJSON("dataSource/overdueAlert.php", function(result) {
             $.each(result, function(recordIndex, record) {
-                $("#newOverdueList").append("<li class=\"overdueItem newOverdue\" data-client=\"" + record.CUS_NO + "\">" + record.content + "</li>");
+                $("#newOverdueList").append("<li class=\"overdueItem panel panel-danger\" data-client=\"" + record.CUS_NO + "\"><div class=\"panel-heading\">" + record.content + "</div></li>");
             });
-            $(".newOverdue").css("color", "red");
             $.getJSON("dataSource/weeklyAlert.php", function(result) {
                 $.each(result, function(recordIndex, record) {
                     if (record.G_PERIOD_REMAIN == 0) {
-                        $("#weeklyOverdueSummary").append("<li class=\"overdueItem weekOldOverdue\" data-client=\"" + record.CUS_NO + "\">" + record.content + "</li>");
+                        $("#weeklyOverdueSummary").append("<li class=\"overdueItem panel panel-danger\" data-client=\"" + record.CUS_NO + "\"><div class=\"panel-heading\"><strong>" + record.content + "</strong></div></li>");
                     } else {
-                        $("#weeklyOverdueSummary").append("<li class=\"overdueItem\" data-client=\"" + record.CUS_NO + "\">" + record.content + "</li>");
+                        $("#weeklyOverdueSummary").append("<li class=\"overdueItem panel panel-primary\" data-client=\"" + record.CUS_NO + "\"><div class=\"panel-heading\">" + record.content + "</div></li>");
                     }
                 });
                 $(".overdueItem").click(function() {
                     if ($(this).hasClass("selected") == false) {
                         $(".selected").removeClass("selected");
                         $(this).addClass("selected");
-                        console.log($(this).data("client"));
                         $.getJSON("dataSource/transactionDetail.php?CUS_NO=" + $(this).data("client"), function(result) {
                             $("#dynamicTable").remove();
-                            $(".selected").append("<table id=\"dynamicTable\" border=\"1\"></table>");
-                            $("#dynamicTable").append("<tr class=\"heading\"><th>銷貨編號</th><th>出貨日期</th><th>金額</th><th>寬限期</th><th>出貨天數</th><th>剩餘</th></tr>");
+                            $(".selected").append("<table id=\"dynamicTable\" class=\"table table-striped table-hover table-bordered table-condensed\"></table>");
+                            $("#dynamicTable").append("<tr><th class=\"text-center\">銷貨編號</th><th class=\"text-center\">出貨日期</th><th class=\"text-center\">金額</th><th class=\"text-center\">寬限期</th><th class=\"text-center\">出貨天數</th><th class=\"text-center\">剩餘</th></tr>");
                             $.each(result, function(recordIndex, record) {
                                 if (record.G_PERIOD_REMAIN == 0) {
-                                    $("#dynamicTable").append("<tr class=\"overdue\"><td>" + record.PS_NO + "</td><td>" + record.PS_DD + "</td><td>" + numeral(record.AMTN_OUT).format("$0,0") + "</td><td>" + record.G_PERIOD + "</td><td>" + record.DURATION + "</td><td>" + record.G_PERIOD_REMAIN + "</td></tr>");
+                                    $("#dynamicTable").append("<tr class=\"danger\"><td class=\"text-center\">" + record.PS_NO + "</td><td class=\"text-center\">" + record.PS_DD + "</td><td class=\"text-right\">" + numeral(record.AMTN_OUT).format("$0,0") + "</td><td class=\"text-center\">" + record.G_PERIOD + "</td><td class=\"text-center\">" + record.DURATION + "</td><td class=\"text-center\">" + record.G_PERIOD_REMAIN + "</td></tr>");
                                 } else {
-                                    $("#dynamicTable").append("<tr class=\"pending\"><td>" + record.PS_NO + "</td><td>" + record.PS_DD + "</td><td>" + numeral(record.AMTN_OUT).format("$0,0") + "</td><td>" + record.G_PERIOD + "</td><td>" + record.DURATION + "</td><td>" + record.G_PERIOD_REMAIN + "</td></tr>");
+                                    $("#dynamicTable").append("<tr><td class=\"text-center\">" + record.PS_NO + "</td><td class=\"text-center\">" + record.PS_DD + "</td><td class=\"text-right\">" + numeral(record.AMTN_OUT).format("$0,0") + "</td><td class=\"text-center\">" + record.G_PERIOD + "</td><td class=\"text-center\">" + record.DURATION + "</td><td class=\"text-center\">" + record.G_PERIOD_REMAIN + "</td></tr>");
                                 }
                             });
-                            $("tr.overdue").css("color", "red");
-                            $("tr.pending,tr.heading").css("color", "black");
                         });
                     } else {
                         $(this).removeClass("selected");
