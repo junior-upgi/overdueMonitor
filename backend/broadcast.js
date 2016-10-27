@@ -39,10 +39,13 @@ app.post('/broadcast', function(req, res) {
         //close connection
         mysqlConn.end();
     });
-    console.log("==========" + currentDatetime + " 開始推撥 ==========");
-    console.log(message);
-    console.log("==========" + currentDatetime + " 推撥完畢 ==========");
-    res.send("<div>==========" + currentDatetime + " 開始推撥 ==========</div>" + "<p>" + message + "</p>" + "<div>==========" + currentDatetime + " 推撥完畢 ==========</div>");
+    console.log("==========" + currentDatetime + " 開始推撥 ==========\n");
+    console.log(message + "\n");
+    console.log("==========" + currentDatetime + " 推撥完畢 ==========\n");
+    res.send(
+        "<div>==========" + currentDatetime + " 開始推撥 ==========</div>" +
+        "<p>" + message + "</p>" +
+        "<div>==========" + currentDatetime + " 推撥完畢 ==========</div>");
 });
 
 app.listen(3939);
