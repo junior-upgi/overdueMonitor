@@ -49,4 +49,4 @@ app.post('/broadcast', function(req, res) {
 });
 
 app.listen(3939);
-console.log('Running on port 3939...\n');
+console.log('broadcast backend server running on port 3939...\n');
