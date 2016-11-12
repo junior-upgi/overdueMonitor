@@ -22,7 +22,7 @@ app.post('/broadcast', function(req, res) {
     var recipientID = "";
     var messageID = utility.uuidGenerator();
     var broadcastStatusID = utility.uuidGenerator();
-    var currentDatetime = moment().format("YYYY-MM-DD HH:mm:ss");
+    var currentDatetime = moment(moment(), "YYYY-MM-DD HH:mm:ss").format("YYYY-MM-DD HH:mm:ss");
     // establish connection to mobileMessagingSystem server
     var mysqlConn = mysql.createConnection(mysqlConfig);
     mysqlConn.connect();
