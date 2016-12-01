@@ -12,6 +12,27 @@ var telegramChat = require("./model/telegramChat.js");
 var telegramUser = require("./model/telegramUser.js");
 var upgiSystem = require("./model/upgiSystem.js");
 
+var captureCashFlowSnapshot = new CronJob("0 * * * * *", function() {
+    database.executeQuery(queryString.overviewQuery, function(recordset, error) {
+        if (error) {
+            httpRequest({ // broadcast alert when error encountered
+                method: "post",
+                uri: config.broadcastAPIUrl,
+                form: {
+                    chat_id: telegramUser.getUserID("蔡佳佑"),
+                    text: "error encountered while executing scheduled 'captureCashFlowSnapshot' function: " + error,
+                    token: telegramBot.getToken("overdueMonitorBot")
+                }
+            }).catch(function(error) {
+                return console.log(error);
+            });
+            return console.log("error encountered while executing scheduled 'captureCashFlowSnapshot' function: " + error);
+        }
+        return console.log(recordset[0]);
+    });
+}, null, true, config.workingTimezone);
+captureCashFlowSnapshot.start();
+
 var newOverdueMonitorJob = upgiSystem.list[1].jobList[0];
 var recentOverdueMonitorJob = upgiSystem.list[1].jobList[1];
 var oneWeekWarningMonitorJob = upgiSystem.list[1].jobList[2];
