@@ -27,18 +27,14 @@ var list = [{
         id: "weeklyMonitorTask",
         reference: "每週逾期款監控項目",
         type: "periodicFunction",
-        online: false,
-        broadcast: false,
-        //schedule: "0 0 9 * * 1", // every Monday at 09:00
-        schedule: "*/5 * * * * *", // testing
+        online: true,
+        broadcast: true,
+        schedule: "0 0 9 * * 1", // every Monday at 09:00
+        //schedule: "*/10 * * * * *", // testing
         targetGroupIDList: [
-            telegramChat.getChatID("資訊群組"),
+            telegramChat.getChatID("業務群組"),
             telegramChat.getChatID("測試群組")
         ],
-        /*targetGroupIDList: [
-            telegramChat.getChatID("業務群組"),
-            telegramChat.getChatID("測試群組")            
-        ],*/
         targetUserIDList: [
             telegramUser.getUserID("趙婉伶"),
             telegramUser.getUserID("蔡佳佑")

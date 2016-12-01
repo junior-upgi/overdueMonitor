@@ -141,8 +141,8 @@ var list = [{
 }, {
     id: 277098776,
     username: "David0937614299",
-    first_name: "David",
-    last_name: "Lin",
+    first_name: "志鑫",
+    last_name: "林",
     status: ["user"],
     email: "davidlin@upgi.com.tw",
     joinedGroupList: [],
@@ -150,8 +150,8 @@ var list = [{
 }, {
     id: 281948128,
     username: "EvitaUPG",
-    first_name: "Evita",
-    last_name: "Chuang",
+    first_name: "文君",
+    last_name: "莊",
     status: ["user"],
     email: "evita@upgi.com.tw",
     joinedGroupList: [],
@@ -159,16 +159,16 @@ var list = [{
 }, {
     id: 281458056,
     username: "Jeffrey_upgi",
-    first_name: "Jeffrey",
-    last_name: "Tsai",
+    first_name: "政宏",
+    last_name: "蔡",
     status: ["user"],
     joinedGroupList: [],
     upgEmployeeID: "11080005"
 }, {
     id: 290457488,
     username: "upgi_shen0445",
-    first_name: "Shen",
-    last_name: "Sam",
+    first_name: "昌言",
+    last_name: "沈",
     status: ["user"],
     joinedGroupList: [],
     upgEmployeeID: "03070001"
@@ -185,7 +185,7 @@ var list = [{
     id: 236207790,
     username: "jack5447",
     first_name: "游",
-    last_name: "小楠",
+    last_name: "閔楠",
     status: ["user"],
     joinedGroupList: [],
     upgEmployeeID: "07120002"
@@ -200,8 +200,8 @@ var list = [{
 }, {
     id: 282526890,
     username: "upgelma",
-    first_name: "Chen",
-    last_name: "Elma",
+    first_name: "毓馨",
+    last_name: "陳",
     status: ["user"],
     joinedGroupList: [],
     upgEmployeeID: "07080001"
@@ -247,6 +247,24 @@ var list = [{
     email: "design2@upgi.com.tw",
     joinedGroupList: [],
     upgEmployeeID: "99040007"
+}, {
+    id: 279766628,
+    username: "FrancisLiu",
+    first_name: "得臣",
+    last_name: "劉",
+    status: ["user"],
+    email: "francis@upgi.com.tw",
+    joinedGroupList: [],
+    upgEmployeeID: "16080001"
+}, {
+    id: 288237926,
+    username: "Raquel770302",
+    first_name: "宛儒",
+    last_name: "李",
+    status: ["user"],
+    email: "emma@upgi.com.tw",
+    joinedGroupList: [],
+    upgEmployeeID: "16060001"
 }];
 
 function getUserID(userName) {
