@@ -12,82 +12,60 @@ var telegramChat = require("./model/telegramChat.js");
 var telegramUser = require("./model/telegramUser.js");
 var upgiSystem = require("./model/upgiSystem.js");
 
-var dailyMonitorTask = new CronJob(upgiSystem.list[1].jobList[0].schedule, function() {
-    var broadcastTargetIDList = []; // list to hold a list of broadcast recipients
-    var newOverdueGroupMessage = "【新增逾期款項】"; // string to hold group message
-    if (upgiSystem.list[1].jobList[0].online === true) { // only execute the cron job if the 'online' property is true
-        console.log(
-            "\n" + moment(moment(), "YYYY-MM-DD HH:mm:ss").format("YYYY-MM-DD HH:mm:ss") + " " +
-            "proceeding with scheduled [" + upgiSystem.list[1].jobList[0].id + "]"
-        );
-        // query the database for new overdue records
-        database.executeQuery(queryString.newOverdueAlarmQuery, function(newOverdueList, error) {
-            if (error) {
-                return console.log(error);
-            }
-            newOverdueList.forEach(function(newOverdue) { // loop through each record in the list
-                newOverdueGroupMessage += "\n   " + newOverdue.content;
-                broadcastTargetIDList = upgiSystem.list[1].jobList[0].targetUserIDList.slice(); // reinitialize
-                broadcastTargetIDList.push(telegramUser.getUserID(newOverdue.SAL_NAME)); // add staff that came up in the current record
-                if (upgiSystem.list[1].jobList[0].broadcast === true) { // only broadcast if the 'broadcast' property is true
-                    broadcastTargetIDList.forEach(function(broadcastTargetID) { // loop through broadcastTargetIDList and broadcast
-                        httpRequest({ // broadcast individual message
-                            method: "post",
-                            uri: config.broadcastAPIUrl,
-                            form: {
-                                chat_id: broadcastTargetID,
-                                text: newOverdue.verboseMessage,
-                                token: telegramBot.getToken("overdueMonitorBot")
-                            }
-                        }).catch(function(error) {
-                            console.log(error);
-                        });
-                    });
-                }
-            });
-            if (upgiSystem.list[1].jobList[0].broadcast === true) { // only broadcast if the 'broadcast' property is true
-                httpRequest({ // broadcast group message
-                    method: "post",
-                    uri: config.broadcastAPIUrl,
-                    form: {
-                        chat_id: telegramChat.getChatID("業務群組"),
-                        text: newOverdueGroupMessage,
-                        token: telegramBot.getToken("overdueMonitorBot")
-                    }
-                }).catch(function(error) {
-                    console.log(error);
-                });
-            }
-        });
-    }
-}, null, true, config.workingTimezone);
-dailyMonitorTask.start();
+var newOverdueMonitorJob = upgiSystem.list[1].jobList[0];
+var recentOverdueMonitorJob = upgiSystem.list[1].jobList[1];
+var oneWeekWarningMonitorJob = upgiSystem.list[1].jobList[2];
+var twoWeekWarningMonitorJob = upgiSystem.list[1].jobList[2];
+var newOverdueMonitorTask =
+    new CronJob(
+        newOverdueMonitorJob.schedule,
+        broadcastMonitorResult(newOverdueMonitorJob, "【新增逾期款項】", queryString.newOverdueAlarmQuery),
+        null, true, config.workingTimezone);
+var recentOverdueMonitorTask =
+    new CronJob(
+        recentOverdueMonitorJob.schedule,
+        broadcastMonitorResult(recentOverdueMonitorJob, "【近期逾期款項目】", queryString.pastWeekOverdueAlarmQuery),
+        null, true, config.workingTimezone);
+var oneWeekWarningMonitorTask =
+    new CronJob(
+        oneWeekWarningMonitorJob.schedule,
+        broadcastMonitorResult(oneWeekWarningMonitorJob, "【本週即將逾期項目】", queryString.oneWeekWarningQuery),
+        null, true, config.workingTimezone);
+var twoWeekWarningMonitorTask =
+    new CronJob(
+        twoWeekWarningMonitorJob.schedule,
+        broadcastMonitorResult(twoWeekWarningMonitorJob, "【兩週內即將逾期項目】", queryString.twoWeekWarningQuery),
+        null, true, config.workingTimezone);
+newOverdueMonitorTask.start();
+recentOverdueMonitorTask.start();
+oneWeekWarningMonitorTask.start();
+twoWeekWarningMonitorTask.start();
 
-var weeklyMonitorTask = new CronJob(upgiSystem.list[1].jobList[1].schedule, function() {
+function broadcastMonitorResult(monitoredJob, groupMessageTitle, jobSQLScript) {
     var broadcastTargetIDList = []; // list to hold a list of broadcast recipients
-    var groupMessage = "【近期逾期款項目】"; // string to hold group message
-    if (upgiSystem.list[1].jobList[1].online === true) { // only execute the cron job if the 'online' property is true
+    var groupMessage = groupMessageTitle; // string to hold group message
+    if (monitoredJob.online === true) { // only execute the cron job if the 'online' property is true
         console.log(
             "\n" + moment(moment(), "YYYY-MM-DD HH:mm:ss").format("YYYY-MM-DD HH:mm:ss") + " " +
-            "proceeding with scheduled [" + upgiSystem.list[1].jobList[1].id + "]"
+            "proceeding with scheduled [" + monitoredJob.id + "]"
         );
         // query the database for recent overdue records
-        database.executeQuery(queryString.pastWeekOverdueAlarmQuery, function(pastWeekOverdueList, error) {
+        database.executeQuery(jobSQLScript, function(recordset, error) {
             if (error) {
                 return console.log(error);
             }
-            pastWeekOverdueList.forEach(function(pastWeekOverdue) { // loop through each record in the list
-                groupMessage += "\n" + pastWeekOverdue.content;
-                broadcastTargetIDList = upgiSystem.list[1].jobList[1].targetUserIDList.slice(); // reinitialize
-                broadcastTargetIDList.push(telegramUser.getUserID(pastWeekOverdue.SAL_NAME)); // add staff that came up in the current record
-                if (upgiSystem.list[1].jobList[1].broadcast === true) { // only broadcast if the 'broadcast' property is true
+            recordset.forEach(function(record) { // loop through each record in the list
+                groupMessage += "\n" + record.content;
+                broadcastTargetIDList = monitoredJob.targetUserIDList.slice(); // reinitialize
+                broadcastTargetIDList.push(telegramUser.getUserID(record.SAL_NAME)); // add staff that came up in the current record
+                if (monitoredJob.broadcast === true) { // only broadcast if the 'broadcast' property is true
                     broadcastTargetIDList.forEach(function(broadcastTargetID) { // loop through broadcastTargetIDList and broadcast
                         httpRequest({ // broadcast individual message
                             method: "post",
                             uri: config.broadcastAPIUrl,
                             form: {
                                 chat_id: broadcastTargetID,
-                                text: pastWeekOverdue.verboseMessage,
+                                text: record.verboseMessage,
                                 token: telegramBot.getToken("overdueMonitorBot")
                             }
                         }).catch(function(error) {
@@ -96,8 +74,8 @@ var weeklyMonitorTask = new CronJob(upgiSystem.list[1].jobList[1].schedule, func
                     });
                 }
             });
-            if (upgiSystem.list[1].jobList[1].broadcast === true) { // only broadcast if the 'broadcast' property is true
-                upgiSystem.list[1].jobList[1].targetGroupIDList.forEach(function(targetGroupID) {
+            if (monitoredJob.broadcast === true) { // only broadcast if the 'broadcast' property is true
+                monitoredJob.targetGroupIDList.forEach(function(targetGroupID) {
                     httpRequest({ // broadcast group message
                         method: "post",
                         uri: config.broadcastAPIUrl,
@@ -113,5 +91,4 @@ var weeklyMonitorTask = new CronJob(upgiSystem.list[1].jobList[1].schedule, func
             }
         });
     }
-}, null, true, config.workingTimezone);
-weeklyMonitorTask.start();
+};
