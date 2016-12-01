@@ -15,26 +15,34 @@ var upgiSystem = require("./model/upgiSystem.js");
 var newOverdueMonitorJob = upgiSystem.list[1].jobList[0];
 var recentOverdueMonitorJob = upgiSystem.list[1].jobList[1];
 var oneWeekWarningMonitorJob = upgiSystem.list[1].jobList[2];
-var twoWeekWarningMonitorJob = upgiSystem.list[1].jobList[2];
+var twoWeekWarningMonitorJob = upgiSystem.list[1].jobList[3];
 var newOverdueMonitorTask =
     new CronJob(
         newOverdueMonitorJob.schedule,
-        broadcastMonitorResult(newOverdueMonitorJob, "【新增逾期款項】", queryString.newOverdueAlarmQuery),
+        function() {
+            broadcastMonitorResult(newOverdueMonitorJob, "【新增逾期款項】", queryString.newOverdueAlarmQuery)
+        },
         null, true, config.workingTimezone);
 var recentOverdueMonitorTask =
     new CronJob(
         recentOverdueMonitorJob.schedule,
-        broadcastMonitorResult(recentOverdueMonitorJob, "【近期逾期款項目】", queryString.pastWeekOverdueAlarmQuery),
+        function() {
+            broadcastMonitorResult(recentOverdueMonitorJob, "【近期逾期款項目】", queryString.pastWeekOverdueAlarmQuery)
+        },
         null, true, config.workingTimezone);
 var oneWeekWarningMonitorTask =
     new CronJob(
         oneWeekWarningMonitorJob.schedule,
-        broadcastMonitorResult(oneWeekWarningMonitorJob, "【本週即將逾期項目】", queryString.oneWeekWarningQuery),
+        function() {
+            broadcastMonitorResult(oneWeekWarningMonitorJob, "【本週即將逾期項目】", queryString.oneWeekWarningQuery)
+        },
         null, true, config.workingTimezone);
 var twoWeekWarningMonitorTask =
     new CronJob(
         twoWeekWarningMonitorJob.schedule,
-        broadcastMonitorResult(twoWeekWarningMonitorJob, "【兩週內即將逾期項目】", queryString.twoWeekWarningQuery),
+        function() {
+            broadcastMonitorResult(twoWeekWarningMonitorJob, "【兩週內即將逾期項目】", queryString.twoWeekWarningQuery);
+        },
         null, true, config.workingTimezone);
 newOverdueMonitorTask.start();
 recentOverdueMonitorTask.start();

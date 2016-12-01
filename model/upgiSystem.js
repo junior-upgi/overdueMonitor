@@ -18,9 +18,9 @@ var list = [{
         reference: "新增逾期項目款監控作業",
         type: "periodicFunction",
         online: true,
-        broadcast: true,
+        broadcast: false,
         schedule: "0 0 9 * * *", // everyday at 09:00
-        //schedule: "*/30 * * * * *", // testing
+        //schedule: "*/5 * * * * *", // testing
         targetGroupIDList: [
             telegramChat.getChatID("業務群組"),
             telegramChat.getChatID("測試群組")
@@ -31,7 +31,7 @@ var list = [{
         reference: "近期逾期項目監控作業",
         type: "periodicFunction",
         online: true,
-        broadcast: true,
+        broadcast: false,
         schedule: "30 0 9 * * 1", // every Monday at 09:00:30
         //schedule: "*/10 * * * * *", // testing
         targetGroupIDList: [
@@ -47,7 +47,7 @@ var list = [{
         reference: "本週即將逾期項目監控作業",
         type: "periodicFunction",
         online: true,
-        broadcast: true,
+        broadcast: false,
         schedule: "0 1 9 * * 1", // every Monday at 09:01
         //schedule: "*/10 * * * * *", // testing
         targetGroupIDList: [
@@ -63,7 +63,7 @@ var list = [{
         reference: "兩週內即將逾期項目監控作業",
         type: "periodicFunction",
         online: true,
-        broadcast: true,
+        broadcast: false,
         schedule: "30 1 9 * * 1", // every Monday at 09:01:30
         //schedule: "*/10 * * * * *", // testing
         targetGroupIDList: [
