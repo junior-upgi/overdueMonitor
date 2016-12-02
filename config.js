@@ -1,7 +1,8 @@
 "use strict";
 
-var serverHost = "http://localhost"; //development
-var serverPort = process.env.PORT || 9002;
+var serverHost = "http://localhost";
+var serverPort = process.env.PORT || 9003;
+var serverUrl = serverHost + ":" + serverPort;
 var broadcastServerHost = "http://upgi.ddns.net";
 var broadcastServerPort = process.env.PORT || 9001;
 var broadcastAPIUrl = broadcastServerHost + ":" + broadcastServerPort + "/broadcast";
@@ -26,6 +27,7 @@ const workingTimezone = "Asia/Taipei";
 module.exports = {
     serverHost,
     serverPort,
+    serverUrl,
     broadcastServerHost,
     broadcastServerPort,
     broadcastAPIUrl,

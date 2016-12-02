@@ -25,7 +25,7 @@ var jsonParser = bodyParser.json();
 
 app.listen(config.serverPort); // start server
 console.log(moment(moment(), "YYYY-MM-DD HH:mm:ss").format("YYYY-MM-DD HH:mm:ss") + " " +
-    "overdueMonitor system in operation...(" + config.serverHost + ":" + config.serverPort + ")");
+    "overdueMonitor system in operation...(" + config.serverUrl + ")");
 
 var captureCashFlowSnapshot = new CronJob("0 0 5 * * *", function() { // perform everyday at 5:00AM
     console.log(
