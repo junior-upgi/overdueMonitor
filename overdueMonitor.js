@@ -22,6 +22,11 @@ app.use(bodyParser.urlencoded({ extended: true })); // parse application/x-www-f
 var urlencodedParser = bodyParser.urlencoded({ extended: true });
 app.use(bodyParser.json()); // parse application/json
 var jsonParser = bodyParser.json();
+app.use("/overdueMonitor/public", express.static("./public"));
+
+app.get("/overdueMonitor/mobileReport", function(request, response) { // serve mobile page
+    return response.status(200).render("mobileReport");
+});
 
 app.listen(config.serverPort); // start server
 console.log(moment(moment(), "YYYY-MM-DD HH:mm:ss").format("YYYY-MM-DD HH:mm:ss") + " " +
