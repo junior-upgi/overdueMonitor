@@ -9,11 +9,11 @@ var morgan = require("morgan");
 
 var config = require("./config.js");
 var database = require("./module/database.js");
+var upgiSystem = require("./module/upgiSystem.js");
 var queryString = require("./model/queryString.js");
 var telegramBot = require("./model/telegramBot.js");
 var telegramChat = require("./model/telegramChat.js");
 var telegramUser = require("./model/telegramUser.js");
-var upgiSystem = require("./model/upgiSystem.js");
 
 var app = express();
 app.set("view engine", "ejs");

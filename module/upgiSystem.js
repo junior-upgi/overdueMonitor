@@ -1,8 +1,8 @@
 "use strict";
 
 var config = require("../config.js");
-var telegramChat = require("./telegramChat.js");
-var telegramUser = require("./telegramUser.js");
+var telegramChat = require("../model/telegramChat.js");
+var telegramUser = require("../model/telegramUser.js");
 
 var broadcastUrl = config.broadcastServerHost + ":" + config.broadcastServerPort + "/broadcast";
 
