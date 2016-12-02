@@ -1,31 +1,31 @@
 {
-    "name": "overdue-monitor",
-    "version": "1.0.0",
-    "description": "service to monitor overdue situation from ERP data",
-    "main": "overdueMonitor.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/junior-upgi/overdueMonitor.git"
-    },
-    "author": "Chia-Yu Tsai",
-    "license": "ISC",
-    "dependencies": {
-        "body-parser": "^1.15.2",
-        "cors": "^2.8.1",
-        "cron": "^1.1.1",
-        "ejs": "^2.5.2",
-        "express": "^4.14.0",
-        "moment-timezone": "^0.5.9",
-        "morgan": "^1.7.0",
-        "mssql": "^3.3.0",
-        "request": "^2.79.0",
-        "request-promise": "^4.1.1"
-    },
-    "devDependencies": {
-        "bootlint": "^0.14.2",
-        "eslint": "^3.10.2"
-    }
+  "name": "overdue-monitor",
+  "version": "1.0.0",
+  "description": "service to monitor overdue situation from ERP data",
+  "main": "overdueMonitor.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/junior-upgi/overdueMonitor.git"
+  },
+  "author": "Chia-Yu Tsai",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "cors": "^2.8.1",
+    "cron": "^1.1.1",
+    "ejs": "^2.5.3",
+    "express": "^4.14.0",
+    "moment-timezone": "^0.5.9",
+    "morgan": "^1.7.0",
+    "mssql": "^3.3.0",
+    "request": "^2.79.0",
+    "request-promise": "^4.1.1"
+  },
+  "devDependencies": {
+    "bootlint": "^0.14.2",
+    "eslint": "^3.10.2"
+  }
 }

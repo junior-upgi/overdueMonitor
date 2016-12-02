@@ -1,8 +1,11 @@
 "use strict";
 
-var moment = require("moment-timezone");
+var bodyParser = require("body-parser");
 var CronJob = require("cron").CronJob;
+var express = require("express");
 var httpRequest = require("request-promise");
+var moment = require("moment-timezone");
+var morgan = require("morgan");
 
 var config = require("./config.js");
 var database = require("./module/database.js");
@@ -12,7 +15,23 @@ var telegramChat = require("./model/telegramChat.js");
 var telegramUser = require("./model/telegramUser.js");
 var upgiSystem = require("./model/upgiSystem.js");
 
-var captureCashFlowSnapshot = new CronJob("0 * * * * *", function() {
+var app = express();
+app.set("view engine", "ejs");
+app.use(morgan("dev"));
+app.use(bodyParser.urlencoded({ extended: true })); // parse application/x-www-form-urlencoded
+var urlencodedParser = bodyParser.urlencoded({ extended: true });
+app.use(bodyParser.json()); // parse application/json
+var jsonParser = bodyParser.json();
+
+app.listen(config.serverPort); // start server
+console.log(moment(moment(), "YYYY-MM-DD HH:mm:ss").format("YYYY-MM-DD HH:mm:ss") + " " +
+    "overdueMonitor system in operation...(" + config.serverHost + ":" + config.serverPort + ")");
+
+var captureCashFlowSnapshot = new CronJob("0 0 5 * * *", function() { // perform everyday at 5:00AM
+    console.log(
+        "\n" + moment(moment(), "YYYY-MM-DD HH:mm:ss").format("YYYY-MM-DD HH:mm:ss") + " " +
+        "proceeding with scheduled [貨款總額記錄]"
+    );
     database.executeQuery(queryString.overviewQuery, function(recordset, error) {
         if (error) {
             httpRequest({ // broadcast alert when error encountered
@@ -28,11 +47,33 @@ var captureCashFlowSnapshot = new CronJob("0 * * * * *", function() {
             });
             return console.log("error encountered while executing scheduled 'captureCashFlowSnapshot' function: " + error);
         }
-        return console.log(recordset[0]);
+        console.log(recordset[0]);
+        database.executeQuery(queryString.cashFlowSnapshotInsertQuery(
+            recordset[0].AMTN_PENDING,
+            recordset[0].AMTN_OVERDUE,
+            recordset[0].AMTN_DEPOSIT
+        ), function(recordset, error) {
+            if (error) {
+                httpRequest({ // broadcast alert when error encountered
+                    method: "post",
+                    uri: config.broadcastAPIUrl,
+                    form: {
+                        chat_id: telegramUser.getUserID("蔡佳佑"),
+                        text: "error encountered while executing cashFlowSnapshotInsertQuery: " + error,
+                        token: telegramBot.getToken("overdueMonitorBot")
+                    }
+                }).catch(function(error) {
+                    return console.log(error);
+                });
+                return console.log("error encountered while executing cashFlowSnapshotInsertQuery: " + error);
+            }
+            return console.log("captureCashFlowSnapshot completed successfully...");
+        });
     });
 }, null, true, config.workingTimezone);
 captureCashFlowSnapshot.start();
 
+// overdue alert and warning cron jobs
 var newOverdueMonitorJob = upgiSystem.list[1].jobList[0];
 var recentOverdueMonitorJob = upgiSystem.list[1].jobList[1];
 var oneWeekWarningMonitorJob = upgiSystem.list[1].jobList[2];
@@ -70,6 +111,7 @@ recentOverdueMonitorTask.start();
 oneWeekWarningMonitorTask.start();
 twoWeekWarningMonitorTask.start();
 
+// template function to execute scheduled cron alert and warning jobs
 function broadcastMonitorResult(monitoredJob, groupMessageTitle, jobSQLScript) {
     var broadcastTargetIDList = []; // list to hold a list of broadcast recipients
     var groupMessage = groupMessageTitle; // string to hold group message

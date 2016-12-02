@@ -25,7 +25,10 @@ var list = [{
             telegramChat.getChatID("業務群組"),
             telegramChat.getChatID("測試群組")
         ],
-        targetUserIDList: [telegramUser.getUserID("蔡佳佑")]
+        targetUserIDList: [
+            telegramUser.getUserID("蔡佳佑"),
+            telegramUser.getUserID("翁宏達")
+        ]
     }, {
         id: "recentOverdueMonitorTask",
         reference: "近期逾期項目監控作業",
@@ -40,7 +43,8 @@ var list = [{
         ],
         targetUserIDList: [
             telegramUser.getUserID("趙婉伶"),
-            telegramUser.getUserID("蔡佳佑")
+            telegramUser.getUserID("蔡佳佑"),
+            telegramUser.getUserID("翁宏達")
         ]
     }, {
         id: "oneWeekWarningMonitorTask",
@@ -56,7 +60,8 @@ var list = [{
         ],
         targetUserIDList: [
             telegramUser.getUserID("趙婉伶"),
-            telegramUser.getUserID("蔡佳佑")
+            telegramUser.getUserID("蔡佳佑"),
+            telegramUser.getUserID("翁宏達")
         ]
     }, {
         id: "twoWeekWarningMonitorTask",
@@ -72,7 +77,8 @@ var list = [{
         ],
         targetUserIDList: [
             telegramUser.getUserID("趙婉伶"),
-            telegramUser.getUserID("蔡佳佑")
+            telegramUser.getUserID("蔡佳佑"),
+            telegramUser.getUserID("翁宏達")
         ]
     }]
 }, {
