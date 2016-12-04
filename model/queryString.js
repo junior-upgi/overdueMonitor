@@ -1,11 +1,13 @@
+"use strict";
+
 var moment = require("moment-timezone");
 
-oneWeekWarningQuery = "SELECT * FROM overdueMonitor.dbo.warning_OneWeek ORDER BY recipientID, DUE_DATE;";
-twoWeekWarningQuery = "SELECT * FROM overdueMonitor.dbo.warning_TwoWeek ORDER BY recipientID, DUE_DATE;";
-pastWeekOverdueAlarmQuery = "SELECT * FROM overdueMonitor.dbo.warning_PastWeekOverdue ORDER BY recipientID, DUE_DATE;";
-newOverdueAlarmQuery = "SELECT * FROM overdueMonitor.dbo.warning_NewOverdue;";
-weeklySummaryQuery = "SELECT * FROM overdueMonitor.dbo.warning_WeeklySummary;";
-overviewQuery = "SELECT * FROM overdueMonitor.dbo.overview;";
+var oneWeekWarningQuery = "SELECT * FROM overdueMonitor.dbo.warning_OneWeek ORDER BY recipientID, DUE_DATE;";
+var twoWeekWarningQuery = "SELECT * FROM overdueMonitor.dbo.warning_TwoWeek ORDER BY recipientID, DUE_DATE;";
+var pastWeekOverdueAlarmQuery = "SELECT * FROM overdueMonitor.dbo.warning_PastWeekOverdue ORDER BY recipientID, DUE_DATE;";
+var newOverdueAlarmQuery = "SELECT * FROM overdueMonitor.dbo.warning_NewOverdue;";
+var weeklySummaryQuery = "SELECT * FROM overdueMonitor.dbo.warning_WeeklySummary;";
+var overviewQuery = "SELECT * FROM overdueMonitor.dbo.overview;";
 
 function cashFlowSnapshotInsertQuery(AMTN_PENDING, AMTN_OVERDUE, AMTN_DEPOSIT) {
     return "INSERT INTO overdueMonitor.dbo.cashFlowSnapshot VALUES('" +
