@@ -51,7 +51,7 @@ app.listen(config.serverPort, function(error) { // start backend server
     }
 });
 
-var captureCashFlowSnapshot = new CronJob("0 0 5 * * *", function() { // perform everyday at 5:00AM
+var captureCashFlowSnapshot = new CronJob("0 0 17 * * *", function() { // perform everyday at 17:00
     console.log(
         "\n" + moment(moment(), "YYYY-MM-DD HH:mm:ss").format("YYYY-MM-DD HH:mm:ss") + " " +
         "proceeding with scheduled [貨款總額記錄]"
