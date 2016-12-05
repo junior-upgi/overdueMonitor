@@ -18,8 +18,6 @@ var telegramUser = require("./model/telegramUser.js");
 var upgiSystem = require("./module/upgiSystem.js");
 import webpackConfig from "./webpack.config.dev.js";
 
-console.log(webpackConfig.output.publicPath);
-
 var app = express();
 var compiler = webpack(webpackConfig);
 app.use(require("webpack-dev-middleware")(compiler, {
