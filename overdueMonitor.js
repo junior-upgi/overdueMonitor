@@ -1,6 +1,6 @@
 "use strict";
 
-import bodyParser from "body-parser";
+var bodyParser = require("body-parser");
 var CronJob = require("cron").CronJob;
 var express = require("express");
 var httpRequest = require("request-promise");
@@ -16,16 +16,8 @@ var telegramBot = require("./model/telegramBot.js");
 //var telegramChat = require("./model/telegramChat.js");
 var telegramUser = require("./model/telegramUser.js");
 var upgiSystem = require("./module/upgiSystem.js");
-import webpackConfig from "./webpack.config.dev.js";
 
 var app = express();
-var compiler = webpack(webpackConfig);
-app.use(require("webpack-dev-middleware")(compiler, {
-    noInfo: true,
-    publicPath: webpackConfig.output.publicPath
-}));
-app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "view"));
 app.use(morgan("dev"));
 app.use(bodyParser.urlencoded({ extended: true })); // parse application/x-www-form-urlencoded
 //var urlencodedParser = bodyParser.urlencoded({ extended: true });

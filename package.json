@@ -4,12 +4,10 @@
     "description": "service to monitor overdue situation from ERP data",
     "main": "overdueMonitor.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "lint": "esw overdueMonitor.js webpack.config.* source --color",
-        "lint:watch": "npm run lint -- --watch",
-        "security-check": "nsp check",
-        "start:server": "babel-node overdueMonitor.js",
-        "start": "nodemon --exec npm-run-all --parallel security-check start:server lint:watch"
+        "run:eslint": "eslint *.js --color",
+        "run:security-check": "nsp check",
+        "start:server": "nodemon overdueMonitor.js",
+        "start": "npm-run-all --parallel run:eslint run:security-check start:server"
     },
     "repository": {
         "type": "git",
@@ -26,26 +24,13 @@
         "moment-timezone": "^0.5.9",
         "morgan": "^1.7.0",
         "mssql": "^3.3.0",
-        "npm-run-all": "^3.1.2",
         "numeral": "^1.5.6",
         "request": "^2.79.0",
         "request-promise": "^4.1.1"
     },
     "devDependencies": {
-        "babel-cli": "^6.18.0",
-        "babel-core": "^6.18.2",
-        "babel-eslint": "^7.1.1",
-        "babel-loader": "^6.2.8",
-        "babel-preset-latest": "^6.16.0",
-        "babel-register": "^6.18.0",
         "eslint": "^3.10.2",
-        "eslint-plugin-import": "^2.2.0",
-        "eslint-watch": "^2.1.14",
-        "html-webpack-plugin": "^2.24.1",
-        "nsp": "^2.6.2",
-        "webpack": "^1.13.3",
-        "webpack-dev-middleware": "^1.8.4",
-        "webpack-hot-middleware": "^2.13.2",
-        "webpack-md5-hash": "0.0.5"
+        "npm-run-all": "^3.1.2",
+        "nsp": "^2.6.2"
     }
 }
