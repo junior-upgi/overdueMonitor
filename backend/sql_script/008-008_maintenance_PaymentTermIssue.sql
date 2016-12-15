@@ -8,7 +8,7 @@ SELECT
 	,a.CRD_ID
 	,CASE
 		WHEN TERM_DESC IS NULL THEN '付款條件不明'
-		WHEN LIM_NR IS NULL THEN '進用額度未設定'
+		WHEN LIM_NR IS NULL THEN '信用額度未設定'
         ELSE '查詢發生錯誤，請向 IT 單位反應'
 	END AS ISSUE
 	,a.SAL_NO
