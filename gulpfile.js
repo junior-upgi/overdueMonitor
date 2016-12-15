@@ -1,20 +1,31 @@
+var babelify = require('babelify');
+var browserify = require('browserify');
 var gulp = require('gulp');
 var gulpBabel = require('gulp-babel');
 var gulpConnection = require('gulp-connect');
+var gulpClean = require('gulp-clean');
 var gulpNodemon = require('gulp-nodemon');
-var browserify = require('browserify');
-var babelify = require('babelify');
 var vinylSourceStream = require('vinyl-source-stream');
 
 var serverConfig = require('./src/module/serverConfig.js');
 
 gulp.task('connect', function() {
     gulpConnection.server({
-        base: serverConfig.serverHost,
+        name: 'overdueMonitor',
+        host: serverConfig.serverHost.slice(7),
         port: 9999,
         root: './public',
         livereload: true
     });
+});
+
+gulp.task('directCopy', function() {
+    gulp.src('./src/server.js').pipe(gulp.dest('./build'));
+    gulp.src('./src/module/*.js').pipe(gulp.dest('./build/module'));
+    gulp.src('./src/frontend/*.png').pipe(gulp.dest('./public'));
+    gulp.src('./node_modules/jquery/dist/jquery.min.js').pipe(gulp.dest('./public/js'));
+    gulp.src('./node_modules/bootstrap/dist/css/*.min.css').pipe(gulp.dest('./public/css'));
+    gulp.src('./node_modules/bootstrap/dist/js/bootstrap.min.js').pipe(gulp.dest('./public/js'));
 });
 
 gulp.task('javascript', function() {
@@ -38,19 +49,19 @@ gulp.task('handlebars', function() {
         .pipe(gulpConnection.reload());
 });
 
-gulp.task('directCopy', function() {
+gulp.task('server', function() {
     gulp.src('./src/server.js').pipe(gulp.dest('./build'));
     gulp.src('./src/module/*.js').pipe(gulp.dest('./build/module'));
     gulp.src('./src/frontend/*.png').pipe(gulp.dest('./public'));
-});
-
-gulp.task('server', function() {
+    gulp.src('./node_modules/jquery/dist/jquery.min.js').pipe(gulp.dest('./public/js'));
+    gulp.src('./node_modules/bootstrap/dist/css/*.min.css').pipe(gulp.dest('./public/css'));
+    gulp.src('./node_modules/bootstrap/dist/js/bootstrap.min.js').pipe(gulp.dest('./public/js'));
     gulpNodemon({
         script: './build/server.js',
         verbose: true,
         watch: ['./src'],
         ext: 'js html handlebars',
-        ignore: ['node_modules', 'frontend']
+        ignore: ['frontend']
     });
 });
 
@@ -60,4 +71,4 @@ gulp.task('watch', function() {
     gulp.watch('./src/**/*.handlebars', ['handlebars']);
 });
 
-gulp.task('default', ['javascript', 'html', 'handlebars', 'directCopy', 'connect', 'watch', 'server'], function() { });
+gulp.task('default', ['directCopy', 'javascript', 'html', 'handlebars', 'connect', 'watch', 'server'], function() { });
