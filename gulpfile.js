@@ -11,7 +11,7 @@ var serverConfig = require('./src/module/serverConfig.js');
 gulp.task('connect', function() {
     gulpConnection.server({
         base: serverConfig.serverHost,
-        port: 9998,
+        port: 9999,
         root: './public',
         livereload: true
     });
@@ -38,9 +38,15 @@ gulp.task('handlebars', function() {
         .pipe(gulpConnection.reload());
 });
 
+gulp.task('directCopy', function() {
+    gulp.src('./src/server.js').pipe(gulp.dest('./build'));
+    gulp.src('./src/module/*.js').pipe(gulp.dest('./build/module'));
+    gulp.src('./src/frontend/*.png').pipe(gulp.dest('./public'));
+});
+
 gulp.task('server', function() {
     gulpNodemon({
-        script: './src/server.js',
+        script: './build/server.js',
         verbose: true,
         watch: ['./src'],
         ext: 'js html handlebars',
@@ -54,4 +60,4 @@ gulp.task('watch', function() {
     gulp.watch('./src/**/*.handlebars', ['handlebars']);
 });
 
-gulp.task('default', ['javascript', 'html', 'handlebars', 'connect', 'watch', 'server'], function() { });
+gulp.task('default', ['javascript', 'html', 'handlebars', 'directCopy', 'connect', 'watch', 'server'], function() { });

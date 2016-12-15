@@ -1,57 +1,61 @@
 {
-    "name": "boilerplate",
-    "version": "0.0.1",
-    "main": "server.js",
-    "scripts": {
-        "lint": "eslint src",
-        "nsp": "nsp check",
-        "preProcessor": "npm-run-all --parallel lint nsp",
-        "gulp": "gulp",
-        "start": "npm-run-all preProcessor gulp"
-    },
-    "dependencies": {
-        "body-parser": "^1.15.2",
-        "cors": "^2.8.1",
-        "cron": "^1.1.1",
-        "express": "^4.14.0",
-        "handlebars": "^4.0.6",
-        "json2xls": "^0.1.2",
-        "jsonwebtoken": "^7.2.1",
-        "ldapjs": "^1.0.1",
-        "moment-timezone": "^0.5.10",
-        "mssql": "^3.3.0",
-        "multer": "^1.2.1",
-        "nodemailer": "^2.7.0",
-        "request": "^2.79.0",
-        "request-promise": "^4.1.1"
-    },
-    "devDependencies": {
-        "babel-eslint": "^7.1.1",
-        "babel-preset-es2015": "^6.18.0",
-        "babelify": "^7.3.0",
-        "browserify": "^13.1.1",
-        "eslint": "^3.12.2",
-        "eslint-config-standard": "^6.2.1",
-        "eslint-plugin-promise": "^3.4.0",
-        "eslint-plugin-standard": "^2.0.1",
-        "gulp": "^3.9.1",
-        "gulp-babel": "^6.1.2",
-        "gulp-connect": "^5.0.0",
-        "gulp-nodemon": "^2.2.1",
-        "morgan": "^1.7.0",
-        "npm-run-all": "^3.1.2",
-        "nsp": "^2.6.2",
-        "vinyl-source-stream": "^1.1.0"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/junior-upgi/boilerplate.git"
-    },
-    "author": "Chia-Yu Tsai",
-    "license": "ISC",
-    "bugs": {
-        "url": "https://github.com/junior-upgi/boilerplate/issues"
-    },
-    "homepage": "https://github.com/junior-upgi/boilerplate#readme",
-    "description": ""
+  "name": "overdue-monitor",
+  "version": "0.0.1",
+  "main": "overdueMonitor.js",
+  "scripts": {
+    "lint": "eslint src",
+    "nsp": "nsp check",
+    "preProcessor": "npm-run-all --parallel lint nsp",
+    "gulp": "gulp",
+    "start": "npm-run-all preProcessor gulp"
+  },
+  "dependencies": {
+    "babel-standalone": "^6.19.0",
+    "body-parser": "^1.15.2",
+    "bootstrap": "^3.3.7",
+    "cors": "^2.8.1",
+    "cron": "^1.1.1",
+    "express": "^4.14.0",
+    "handlebars": "^4.0.6",
+    "jquery": "^3.1.1",
+    "json2xls": "^0.1.2",
+    "jsonwebtoken": "^7.2.1",
+    "ldapjs": "^1.0.1",
+    "moment-timezone": "^0.5.10",
+    "mssql": "^3.3.0",
+    "multer": "^1.2.1",
+    "nodemailer": "^2.7.0",
+    "numeral": "^2.0.1",
+    "request": "^2.79.0",
+    "request-promise": "^4.1.1"
+  },
+  "devDependencies": {
+    "babel-eslint": "^7.1.1",
+    "babel-preset-es2015": "^6.18.0",
+    "babelify": "^7.3.0",
+    "browserify": "^13.1.1",
+    "eslint": "^3.12.2",
+    "eslint-config-standard": "^6.2.1",
+    "eslint-plugin-promise": "^3.4.0",
+    "eslint-plugin-standard": "^2.0.1",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-connect": "^5.0.0",
+    "gulp-nodemon": "^2.2.1",
+    "morgan": "^1.7.0",
+    "npm-run-all": "^3.1.2",
+    "nsp": "^2.6.2",
+    "vinyl-source-stream": "^1.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/junior-upgi/overdueMonitor.git"
+  },
+  "author": "Chia-Yu Tsai",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/junior-upgi/overdueMonitor/issues"
+  },
+  "homepage": "https://github.com/junior-upgi/overdueMonitor#readme",
+  "description": ""
 }
