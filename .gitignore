@@ -1,4 +1,4 @@
 node_modules
-.vscode
-*.log
-npm-debug
+bower_components
+build
+npm-debug.log

@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="zh">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
+    <title>boilerplate</title>
+    <script src="http://localhost:9999/boilerplate/bower_components/babel-standalone/babel.min.js"></script>
+    <script src="http://localhost:9999/boilerplate/js/all.js"></script>
+</head>
+
+<body>
+    <h1 id="content"></h1>
+</body>
+
+</html>
+
+<script type="text/babel">
+    class MyClass{
+        sayHello(){
+            return 'hello from ES6...!!!';
+        }
+    }
+
+    var myClass=new MyClass();
+    document.getElementById('content').innerHTML=myClass.sayHello();
+</script>

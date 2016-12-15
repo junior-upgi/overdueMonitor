@@ -1,0 +1,23 @@
+{
+  "name": "boilerplate",
+  "main": "entry.js",
+  "ignore": [
+    "node_modules",
+    "bower_components"
+  ],
+  "dependencies": {
+    "jquery": "^3.1.1",
+    "bootstrap": "^3.3.7",
+    "moment-timezone": "^0.5.10",
+    "numeral": "^2.0.0",
+    "babel-standalone": "^6.19.0",
+    "handlebars": "^4.0.5"
+  },
+  "homepage": "https://github.com/junior-upgi/boilerplate",
+  "description": "",
+  "authors": [
+    "Chia-Yu Tsai"
+  ],
+  "license": "MIT",
+  "private": true
+}

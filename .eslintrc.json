@@ -1,0 +1,42 @@
+{
+    "parser": "babel-eslint",
+    "evn": {
+        "browser": true,
+        "node": true,
+        "jquery": true
+    },
+    "rules": {
+        "strict": [
+            "error",
+            "safe"
+        ],
+        "quotes": [
+            "warn",
+            "single"
+        ],
+        "eqeqeq": [
+            "warn",
+            "always"
+        ],
+        "brace-style": [
+            "error",
+            "1tbs"
+        ],
+        "padded-blocks": [
+            "error",
+            "never"
+        ],
+        "space-before-function-paren": [
+            "error",
+            "never"
+        ],
+        "space-before-blocks": [
+            "error",
+            "always"
+        ],
+        "semi": [
+            "error",
+            "always"
+        ]
+    }
+}
