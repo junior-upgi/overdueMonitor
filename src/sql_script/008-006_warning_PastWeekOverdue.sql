@@ -23,4 +23,4 @@ SELECT
 FROM overdueMonitor.dbo.outstanding a
     LEFT JOIN overdueMonitor.dbo.clientData b ON a.CUS_NO = b.CUS_NO
     LEFT JOIN overdueMonitor.dbo.paymentTerm c ON a.CUS_NO = c.CUS_NO
-WHERE (a.STATUS = 1) AND (DATEADD(day, c.G_PERIOD, a.PS_DD) BETWEEN CAST(DATEADD(day, - 7, GETDATE()) AS DATE) AND CAST(DATEADD(day, - 1, GETDATE()) AS DATE))
+WHERE (a.STATUS = 1) AND (DATEADD(day, c.G_PERIOD, a.PS_DD) BETWEEN CAST(DATEADD(day, - 7, GETDATE()) AS DATE) AND CAST(DATEADD(day, - 1, GETDATE()) AS DATE));
