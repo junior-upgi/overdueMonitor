@@ -3,11 +3,24 @@
   "version": "0.0.1",
   "main": "overdueMonitor.js",
   "scripts": {
+    "clear:build": "rm -rf build && mkdir build && mkdir build/model && mkdir build/module",
+    "clear:public": "rm -rf public && mkdir public && mkdir public/js && mkdir public/css && mkdir public/fonts",
     "lint": "eslint src",
     "nsp": "nsp check",
-    "preProcessor": "npm-run-all --parallel lint nsp",
-    "gulp": "gulp",
-    "start": "npm-run-all preProcessor gulp"
+    "transpile": "browserify src/frontend/js/entry.js -o public/js/bundle.js -d -t [ babelify --presets [ es2015 ] --no-sourceMaps ]",
+    "favicon": "cp -r src/frontend/*.png public/",
+    "html": "cp -r src/frontend/*.html public/",
+    "jquery": "cp -r node_modules/jquery/dist/jquery.min.js public/js/",
+    "bootstrapLib": "cp -r node_modules/bootstrap/dist/js/bootstrap.min.js public/js/",
+    "bootstrapCss": "cp -r node_modules/bootstrap/dist/css/*.min.css public/css/",
+    "bootstrapFont": "cp -r node_modules/bootstrap/dist/fonts/*.* public/fonts/",
+    "serverFile": "cp -r src/server.js build/",
+    "modelDir": "cp -r src/model/*.js build/model/",
+    "moduleDir": "cp -r src/module/*.js build/module/",
+    "directCopy": "npm-run-all --parallel favicon html jquery bootstrapLib bootstrapCss bootstrapFont serverFile modelDir moduleDir",
+    "start:server": "nodemon ./build/server.js",
+    "preProcessor": "npm-run-all --parallel clear:build clear:public lint nsp",
+    "start": "npm-run-all preProcessor transpile directCopy start:server"
   },
   "dependencies": {
     "babel-standalone": "^6.19.0",
@@ -48,7 +61,9 @@
     "morgan": "^1.7.0",
     "npm-run-all": "^3.1.2",
     "nsp": "^2.6.2",
-    "vinyl-source-stream": "^1.1.0"
+    "uglifyify": "^3.0.4",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.8.0"
   },
   "repository": {
     "type": "git",

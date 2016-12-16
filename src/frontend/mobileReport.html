@@ -5,13 +5,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
-    <title>逾期款監控系統</title>
+    <title>逾期款改況檢視</title>
     <link rel="shortcut icon" type="image/png" href="./upgiLogo.png" />
     <script src="./js/jquery.min.js"></script>
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/bootstrap-theme.min.css">
     <script src="./js/bootstrap.min.js"></script>
-    <script src="./js/all.js"></script>
+    <script src="./js/bundle.js"></script>
 </head>
 
 <body>
@@ -58,23 +58,23 @@
             </table>
         </div>
         <div class="row">
-            <h2 class="text-primary text-center">【當週即將逾期款項】</h2>
+            <h4 class="text-primary text-left"><span data-list="oneWeekWarningList" class="listControl glyphicon glyphicon-triangle-top"></span>【當週即將逾期款項】</h4>
             <ol id="oneWeekWarningList"></ol>
         </div>
         <div class="row">
-            <h2 class="text-primary text-center">【兩週內即將逾期款項】</h2>
+            <h4 class="text-primary text-left"><span data-list="twoWeekWarningList" class="listControl glyphicon glyphicon-triangle-top"></span>【兩週內即將逾期款項】</span></h4>
             <ol id="twoWeekWarningList"></ol>
         </div>
         <div class="row">
-            <h2 class="text-primary text-center">【昨日新增逾期款項】</h2>
+            <h4 class="text-primary text-left"><span data-list="newOverdueList" class="listControl glyphicon glyphicon-triangle-top"></span>【昨日新增逾期款項】</span></h4>
             <ol id="newOverdueList"></ol>
         </div>
         <div class="row">
-            <h2 class="text-primary text-center">【近期發生逾期款項】</h2>
+            <h4 class="text-primary text-left"><span data-list="recentOverdueList" class="listControl glyphicon glyphicon-triangle-top"></span>【近期發生逾期款項】</span></h4>
             <ol id="recentOverdueList"></ol>
         </div>
         <div class="row">
-            <h2 class="text-primary text-center">【其他逾期款項】</h2>
+            <h4 class="text-primary text-left"><span data-list="prolongedOverdueList" class="listControl glyphicon glyphicon-triangle-top"></span>【其他逾期款項】</h4>
             <ol id="prolongedOverdueList"></ol>
         </div>
     </div>

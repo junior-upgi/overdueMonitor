@@ -1,4 +1,0 @@
-# to run the backend script 'overdueAlert.js' every day at 09:00 and append output to a log file
-0 9 * * * node /home/junior/htmlProject/overdueMonitor/backend/overdueAlert >> /home/juior/overdueAlert.log
-# to run the backend script 'weeklyAlert.js' every Monday at 08:50 and append output to a log file
-50 8 * * 1 node /home/junior/htmlProject/overdueMonitor/backend/weeklyAlert >> /home/junior/weeklyAlert.log

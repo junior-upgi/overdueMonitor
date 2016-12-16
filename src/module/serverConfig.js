@@ -1,6 +1,6 @@
 const serverHost = 'http://localhost';
 const serverPort = 9003;
-const broadcastServerHost = 'http://upgi.ddns.net';
+const broadcastServerHost = 'http://192.168.168.25';
 const broadcastServerPort = 9001;
 const mssqlServerHost = 'http://192.168.168.5'; // access database from LAN (production)
 //const mssqlServerHost = 'http://127.0.0.1'; // access database through SSH (development)

@@ -3,8 +3,11 @@ import numeral from 'numeral';
 import moment from 'moment-timezone';
 
 import config from './config.js';
+import utility from './utility.js';
 
 $('document').ready(function() {
+    const userID = utility.getAllUrlParams().SAL_NO;
+
     $('#currentDate').text(moment(moment(), 'YYYY-MM-DD HH:mm:ss').format('YYYY-MM-DD'));
 
     $.getJSON(config.serverUrl + '/overdueMonitor/overview')
@@ -33,13 +36,16 @@ $('document').ready(function() {
     $.getJSON(config.serverUrl + '/overdueMonitor/warning_OneWeek')
         .done((warning_OneWeekDataList) => {
             warning_OneWeekDataList.forEach((warning_OneWeekData) => {
-                $('ol#oneWeekWarningList').append(
-                    `<li class="panel panel-success">
+                if ((userID === undefined) || (userID === '08030005') || (userID === warning_OneWeekData.recipientID)) {
+                    $('ol#oneWeekWarningList').append(
+                        `<li class="panel panel-success">
                         <div class="panel-heading">
                             <strong>${warning_OneWeekData.verboseMessage}<strong>
                         </div>
                     </li>`);
+                }
             });
+            $('span[data-list="oneWeekWarningList"]').addClass('dataReady');
         })
         .fail((error) => {
             alert(error);
@@ -47,13 +53,16 @@ $('document').ready(function() {
     $.getJSON(config.serverUrl + '/overdueMonitor/warning_TwoWeek')
         .done((warning_TwoWeekDataList) => {
             warning_TwoWeekDataList.forEach((warning_TwoWeekData) => {
-                $('ol#twoWeekWarningList').append(
-                    `<li class="panel panel-info">
+                if ((userID === undefined) || (userID === '08030005') || (userID === warning_TwoWeekData.recipientID)) {
+                    $('ol#twoWeekWarningList').append(
+                        `<li class="panel panel-info">
                         <div class="panel-heading">
                             <strong>${warning_TwoWeekData.verboseMessage}<strong>
                         </div>
                     </li>`);
+                }
             });
+            $('span[data-list="twoWeekWarningList"]').addClass('dataReady');
         })
         .fail((error) => {
             alert(error);
@@ -61,13 +70,16 @@ $('document').ready(function() {
     $.getJSON(config.serverUrl + '/overdueMonitor/warning_NewOverdue')
         .done((warning_NewOverdueDataList) => {
             warning_NewOverdueDataList.forEach((warning_NewOverdueData) => {
-                $('ol#newOverdueList').append(
-                    `<li class="panel panel-danger">
+                if ((userID === undefined) || (userID === '08030005') || (userID === warning_NewOverdueData.recipientID)) {
+                    $('ol#newOverdueList').append(
+                        `<li class="panel panel-danger">
                         <div class="panel-heading">
                             <strong>${warning_NewOverdueData.verboseMessage}<strong>
                         </div>
                     </li>`);
+                }
             });
+            $('span[data-list="newOverdueList"]').addClass('dataReady');
         })
         .fail((error) => {
             alert(error);
@@ -75,13 +87,16 @@ $('document').ready(function() {
     $.getJSON(config.serverUrl + '/overdueMonitor/warning_PastWeekOverdue')
         .done((warning_PastWeekOverdueDataList) => {
             warning_PastWeekOverdueDataList.forEach((warning_PastWeekOverdueData) => {
-                $('ol#recentOverdueList').append(
-                    `<li class="panel panel-warning">
+                if ((userID === undefined) || (userID === '08030005') || (userID === warning_PastWeekOverdueData.recipientID)) {
+                    $('ol#recentOverdueList').append(
+                        `<li class="panel panel-warning">
                         <div class="panel-heading">
                             <strong>${warning_PastWeekOverdueData.verboseMessage}<strong>
                         </div>
                     </li>`);
+                }
             });
+            $('span[data-list="recentOverdueList"]').addClass('dataReady');
         })
         .fail((error) => {
             alert(error);
@@ -89,15 +104,32 @@ $('document').ready(function() {
     $.getJSON(config.serverUrl + '/overdueMonitor/warning_ProlongedOverdue')
         .done((warning_ProlongedOverdueDataList) => {
             warning_ProlongedOverdueDataList.forEach((warning_ProlongedOverdueData) => {
-                $('ol#prolongedOverdueList').append(
-                    `<li class="panel panel-primary">
+                if ((userID === undefined) || (userID === '08030005') || (userID === warning_ProlongedOverdueData.recipientID)) {
+                    $('ol#prolongedOverdueList').append(
+                        `<li class="panel panel-primary">
                         <div class="panel-heading">
                             <strong>${warning_ProlongedOverdueData.verboseMessage}<strong>
                         </div>
                     </li>`);
+                }
             });
+            $('span[data-list="prolongedOverdueList"]').addClass('dataReady');
         })
         .fail((error) => {
             alert(error);
         });
+    $('span.listControl').click(function() {
+        if ($(this).hasClass('dataReady') === true) { // only allow expand and retract to hide data list if data loading is ready (dataReady class attrib)
+            let clickedGlyphicon = $(this);
+            if ($(this).hasClass('glyphicon-triangle-top')) {
+                $('ol#' + $(this).data('list')).slideUp(1000, function() {
+                    clickedGlyphicon.removeClass('glyphicon-triangle-top').addClass('glyphicon-triangle-bottom');
+                });
+            } else {
+                $('ol#' + $(this).data('list')).slideDown(1000, function() {
+                    clickedGlyphicon.removeClass('glyphicon-triangle-bottom').addClass('glyphicon-triangle-top');
+                });
+            }
+        }
+    });
 });

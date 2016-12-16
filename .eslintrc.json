@@ -22,10 +22,6 @@
             "error",
             "1tbs"
         ],
-        "padded-blocks": [
-            "error",
-            "never"
-        ],
         "space-before-function-paren": [
             "error",
             "never"
