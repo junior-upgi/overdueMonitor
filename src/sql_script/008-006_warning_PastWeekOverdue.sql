@@ -5,7 +5,7 @@ SELECT
     ,1 AS systemCategoryID
     ,'05060001' AS uid
     ,b.SAL_NO AS recipientID
-    ,'http://upgi.ddns.net/overdueMonitor/index.php' AS url
+    ,'http://upgi.ddns.net:9003/overdueMonitor?SAL_NO='+b.SAL_NO AS url
     ,'alarm.mp3' AS audioFile
     ,'【逾期款監控系統】致業務員：' + b.SAL_NAME + ' - 客戶【' + b.CUS_SNM + '】於上週產生逾期款項 $' + FORMAT(a.AMTN_OUT, N'N0', 'zh-TW') + ' (' + a.PS_NO + ') 仍未付款。請注意！' AS verboseMessage
     ,b.SAL_NAME
