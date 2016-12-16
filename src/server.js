@@ -20,6 +20,10 @@ app.use(morgan('dev'));
 
 app.use('/overdueMonitor', express.static('./public')); // serve static files
 
+app.get('/status', function(request, response) {
+    return response.status(200).json({ status: 'online' });
+});
+
 app.get('/overdueMonitor/overview', function(request, response) {
     database.executeQuery(queryString.overview, function(overviewData, error) {
         if (error) {
