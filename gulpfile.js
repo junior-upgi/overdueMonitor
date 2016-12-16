@@ -19,16 +19,9 @@ gulp.task('connect', function() {
     });
 });
 
-gulp.task('directCopy', function() {
-    gulp.src('./src/server.js').pipe(gulp.dest('./build'));
-    gulp.src('./src/module/*.js').pipe(gulp.dest('./build/module'));
-    gulp.src('./src/frontend/*.png').pipe(gulp.dest('./public'));
-    gulp.src('./node_modules/jquery/dist/jquery.min.js').pipe(gulp.dest('./public/js'));
-    gulp.src('./node_modules/bootstrap/dist/css/*.min.css').pipe(gulp.dest('./public/css'));
-    gulp.src('./node_modules/bootstrap/dist/js/bootstrap.min.js').pipe(gulp.dest('./public/js'));
-});
-
 gulp.task('javascript', function() {
+    gulp.src('./node_modules/jquery/dist/jquery.min.js').pipe(gulp.dest('./public/js'));
+    gulp.src('./node_modules/bootstrap/dist/js/bootstrap.min.js').pipe(gulp.dest('./public/js'));
     browserify('./src/frontend/js/entry.js')
         .transform(babelify, { presets: ['es2015'] })
         .bundle()
@@ -49,15 +42,18 @@ gulp.task('handlebars', function() {
         .pipe(gulpConnection.reload());
 });
 
-gulp.task('server', function() {
+gulp.task('copyServerFiles', function() {
     gulp.src('./src/server.js').pipe(gulp.dest('./build'));
     gulp.src('./src/module/*.js').pipe(gulp.dest('./build/module'));
     gulp.src('./src/frontend/*.png').pipe(gulp.dest('./public'));
-    gulp.src('./node_modules/jquery/dist/jquery.min.js').pipe(gulp.dest('./public/js'));
+    gulp.src('./src/view/*.*').pipe(gulp.dest('./build/view'));
     gulp.src('./node_modules/bootstrap/dist/css/*.min.css').pipe(gulp.dest('./public/css'));
-    gulp.src('./node_modules/bootstrap/dist/js/bootstrap.min.js').pipe(gulp.dest('./public/js'));
+});
+
+gulp.task('server', function() {
     gulpNodemon({
         script: './build/server.js',
+        tasks: ['copyServerFiles'],
         verbose: true,
         watch: ['./src'],
         ext: 'js html handlebars',
@@ -71,4 +67,4 @@ gulp.task('watch', function() {
     gulp.watch('./src/**/*.handlebars', ['handlebars']);
 });
 
-gulp.task('default', ['directCopy', 'javascript', 'html', 'handlebars', 'connect', 'watch', 'server'], function() { });
+gulp.task('default', ['javascript', 'html', 'handlebars', 'copyServerFiles', 'connect', 'watch', 'server'], function() { });
