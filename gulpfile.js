@@ -1,75 +1,187 @@
-var babelify = require('babelify');
-var browserify = require('browserify');
-var gulp = require('gulp');
-var gulpBabel = require('gulp-babel');
-var gulpConnection = require('gulp-connect');
-var gulpClean = require('gulp-clean');
-var gulpNodemon = require('gulp-nodemon');
-var vinylSourceStream = require('vinyl-source-stream');
+const babelify = require('babelify');
+const browserify = require('browserify');
+const browserSync = require('browser-sync');
+const del = require('del');
+const gulp = require('gulp');
+const $ = require('gulp-load-plugins')({
+    lazy: true,
+    camelize: true
+});
+const vinylSourceStream = require('vinyl-source-stream');
+const yargs = require('yargs').argv;
 
-var serverConfig = require('./src/module/serverConfig.js');
+const serverConfig = require('./src/backend/module/serverConfig.js');
 
-gulp.task('connect', function() {
-    gulpConnection.server({
-        name: 'overdueMonitor',
-        host: serverConfig.serverHost.slice(7),
-        port: 9999,
-        root: './public',
-        livereload: true
-    });
+gulp.task('removePublic', function() {
+    let dir = './public';
+    log('cleaning: ' + $.util.colors.blue(dir));
+    return del.sync(dir);
 });
 
-gulp.task('javascript', function() {
-    browserify('./src/frontend/js/entry.js')
+gulp.task('removeBuild', function() {
+    let dir = './build';
+    log('cleaning: ' + $.util.colors.blue(dir));
+    return del.sync(dir);
+});
+
+gulp.task('removeTemp', function() {
+    let dir = './temp';
+    log('cleaning: ' + $.util.colors.blue(dir));
+    return del.sync(dir);
+});
+
+gulp.task('cleanUp', ['removePublic', 'removeBuild', 'removeTemp'], function() {
+    return;
+});
+
+gulp.task('lint', function() {
+    log('code analysation with Eslint and JSCS');
+    fileList = [
+        './src/**/*.js',
+        './*.js'
+    ];
+    return gulp
+        .src(fileList)
+        .pipe($.if(yargs.verbose, $.print()))
+        .pipe($.jscs())
+        .pipe($.jscsStylish())
+        .pipe($.jscs.reporter('fail'))
+        .pipe($.eslint())
+        .pipe($.eslint.format())
+        .pipe($.eslint.failAfterError());
+});
+
+gulp.task('transpile', function() {
+    log('transpile frontend javascript');
+    let entryScript = './src/frontend/js/entry.js';
+    let destDir = './public/js';
+    return browserify(entryScript)
         .transform(babelify, { presets: ['es2015'] })
         .bundle()
-        .pipe(vinylSourceStream('all.js'))
-        .pipe(gulp.dest('./public/js'))
-        .pipe(gulpConnection.reload());
+        .pipe(vinylSourceStream('bundle.js'))
+        .pipe(gulp.dest(destDir));
 });
 
-gulp.task('html', function() {
-    gulp.src('./src/frontend/*.html')
-        .pipe(gulp.dest('./public'))
-        .pipe(gulpConnection.reload());
+gulp.task('bootstrapCss', function() {
+    log('processing bootstrap css files');
+    let destDir = './public/css';
+    return gulp
+        .src('./node_modules/bootstrap/dist/css/*.min.*')
+        .pipe(gulp.dest(destDir));
 });
 
-gulp.task('handlebars', function() {
-    gulp.src('./src/view/*.handlebars')
-        .pipe(gulp.dest('./build/view'))
-        .pipe(gulpConnection.reload());
+gulp.task('bootstrapFont', function() {
+    log('processing bootstrap font files');
+    let destDir = './public/fonts';
+    return gulp.src('./node_modules/bootstrap/dist/fonts/*.*').pipe(gulp.dest(destDir));
 });
 
-gulp.task('copyFrontendFiles', function() {
-    gulp.src('./node_modules/jquery/dist/jquery.min.js').pipe(gulp.dest('./public/js'));
-    gulp.src('./node_modules/bootstrap/dist/js/bootstrap.min.js').pipe(gulp.dest('./public/js'));
-    gulp.src('./node_modules/bootstrap/dist/css/*.min.css').pipe(gulp.dest('./public/css'));
-    gulp.src('./node_modules/bootstrap/dist/fonts/*.*').pipe(gulp.dest('./public/fonts'));
+gulp.task('staticHtml', function() {
+    log('processing static HTML files');
+    let destDir = './public';
+    return gulp.src('./src/frontend/*.html').pipe(gulp.dest(destDir));
 });
 
-gulp.task('copyServerFiles', function() {
-    gulp.src('./src/server.js').pipe(gulp.dest('./build'));
-    gulp.src('./src/module/*.js').pipe(gulp.dest('./build/module'));
-    gulp.src('./src/model/*.js').pipe(gulp.dest('./build/model'));
-    gulp.src('./src/frontend/*.png').pipe(gulp.dest('./public'));
-    gulp.src('./src/view/*.*').pipe(gulp.dest('./build/view'));
+gulp.task('favicon', function() {
+    log('processing the favicon');
+    let destDir = './public';
+    return gulp.src('./src/frontend/*.png').pipe(gulp.dest(destDir));
 });
 
-gulp.task('server', function() {
-    gulpNodemon({
+gulp.task('jqueryScript', function() {
+    log('import jquery dependency...');
+    let destDir = './public/js';
+    return gulp.src('./node_modules/jquery/dist/jquery.min.*').pipe(gulp.dest(destDir));
+});
+
+gulp.task('bootstrapScript', function() {
+    log('import bootstrap dependency...');
+    let destDir = './public/js';
+    return gulp.src('./node_modules/bootstrap/dist/js/*.min.js').pipe(gulp.dest(destDir));
+});
+
+gulp.task('staticFrontendFiles', ['bootstrapCss', 'bootstrapFont', 'staticHtml', 'favicon', 'jqueryScript', 'bootstrapScript'], function() {
+    return;
+});
+
+gulp.task('startWatcher', ['staticFrontendFiles', 'transpile'], function() {
+    let watchList = {
+        frontendFileList: ['./src/frontend/**/*.js'],
+        staticFrontendFileList: ['./src/frontend/**/*.html']
+    };
+    gulp.watch(watchList.frontendFileList, ['transpile']);
+    gulp.watch(watchList.staticFrontendFileList, ['staticFrontendFiles']);
+});
+
+gulp.task('buildBackend', function() {
+    log('building backend server files...');
+    return gulp
+        .src('./src/backend/**/*.js')
+        .pipe(gulp.dest('./build'));
+});
+
+gulp.task('startServer', ['cleanUp', 'buildBackend', 'startWatcher'], function() {
+    let nodemonOption = {
         script: './build/server.js',
-        tasks: ['copyServerFiles'],
-        verbose: true,
-        watch: ['./src'],
-        ext: 'js html handlebars',
-        ignore: ['frontend']
-    });
+        delayTime: 1,
+        env: {
+            'PORT': serverConfig.serverPort,
+            'NODE_ENV': serverConfig.development ? 'development' : 'production'
+        },
+        verbose: false,
+        watch: ['./src/backend'],
+        tasks: ['removeBuild', 'buildBackend']
+    };
+    return $.nodemon(nodemonOption)
+        .on('start', function() {
+            log('*** server started on: ' + serverConfig.serverUrl);
+            startBrowserSync();
+        })
+        .on('restart', function(event) {
+            log('*** server restarted and operating on: ' + serverConfig.serverUrl);
+            log('files triggered the restart:\n' + event);
+        })
+        .on('crash', function() {
+            log('*** server had crashed...');
+        })
+        .on('shutdown', function() {
+            log('*** server had been shutdown...');
+        });
 });
 
-gulp.task('watch', function() {
-    gulp.watch('./src/**/*.js', ['javascript']);
-    gulp.watch('./src/**/*.html', ['html']);
-    gulp.watch('./src/**/*.handlebars', ['handlebars']);
-});
+function startBrowserSync() {
+    if (browserSync.active) {
+        return;
+    }
+    let option = {
+        proxy: 'http://localhost:' + serverConfig.serverPort + '/overdueMonitor/mobileReport.html',
+        port: 9999,
+        files: ['./src/frontend/**/*.*'],
+        ghostMode: {
+            clicks: true,
+            location: false,
+            forms: true,
+            scroll: true
+        },
+        injectChanges: true,
+        logFileChanges: true,
+        logLevel: 'debug',
+        logPrefix: 'gulp-output',
+        notify: true,
+        reloadDelay: 1000
+    };
+    browserSync(option);
+    log('start browserSync on port: ' + serverConfig.serverPort);
+}
 
-gulp.task('default', ['javascript', 'html', 'handlebars', 'copyServerFiles', 'copyFrontendFiles', 'connect', 'watch', 'server'], function() { });
+function log(msg) {
+    if (typeof (msg) === 'object') {
+        for (let item in msg) {
+            if (msg.hasOwnProperty(item)) {
+                $.util.log($.util.colors.blue(msg[item]));
+            }
+        }
+    } else {
+        $.util.log($.util.colors.blue(msg));
+    }
+}

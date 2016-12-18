@@ -1,27 +1,30 @@
-var cors = require('cors');
-var CronJob = require('cron').CronJob;
-var express = require('express');
-var moment = require('moment-timezone');
-var morgan = require('morgan');
-var httpRequest = require('request-promise');
+let cors = require('cors');
+let CronJob = require('cron').CronJob;
+let express = require('express');
+let moment = require('moment-timezone');
+let morgan = require('morgan');
+let httpRequest = require('request-promise');
+let favicon = require('serve-favicon');
 
-var database = require('../build/module/database.js');
-var serverConfig = require('../build/module/serverConfig.js');
-var utility = require('../build/module/utility.js');
+let database = require('./module/database.js');
+let serverConfig = require('./module/serverConfig.js');
+let utility = require('./module/utility.js');
 
-var queryString = require('../build/model/queryString.js');
-var upgiSystem = require('../build/model/upgiSystem.js');
-var telegramUser = require('../build/model/telegramUser.js');
-var telegramBot = require('../build/model/telegramBot.js');
+let queryString = require('./model/queryString.js');
+let upgiSystem = require('./model/upgiSystem.js');
+let telegramUser = require('./model/telegramUser.js');
+let telegramBot = require('./model/telegramBot.js');
 
-var app = express();
+let app = express();
 app.use(cors());
 app.use(morgan('dev'));
-
+app.use(favicon('./public/upgiLogo.png'));
 app.use('/overdueMonitor', express.static('./public')); // serve static files
 
 app.get('/status', function(request, response) {
-    return response.status(200).json({ status: 'online' });
+    return response.status(200).json({
+        status: 'online'
+    });
 });
 
 app.get('/overdueMonitor/overview', function(request, response) {
@@ -36,14 +39,15 @@ app.get('/overdueMonitor/overview', function(request, response) {
 });
 
 app.get('/overdueMonitor/annualReportSummary', function(request, response) {
-    database.executeQuery(queryString.annualReportSummary, function(annualReportSummaryData, error) {
-        if (error) {
-            console.log(error);
-            return response.status(500).send([{}]);
-        } else {
-            return response.status(200).json(annualReportSummaryData);
-        }
-    });
+    database.executeQuery(queryString.annualReportSummary,
+        function(annualReportSummaryData, error) {
+            if (error) {
+                console.log(error);
+                return response.status(500).send([{}]);
+            } else {
+                return response.status(200).json(annualReportSummaryData);
+            }
+        });
 });
 
 app.get('/overdueMonitor/warning_NewOverdue', function(request, response) {
@@ -115,9 +119,10 @@ app.listen(serverConfig.serverPort, function(error) {
 });
 
 // record cash flow information periodically
-var captureCashFlowSnapshot = new CronJob(upgiSystem.list[1].jobList[4].schedule, function() { // perform everyday at 17:00
+let captureCashFlowSnapshot = new CronJob(upgiSystem.list[1].jobList[4].schedule, function() { // perform everyday at 17:00
     let currentDatetime = moment(moment(), 'YYYY-MM-DD HH:mm:ss').format('YYYY-MM-DD HH:mm:ss');
-    console.log(`\n${currentDatetime} proceeding with scheduled [${upgiSystem.list[1].jobList[4].reference}]`);
+    console.log(`
+${currentDatetime} proceeding with scheduled [${upgiSystem.list[1].jobList[4].reference}]`);
     database.executeQuery(queryString.overview, function(recordset, error) {
         if (error) {
             return utility.alertSystemError(upgiSystem.list[1].id,
@@ -141,32 +146,32 @@ var captureCashFlowSnapshot = new CronJob(upgiSystem.list[1].jobList[4].schedule
 captureCashFlowSnapshot.start();
 
 // overdue alert and warning cron jobs
-var newOverdueMonitorJob = upgiSystem.list[1].jobList[0];
-var recentOverdueMonitorJob = upgiSystem.list[1].jobList[1];
-var oneWeekWarningMonitorJob = upgiSystem.list[1].jobList[2];
-var twoWeekWarningMonitorJob = upgiSystem.list[1].jobList[3];
-var newOverdueMonitorTask =
+let newOverdueMonitorJob = upgiSystem.list[1].jobList[0];
+let recentOverdueMonitorJob = upgiSystem.list[1].jobList[1];
+let oneWeekWarningMonitorJob = upgiSystem.list[1].jobList[2];
+let twoWeekWarningMonitorJob = upgiSystem.list[1].jobList[3];
+let newOverdueMonitorTask =
     new CronJob(
         newOverdueMonitorJob.schedule,
         function() {
             broadcastMonitorResult(newOverdueMonitorJob, '【新增逾期款項】', queryString.warning_NewOverdue);
         },
         null, true, serverConfig.workingTimezone);
-var recentOverdueMonitorTask =
+let recentOverdueMonitorTask =
     new CronJob(
         recentOverdueMonitorJob.schedule,
         function() {
             broadcastMonitorResult(recentOverdueMonitorJob, '【近期逾期款項目】', queryString.warning_PastWeekOverdue);
         },
         null, true, serverConfig.workingTimezone);
-var oneWeekWarningMonitorTask =
+let oneWeekWarningMonitorTask =
     new CronJob(
         oneWeekWarningMonitorJob.schedule,
         function() {
             broadcastMonitorResult(oneWeekWarningMonitorJob, '【本週即將逾期項目】', queryString.warning_OneWeek);
         },
         null, true, serverConfig.workingTimezone);
-var twoWeekWarningMonitorTask =
+let twoWeekWarningMonitorTask =
     new CronJob(
         twoWeekWarningMonitorJob.schedule,
         function() {
@@ -184,24 +189,42 @@ function broadcastMonitorResult(monitoredJob, groupMessageTitle, jobSQLScript) {
     let groupMessage = groupMessageTitle; // string to hold group message
     if (monitoredJob.online === true) { // only execute the cron job if the 'online' property is true
         let currentDatetime = moment(moment(), 'YYYY-MM-DD HH:mm:ss').format('YYYY-MM-DD HH:mm:ss');
-        console.log(`\n${currentDatetime} proceeding with scheduled [${monitoredJob.reference}]`);
+        console.log(`${currentDatetime} proceeding with scheduled [${monitoredJob.reference}]`);
         // query the database for designated overdue related data
         database.executeQuery(jobSQLScript, function(recordset, error) {
             if (error) {
                 return utility.alertSystemError(upgiSystem.list[1].id, monitoredJob.id, error);
             }
-            recordset.forEach(function(record) { // loop through each record in the list
-                groupMessage += '\n' + record.content;
-                broadcastTargetIDList = monitoredJob.targetUserIDList.slice(); // reinitialize
-                broadcastTargetIDList.push(telegramUser.getUserID(record.SAL_NAME)); // add staff that came up in the current record
+            if (recordset.length > 0) {
+                recordset.forEach(function(record) { // loop through each record in the list
+                    groupMessage += '\n' + record.content;
+                    broadcastTargetIDList = monitoredJob.targetUserIDList.slice(); // reinitialize
+                    broadcastTargetIDList.push(telegramUser.getUserID(record.SAL_NAME)); // add staff that came up in the current record
+                    if (monitoredJob.broadcast === true) { // only broadcast if the 'broadcast' property is true
+                        broadcastTargetIDList.forEach(function(broadcastTargetID) { // loop through broadcastTargetIDList and broadcast
+                            httpRequest({ // broadcast individual message
+                                method: 'post',
+                                uri: serverConfig.broadcastAPIUrl,
+                                form: {
+                                    chat_id: broadcastTargetID,
+                                    text: record.verboseMessage,
+                                    token: telegramBot.getToken('overdueMonitorBot')
+                                }
+                            }).catch(function(error) {
+                                console.log(error);
+                                utility.alertSystemError(upgiSystem.list[1].id, monitoredJob.id, error);
+                            });
+                        });
+                    }
+                });
                 if (monitoredJob.broadcast === true) { // only broadcast if the 'broadcast' property is true
-                    broadcastTargetIDList.forEach(function(broadcastTargetID) { // loop through broadcastTargetIDList and broadcast
-                        httpRequest({ // broadcast individual message
+                    monitoredJob.targetGroupIDList.forEach(function(targetGroupID) {
+                        httpRequest({ // broadcast group message
                             method: 'post',
                             uri: serverConfig.broadcastAPIUrl,
                             form: {
-                                chat_id: broadcastTargetID,
-                                text: record.verboseMessage,
+                                chat_id: targetGroupID,
+                                text: groupMessage,
                                 token: telegramBot.getToken('overdueMonitorBot')
                             }
                         }).catch(function(error) {
@@ -210,23 +233,24 @@ function broadcastMonitorResult(monitoredJob, groupMessageTitle, jobSQLScript) {
                         });
                     });
                 }
-            });
-            if (monitoredJob.broadcast === true) { // only broadcast if the 'broadcast' property is true
-                monitoredJob.targetGroupIDList.forEach(function(targetGroupID) {
-                    httpRequest({ // broadcast group message
-                        method: 'post',
-                        uri: serverConfig.broadcastAPIUrl,
-                        form: {
-                            chat_id: targetGroupID,
-                            text: groupMessage,
-                            token: telegramBot.getToken('overdueMonitorBot')
-                        }
-                    }).catch(function(error) {
-                        console.log(error);
-                        utility.alertSystemError(upgiSystem.list[1].id, monitoredJob.id, error);
+            } else {
+                if (monitoredJob.broadcast === true) { // only broadcast if the 'broadcast' property is true
+                    monitoredJob.targetGroupIDList.forEach(function(targetGroupID) {
+                        httpRequest({ // broadcast group message
+                            method: 'post',
+                            uri: serverConfig.broadcastAPIUrl,
+                            form: {
+                                chat_id: targetGroupID,
+                                text: '【昨日無新增逾期款項】',
+                                token: telegramBot.getToken('overdueMonitorBot')
+                            }
+                        }).catch(function(error) {
+                            console.log(error);
+                            utility.alertSystemError(upgiSystem.list[1].id, monitoredJob.id, error);
+                        });
                     });
-                });
+                }
             }
         });
     }
-};
+}

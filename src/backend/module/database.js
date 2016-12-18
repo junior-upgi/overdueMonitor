@@ -1,11 +1,11 @@
-var mssql = require('mssql');
-var serverConfig = require('./serverConfig.js');
+let mssql = require('mssql');
+let serverConfig = require('./serverConfig.js');
 
 function executeQuery(queryString, callback) {
-    var mssqlConnection = new mssql.Connection(serverConfig.mssqlConfig);
+    let mssqlConnection = new mssql.Connection(serverConfig.mssqlConfig);
     mssqlConnection.connect()
         .then(function() {
-            var mssqlRequest = new mssql.Request(mssqlConnection);
+            let mssqlRequest = new mssql.Request(mssqlConnection);
             mssqlRequest.query(queryString)
                 .then(function(recordset) {
                     mssqlConnection.close();
@@ -20,7 +20,7 @@ function executeQuery(queryString, callback) {
             console.log('database connection failure: ' + error);
             return callback(null, error);
         });
-};
+}
 
 module.exports = {
     executeQuery

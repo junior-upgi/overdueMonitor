@@ -1,14 +1,14 @@
-var moment = require('moment-timezone');
-var httpRequest = require('request-promise');
+let moment = require('moment-timezone');
+let httpRequest = require('request-promise');
 
-var serverConfig = require('./serverConfig.js');
+let serverConfig = require('./serverConfig.js');
 
-var telegramUser = require('../model/telegramUser.js');
-var telegramBot = require('../model/telegramBot.js');
+let telegramUser = require('../model/telegramUser.js');
+let telegramBot = require('../model/telegramBot.js');
 
 function alertSystemError(systemReference, functionReference, errorMessage) {
     let currentDatetime = moment(moment(), 'YYYY-MM-DD HH:mm:ss').format('YYYY-MM-DD HH:mm:ss');
-    var messageHeading = httpRequest({ // broadcast alert when error encountered
+    let messageHeading = httpRequest({ // broadcast alert when error encountered
         method: 'post',
         uri: serverConfig.broadcastAPIUrl,
         form: {
@@ -17,7 +17,7 @@ function alertSystemError(systemReference, functionReference, errorMessage) {
             token: telegramBot.getToken('upgiITBot')
         }
     });
-    var messageBody = httpRequest({
+    let messageBody = httpRequest({
         method: 'post',
         uri: serverConfig.broadcastAPIUrl,
         form: {
@@ -33,7 +33,7 @@ function alertSystemError(systemReference, functionReference, errorMessage) {
     }).catch(function(error) {
         return console.log(error);
     });
-};
+}
 
 module.exports = {
     alertSystemError

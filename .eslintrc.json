@@ -1,38 +1,85 @@
 {
+    "extends": [
+        "eslint:recommended",
+        "google"
+    ],
     "parser": "babel-eslint",
+    "parserOptions": {
+        "sourceType": "module"
+    },
     "evn": {
         "browser": true,
         "node": true,
-        "jquery": true
+        "commonjs": true,
+        "jquery": true,
+        "es6": true
     },
     "rules": {
-        "strict": [
+        "array-bracket-spacing": [
             "error",
-            "safe"
-        ],
-        "quotes": [
-            "warn",
-            "single"
-        ],
-        "eqeqeq": [
-            "warn",
-            "always"
+            "never",
+            {
+                "singleValue": false,
+                "arraysInArrays": false,
+                "objectsInArrays": false
+            }
         ],
         "brace-style": [
             "error",
             "1tbs"
         ],
-        "space-before-function-paren": [
+        "camelcase": "off",
+        "comma-dangle": [
             "error",
             "never"
+        ],
+        "computed-property-spacing": [
+            "error",
+            "never"
+        ],
+        "eqeqeq": [
+            "warn",
+            "always"
+        ],
+        "indent": [
+            "error",
+            4
+        ],
+        "max-len": "off",
+        "no-console": "off",
+        "no-invalid-this": "off",
+        "no-undef": "off",
+        "object-curly-spacing": [
+            "error",
+            "always",
+            {
+                "arraysInObjects": true,
+                "objectsInObjects": true
+            }
+        ],
+        "quotes": [
+            "warn",
+            "single"
+        ],
+        "require-jsdoc": "off",
+        "semi": [
+            "error",
+            "always"
         ],
         "space-before-blocks": [
             "error",
             "always"
         ],
-        "semi": [
+        "space-before-function-paren": [
             "error",
-            "always"
+            "never"
+        ],
+        "space-infix-ops": [
+            "error"
+        ],
+        "strict": [
+            "error",
+            "safe"
         ]
     }
 }

@@ -1,6 +1,6 @@
-var telegramChat = require('./telegramChat.js');
+let telegramChat = require('./telegramChat.js');
 
-var list = [{
+let list = [{
     id: 241630569,
     user_name: 'junior_upgi',
     first_name: '佳佑',
@@ -266,14 +266,14 @@ var list = [{
 }];
 
 function getUserID(userName) {
-    var chat_id;
+    let chat_id;
     list.forEach(function(userObject) {
         if (userObject.last_name + userObject.first_name === userName) {
             chat_id = userObject.id;
         }
     });
     return chat_id;
-};
+}
 
 module.exports = {
     getUserID,

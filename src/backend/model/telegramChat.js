@@ -1,4 +1,4 @@
-var list = [{
+let list = [{
     id: -150874076,
     title: '業務群組',
     type: 'group'
@@ -21,14 +21,14 @@ var list = [{
 }];
 
 function getChatID(title) {
-    var chat_id;
+    let chat_id;
     list.forEach(function(chatObject) {
         if (chatObject.title === title) {
             chat_id = chatObject.id;
         }
     });
     return chat_id;
-};
+}
 
 module.exports = {
     getChatID,

@@ -1,3 +1,4 @@
-public
-build
-bootstrap.min.js
+public/**
+build/**
+node_modules/**
+bower_components/**
