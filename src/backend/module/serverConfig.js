@@ -28,7 +28,9 @@ module.exports = {
         server: mssqlServerHost.slice(7),
         user: upgiSystemAccount,
         password: upgiSystemPassword,
-        port: mssqlServerPort
+        port: mssqlServerPort,
+        connectionTimeout: 60000,
+        requestTimeout: 60000
     },
     smtpTransportAccount: smtpTransportAccount,
     workingTimezone: workingTimezone

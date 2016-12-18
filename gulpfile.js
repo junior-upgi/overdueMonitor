@@ -12,6 +12,8 @@ const yargs = require('yargs').argv;
 
 const serverConfig = require('./src/backend/module/serverConfig.js');
 
+gulp.task('help', $.taskListing);
+
 gulp.task('removePublic', function() {
     let dir = './public';
     log('cleaning: ' + $.util.colors.blue(dir));
@@ -140,6 +142,10 @@ gulp.task('startServer', ['cleanUp', 'buildBackend', 'startWatcher'], function()
         .on('restart', function(event) {
             log('*** server restarted and operating on: ' + serverConfig.serverUrl);
             log('files triggered the restart:\n' + event);
+            setTimeout(function() {
+                browserSync.notify('伺服器重新啟動，頁面即將同步重置...');
+                browserSync.reload({ stream: false });
+            }, 5000);
         })
         .on('crash', function() {
             log('*** server had crashed...');
