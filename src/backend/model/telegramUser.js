@@ -276,6 +276,6 @@ function getUserID(userName) {
 }
 
 module.exports = {
-    getUserID,
-    list
+    getUserID: getUserID,
+    list: list
 };

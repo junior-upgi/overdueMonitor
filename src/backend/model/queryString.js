@@ -15,12 +15,12 @@ function cashFlowSnapshotInsertQuery(AMTN_PENDING, AMTN_OVERDUE, AMTN_DEPOSIT) {
 }
 
 module.exports = {
-    annualReportSummary,
-    overview,
-    warning_NewOverdue,
-    warning_OneWeek,
-    warning_PastWeekOverdue,
-    warning_ProlongedOverdue,
-    warning_TwoWeek,
-    cashFlowSnapshotInsertQuery
+    annualReportSummary: annualReportSummary,
+    overview: overview,
+    warning_NewOverdue: warning_NewOverdue,
+    warning_OneWeek: warning_OneWeek,
+    warning_PastWeekOverdue: warning_PastWeekOverdue,
+    warning_ProlongedOverdue: warning_ProlongedOverdue,
+    warning_TwoWeek: warning_TwoWeek,
+    cashFlowSnapshotInsertQuery: cashFlowSnapshotInsertQuery
 };

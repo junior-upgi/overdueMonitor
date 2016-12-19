@@ -23,5 +23,5 @@ function executeQuery(queryString, callback) {
 }
 
 module.exports = {
-    executeQuery
+    executeQuery: executeQuery
 };

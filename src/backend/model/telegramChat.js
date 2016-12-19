@@ -31,6 +31,6 @@ function getChatID(title) {
 }
 
 module.exports = {
-    getChatID,
-    list
+    getChatID: getChatID,
+    list: list
 };

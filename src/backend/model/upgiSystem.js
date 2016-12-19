@@ -123,5 +123,5 @@ let list = [{
 }];
 
 module.exports = {
-    list
+    list: list
 };

@@ -36,5 +36,5 @@ function alertSystemError(systemReference, functionReference, errorMessage) {
 }
 
 module.exports = {
-    alertSystemError
+    alertSystemError: alertSystemError
 };

@@ -59,6 +59,6 @@ function getToken(botUsername) {
 }
 
 module.exports = {
-    list,
-    getToken
+    list: list,
+    getToken: getToken
 };
