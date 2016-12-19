@@ -17,8 +17,7 @@ let list = [{
         schedule: '0 0 9 * * *', // everyday at 09:00
         // schedule: '0 * * * * *', // testing
         targetGroupIDList: [
-            telegramChat.getChatID('業務群組'),
-            telegramChat.getChatID('測試群組')
+            telegramChat.getChatID('業務群組')
         ],
         targetUserIDList: [
             telegramUser.getUserID('翁宏達'),
@@ -33,11 +32,9 @@ let list = [{
         schedule: '30 0 9 * * 1', // every Monday at 09:00:30
         // schedule: '*/30 * * * * *', // testing
         targetGroupIDList: [
-            telegramChat.getChatID('業務群組'),
-            telegramChat.getChatID('測試群組')
+            telegramChat.getChatID('業務群組')
         ],
         targetUserIDList: [
-            telegramUser.getUserID('趙婉伶'),
             telegramUser.getUserID('蔡佳佑'),
             telegramUser.getUserID('翁宏達')
         ]
@@ -50,11 +47,9 @@ let list = [{
         schedule: '0 1 9 * * 1', // every Monday at 09:01
         // schedule: '*/30 * * * * *', // testing
         targetGroupIDList: [
-            telegramChat.getChatID('業務群組'),
-            telegramChat.getChatID('測試群組')
+            telegramChat.getChatID('業務群組')
         ],
         targetUserIDList: [
-            telegramUser.getUserID('趙婉伶'),
             telegramUser.getUserID('蔡佳佑'),
             telegramUser.getUserID('翁宏達')
         ]
@@ -67,11 +62,9 @@ let list = [{
         schedule: '30 1 9 * * 1', // every Monday at 09:01:30
         // schedule: '*/30 * * * * *', // testing
         targetGroupIDList: [
-            telegramChat.getChatID('業務群組'),
-            telegramChat.getChatID('測試群組')
+            telegramChat.getChatID('業務群組')
         ],
         targetUserIDList: [
-            telegramUser.getUserID('趙婉伶'),
             telegramUser.getUserID('蔡佳佑'),
             telegramUser.getUserID('翁宏達')
         ]
