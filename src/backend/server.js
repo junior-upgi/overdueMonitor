@@ -23,6 +23,7 @@ app.use('/overdueMonitor', express.static('./public')); // serve static files
 
 app.get('/status', function(request, response) {
     return response.status(200).json({
+        system: serverConfig.systsem,
         status: 'online'
     });
 });

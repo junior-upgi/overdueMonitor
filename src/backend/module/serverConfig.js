@@ -1,3 +1,5 @@
+const system = "overdueMonitor";
+
 const development = true;
 const serverHost = 'http://localhost';
 const serverPort = 9003;
@@ -12,6 +14,7 @@ const smtpTransportAccount = 'smtps://junior.upgi@gmail.com:cHApPPZV@smtp.gmail.
 const workingTimezone = 'Asia/Taipei';
 
 module.exports = {
+    system: system,
     development: development,
     serverHost: serverHost,
     serverPort: serverPort,
