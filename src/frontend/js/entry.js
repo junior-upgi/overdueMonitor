@@ -13,7 +13,7 @@ $('document').ready(function() {
     $.getJSON(config.serverUrl + '/overdueMonitor/overview')
         .done((overviewData) => {
             $('td#AMTN_PENDING_SUMMARY').text(numeral(overviewData[0].AMTN_PENDING).format('$0,0'));
-            $('td#AMTN_OVERDUE_SUMMARY').text(numeral(overviewData[0].AMTN_OVERDUE).format('$0,0'));
+            $('span#AMTN_OVERDUE_SUMMARY').text(numeral(overviewData[0].AMTN_OVERDUE).format('$0,0'));
             $('td#AMTN_DEPOSIT_SUMMARY').text(numeral(overviewData[0].AMTN_DEPOSIT).format('$0,0'));
         })
         .fail((error) => {
@@ -24,9 +24,11 @@ $('document').ready(function() {
             annualReportSummaryDataList.forEach((annualReportSummaryData) => {
                 $('tbody#annualReportSummary').append(
                     `<tr>
-                    <td class="text-center">${annualReportSummaryData.YEAR}</td>
-                    <td class="text-center">${numeral(annualReportSummaryData.AMTN_OVERDUE).format('$0,0')}</td>
-                    <td class="text-center danger">${numeral(annualReportSummaryData.AMTN_PENDING).format('$0,0')}</td>
+                        <td class="text-center">${annualReportSummaryData.YEAR}</td>
+                        <td class="text-center">${numeral(annualReportSummaryData.AMTN_OVERDUE).format('$0,0')}</td>
+                        <td class="text-center danger">
+                            <span class="text-danger">${numeral(annualReportSummaryData.AMTN_PENDING).format('$0,0')}<span>
+                        </td>
                     </tr>`);
             });
         })
