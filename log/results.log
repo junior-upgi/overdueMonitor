@@ -1,0 +1,883 @@
+{"level":"info","message":"overdueMonitor server in operation... (http://127.0.0.1:9003)","timestamp":"2016-12-30 16:20:14"}
+{"level":"info","message":"overdueMonitor server in operation... (http://127.0.0.1:9003)","timestamp":"2016-12-30 16:26:42"}
+{"level":"info","message":"overdueMonitor reporting mechanism triggered","timestamp":"2016-12-30 16:30:00"}
+{"level":"verbose","message":"2016-12-30 16:30:00 overdueMonitor server reporting in","timestamp":"2016-12-30 16:30:02"}
+{"level":"info","message":"overdueMonitor reporting mechanism completed","timestamp":"2016-12-30 16:30:02"}
+{"level":"info","message":"overdueMonitor server in operation... (http://127.0.0.1:9003)","timestamp":"2016-12-30 16:38:15"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 16:38:34"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.overview;","timestamp":"2016-12-30 16:38:34"}
+{"level":"info","message":"overdueMonitor database connection failure: ConnectionError: Failed to connect to 127.0.0.1:1433 - connect ECONNREFUSED 127.0.0.1:1433","timestamp":"2016-12-30 16:38:36"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 16:38:57"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.overview;","timestamp":"2016-12-30 16:38:57"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 16:38:57"}
+{"level":"info","message":"overdueMonitor server in operation... (http://127.0.0.1:9003)","timestamp":"2016-12-30 16:40:47"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 16:40:48"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.overview;","timestamp":"2016-12-30 16:40:48"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 16:40:48"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 16:40:54"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.overview;","timestamp":"2016-12-30 16:40:54"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 16:40:54"}
+{"level":"info","message":"overdueMonitor server in operation... (http://127.0.0.1:9003)","timestamp":"2016-12-30 16:42:02"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 16:42:03"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.overview;","timestamp":"2016-12-30 16:42:03"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 16:42:04"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 16:42:12"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.overview;","timestamp":"2016-12-30 16:42:12"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 16:42:12"}
+{"level":"info","message":"overdueMonitor server in operation... (http://127.0.0.1:9003)","timestamp":"2016-12-30 16:44:07"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 16:44:13"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.overview;","timestamp":"2016-12-30 16:44:13"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 16:44:13"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.annualReportSummary ORDER BY YEAR ASC;","timestamp":"2016-12-30 16:44:13"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 16:44:13"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 16:44:13"}
+{"level":"info","message":"overdueMonitor server in operation... (http://127.0.0.1:9003)","timestamp":"2016-12-30 16:45:33"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 16:45:39"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.overview;","timestamp":"2016-12-30 16:45:39"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 16:45:39"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.annualReportSummary ORDER BY YEAR ASC;","timestamp":"2016-12-30 16:45:39"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 16:45:39"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_OneWeek ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 16:45:39"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 16:45:39"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_TwoWeek ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 16:45:39"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 16:45:39"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_NewOverdue ORDER BY PS_DD ASC;","timestamp":"2016-12-30 16:45:39"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 16:45:39"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_PastWeekOverdue ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 16:45:39"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 16:45:39"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 16:45:39"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 16:45:39"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 16:45:39"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 16:45:39"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_ProlongedOverdue ORDER BY DATEDIFF(day,DUE_DATE,GETDATE()) ASC;","timestamp":"2016-12-30 16:45:39"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 16:45:39"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 16:45:40"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 16:45:40"}
+{"level":"info","message":"overdueMonitor server in operation... (http://127.0.0.1:9003)","timestamp":"2016-12-30 16:50:22"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 16:50:23"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.overview;","timestamp":"2016-12-30 16:50:23"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 16:50:23"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.annualReportSummary ORDER BY YEAR ASC;","timestamp":"2016-12-30 16:50:23"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 16:50:23"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_OneWeek ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 16:50:23"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 16:50:23"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_TwoWeek ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 16:50:23"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 16:50:23"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_NewOverdue ORDER BY PS_DD ASC;","timestamp":"2016-12-30 16:50:23"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 16:50:23"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_PastWeekOverdue ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 16:50:23"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 16:50:24"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 16:50:24"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 16:50:24"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 16:50:24"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_ProlongedOverdue ORDER BY DATEDIFF(day,DUE_DATE,GETDATE()) ASC;","timestamp":"2016-12-30 16:50:24"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 16:50:24"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 16:50:24"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 16:50:25"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 16:50:25"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 16:50:34"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.overview;","timestamp":"2016-12-30 16:50:34"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 16:50:34"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_OneWeek ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 16:50:34"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 16:50:34"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.annualReportSummary ORDER BY YEAR ASC;","timestamp":"2016-12-30 16:50:34"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 16:50:34"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_TwoWeek ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 16:50:34"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 16:50:34"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_NewOverdue ORDER BY PS_DD ASC;","timestamp":"2016-12-30 16:50:34"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 16:50:34"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_PastWeekOverdue ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 16:50:34"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 16:50:34"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 16:50:34"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_ProlongedOverdue ORDER BY DATEDIFF(day,DUE_DATE,GETDATE()) ASC;","timestamp":"2016-12-30 16:50:34"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 16:50:34"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 16:50:34"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 16:50:35"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 16:50:35"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 16:50:35"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 16:50:35"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.overview;","timestamp":"2016-12-30 16:50:35"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 16:50:35"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.annualReportSummary ORDER BY YEAR ASC;","timestamp":"2016-12-30 16:50:35"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 16:50:35"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_OneWeek ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 16:50:35"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 16:50:35"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_TwoWeek ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 16:50:35"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 16:50:35"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_NewOverdue ORDER BY PS_DD ASC;","timestamp":"2016-12-30 16:50:35"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 16:50:35"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 16:50:35"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_PastWeekOverdue ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 16:50:35"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 16:50:36"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 16:50:36"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_ProlongedOverdue ORDER BY DATEDIFF(day,DUE_DATE,GETDATE()) ASC;","timestamp":"2016-12-30 16:50:36"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 16:50:36"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 16:50:36"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 16:50:36"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 16:50:36"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 16:50:36"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 16:50:37"}
+{"level":"info","message":"overdueMonitor server in operation... (http://127.0.0.1:9003)","timestamp":"2016-12-30 16:52:44"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 16:52:45"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.overview;","timestamp":"2016-12-30 16:52:45"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 16:52:45"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.annualReportSummary ORDER BY YEAR ASC;","timestamp":"2016-12-30 16:52:45"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 16:52:45"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_OneWeek ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 16:52:45"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 16:52:45"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_TwoWeek ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 16:52:45"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 16:52:45"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_NewOverdue ORDER BY PS_DD ASC;","timestamp":"2016-12-30 16:52:45"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 16:52:45"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_PastWeekOverdue ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 16:52:45"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 16:52:45"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 16:52:45"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 16:52:45"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_ProlongedOverdue ORDER BY DATEDIFF(day,DUE_DATE,GETDATE()) ASC;","timestamp":"2016-12-30 16:52:45"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 16:52:45"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 16:52:45"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 16:52:46"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 16:52:46"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 16:52:46"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 16:53:01"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.overview;","timestamp":"2016-12-30 16:53:01"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 16:53:01"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.annualReportSummary ORDER BY YEAR ASC;","timestamp":"2016-12-30 16:53:01"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 16:53:01"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_OneWeek ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 16:53:01"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 16:53:01"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_TwoWeek ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 16:53:01"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 16:53:01"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_NewOverdue ORDER BY PS_DD ASC;","timestamp":"2016-12-30 16:53:01"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 16:53:01"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_PastWeekOverdue ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 16:53:01"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 16:53:01"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 16:53:01"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_ProlongedOverdue ORDER BY DATEDIFF(day,DUE_DATE,GETDATE()) ASC;","timestamp":"2016-12-30 16:53:01"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 16:53:01"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 16:53:01"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 16:53:01"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 16:53:01"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 16:53:01"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 16:53:02"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 16:53:02"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.overview;","timestamp":"2016-12-30 16:53:02"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 16:53:02"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_OneWeek ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 16:53:02"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 16:53:02"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.annualReportSummary ORDER BY YEAR ASC;","timestamp":"2016-12-30 16:53:02"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 16:53:02"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_TwoWeek ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 16:53:02"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 16:53:02"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_NewOverdue ORDER BY PS_DD ASC;","timestamp":"2016-12-30 16:53:02"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 16:53:02"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_PastWeekOverdue ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 16:53:02"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 16:53:02"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 16:53:02"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 16:53:02"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_ProlongedOverdue ORDER BY DATEDIFF(day,DUE_DATE,GETDATE()) ASC;","timestamp":"2016-12-30 16:53:02"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 16:53:02"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 16:53:02"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 16:53:02"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 16:53:03"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 16:53:03"}
+{"level":"info","message":"overdueMonitor server in operation... (http://127.0.0.1:9003)","timestamp":"2016-12-30 17:00:58"}
+{"level":"info","message":"overdueMonitor server in operation... (http://127.0.0.1:9003)","timestamp":"2016-12-30 17:01:07"}
+{"level":"info","message":"overdueMonitor server in operation... (http://127.0.0.1:9003)","timestamp":"2016-12-30 17:02:11"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:02:25"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.overview;","timestamp":"2016-12-30 17:02:25"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:02:25"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.annualReportSummary ORDER BY YEAR ASC;","timestamp":"2016-12-30 17:02:25"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:02:25"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_OneWeek ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 17:02:25"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:02:25"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_TwoWeek ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 17:02:25"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:02:25"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_NewOverdue ORDER BY PS_DD ASC;","timestamp":"2016-12-30 17:02:25"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:02:25"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_PastWeekOverdue ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 17:02:25"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:02:25"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:02:25"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:02:25"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:02:25"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:02:25"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_ProlongedOverdue ORDER BY DATEDIFF(day,DUE_DATE,GETDATE()) ASC;","timestamp":"2016-12-30 17:02:25"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:02:25"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:02:26"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:02:26"}
+{"level":"info","message":"overdueMonitor server in operation... (http://127.0.0.1:9003)","timestamp":"2016-12-30 17:14:49"}
+{"level":"info","message":"overdueMonitor server in operation... (http://127.0.0.1:9003)","timestamp":"2016-12-30 17:14:57"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:14:58"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.overview;","timestamp":"2016-12-30 17:14:58"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:14:58"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.annualReportSummary ORDER BY YEAR ASC;","timestamp":"2016-12-30 17:14:58"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:14:58"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_OneWeek ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 17:14:58"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:14:58"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_TwoWeek ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 17:14:58"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:14:58"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_NewOverdue ORDER BY PS_DD ASC;","timestamp":"2016-12-30 17:14:58"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:14:58"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_PastWeekOverdue ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 17:14:58"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:14:58"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:14:58"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:14:58"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:14:58"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:14:58"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_ProlongedOverdue ORDER BY DATEDIFF(day,DUE_DATE,GETDATE()) ASC;","timestamp":"2016-12-30 17:14:58"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:14:58"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:14:58"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:14:58"}
+{"level":"info","message":"overdueMonitor server in operation... (http://127.0.0.1:9003)","timestamp":"2016-12-30 17:15:17"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:15:18"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.overview;","timestamp":"2016-12-30 17:15:18"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:15:18"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.annualReportSummary ORDER BY YEAR ASC;","timestamp":"2016-12-30 17:15:18"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:15:18"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_OneWeek ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 17:15:18"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:15:18"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_TwoWeek ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 17:15:18"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:15:18"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_NewOverdue ORDER BY PS_DD ASC;","timestamp":"2016-12-30 17:15:18"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:15:18"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_PastWeekOverdue ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 17:15:18"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:15:18"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:15:18"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_ProlongedOverdue ORDER BY DATEDIFF(day,DUE_DATE,GETDATE()) ASC;","timestamp":"2016-12-30 17:15:18"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:15:18"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:15:18"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:15:18"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:15:18"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:15:18"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:15:18"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:15:23"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.overview;","timestamp":"2016-12-30 17:15:23"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:15:23"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.annualReportSummary ORDER BY YEAR ASC;","timestamp":"2016-12-30 17:15:23"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:15:23"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_OneWeek ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 17:15:23"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:15:23"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_TwoWeek ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 17:15:23"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:15:23"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_NewOverdue ORDER BY PS_DD ASC;","timestamp":"2016-12-30 17:15:23"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:15:23"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_PastWeekOverdue ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 17:15:23"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:15:23"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:15:23"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_ProlongedOverdue ORDER BY DATEDIFF(day,DUE_DATE,GETDATE()) ASC;","timestamp":"2016-12-30 17:15:23"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:15:23"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:15:23"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:15:23"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:15:23"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:15:23"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:15:23"}
+{"level":"info","message":"proceeding with scheduled [擷取金流狀況數據]","timestamp":"2016-12-30 17:16:00"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:16:00"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.overview;","timestamp":"2016-12-30 17:16:00"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:16:00"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:16:00"}
+{"level":"info","message":"query: INSERT INTO overdueMonitor.dbo.cashFlowSnapshot VALUES('2016-12-30',101792980,105221445,34772005,'2016-12-30 17:16:00');","timestamp":"2016-12-30 17:16:00"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:16:00"}
+{"level":"info","message":"captureCashFlowSnapshot completed successfully...","timestamp":"2016-12-30 17:16:00"}
+{"level":"info","message":"overdueMonitor server in operation... (http://127.0.0.1:9003)","timestamp":"2016-12-30 17:16:41"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:16:46"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.overview;","timestamp":"2016-12-30 17:16:46"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:16:46"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.annualReportSummary ORDER BY YEAR ASC;","timestamp":"2016-12-30 17:16:46"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:16:46"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_OneWeek ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 17:16:46"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:16:46"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_TwoWeek ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 17:16:46"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:16:46"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_NewOverdue ORDER BY PS_DD ASC;","timestamp":"2016-12-30 17:16:46"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:16:46"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_PastWeekOverdue ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 17:16:46"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:16:47"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:16:47"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:16:47"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:16:47"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:16:47"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_ProlongedOverdue ORDER BY DATEDIFF(day,DUE_DATE,GETDATE()) ASC;","timestamp":"2016-12-30 17:16:47"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:16:47"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:16:47"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:16:47"}
+{"level":"info","message":"proceeding with scheduled [擷取金流狀況數據]","timestamp":"2016-12-30 17:17:00"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:17:00"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.overview;","timestamp":"2016-12-30 17:17:00"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:17:00"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:17:00"}
+{"level":"info","message":"query: INSERT INTO overdueMonitor.dbo.cashFlowSnapshot VALUES('2016-12-30',101792980,105221445,34772005,'2016-12-30 17:17:00');","timestamp":"2016-12-30 17:17:00"}
+{"level":"info","message":"overdueMonitor database access failure: RequestError: Violation of PRIMARY KEY constraint 'PK_cashFlowSnapshot'. Cannot insert duplicate key in object 'dbo.cashFlowSnapshot'. The duplicate key value is (2016-12-30).","timestamp":"2016-12-30 17:17:00"}
+{"level":"info","message":"overdueMonitor server in operation... (http://127.0.0.1:9003)","timestamp":"2016-12-30 17:19:29"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:19:29"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.overview;","timestamp":"2016-12-30 17:19:29"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:19:30"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.annualReportSummary ORDER BY YEAR ASC;","timestamp":"2016-12-30 17:19:30"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:19:30"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_OneWeek ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 17:19:30"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:19:30"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_TwoWeek ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 17:19:30"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:19:30"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_NewOverdue ORDER BY PS_DD ASC;","timestamp":"2016-12-30 17:19:30"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:19:30"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_PastWeekOverdue ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 17:19:30"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:19:30"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:19:30"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_ProlongedOverdue ORDER BY DATEDIFF(day,DUE_DATE,GETDATE()) ASC;","timestamp":"2016-12-30 17:19:30"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:19:30"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:19:30"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:19:30"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:19:30"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:19:30"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:19:30"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:19:34"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.overview;","timestamp":"2016-12-30 17:19:34"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:19:34"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.annualReportSummary ORDER BY YEAR ASC;","timestamp":"2016-12-30 17:19:34"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:19:34"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_OneWeek ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 17:19:34"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:19:35"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_TwoWeek ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 17:19:35"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:19:35"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_NewOverdue ORDER BY PS_DD ASC;","timestamp":"2016-12-30 17:19:35"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:19:35"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_PastWeekOverdue ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 17:19:35"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:19:35"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:19:35"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_ProlongedOverdue ORDER BY DATEDIFF(day,DUE_DATE,GETDATE()) ASC;","timestamp":"2016-12-30 17:19:35"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:19:35"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:19:35"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:19:35"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:19:35"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:19:35"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:19:35"}
+{"level":"info","message":"overdueMonitor server in operation... (http://127.0.0.1:9003)","timestamp":"2016-12-30 17:25:17"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:25:18"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.overview;","timestamp":"2016-12-30 17:25:18"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:25:18"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.annualReportSummary ORDER BY YEAR ASC;","timestamp":"2016-12-30 17:25:18"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:25:18"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_OneWeek ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 17:25:18"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:25:18"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_TwoWeek ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 17:25:18"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:25:18"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_NewOverdue ORDER BY PS_DD ASC;","timestamp":"2016-12-30 17:25:18"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:25:18"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_PastWeekOverdue ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 17:25:18"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:25:19"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:25:19"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_ProlongedOverdue ORDER BY DATEDIFF(day,DUE_DATE,GETDATE()) ASC;","timestamp":"2016-12-30 17:25:19"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:25:19"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:25:19"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:25:19"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:25:19"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:25:19"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:25:19"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:25:23"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.overview;","timestamp":"2016-12-30 17:25:23"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:25:23"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.annualReportSummary ORDER BY YEAR ASC;","timestamp":"2016-12-30 17:25:23"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:25:23"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_OneWeek ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 17:25:23"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:25:23"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_TwoWeek ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 17:25:23"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:25:23"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_NewOverdue ORDER BY PS_DD ASC;","timestamp":"2016-12-30 17:25:23"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:25:23"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_PastWeekOverdue ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 17:25:23"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:25:23"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:25:23"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_ProlongedOverdue ORDER BY DATEDIFF(day,DUE_DATE,GETDATE()) ASC;","timestamp":"2016-12-30 17:25:23"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:25:23"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:25:23"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:25:23"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:25:24"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:25:24"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:25:24"}
+{"level":"info","message":"overdueMonitor reporting mechanism triggered","timestamp":"2016-12-30 17:30:00"}
+{"level":"verbose","message":"2016-12-30 17:30:00 overdueMonitor server reporting in","timestamp":"2016-12-30 17:30:02"}
+{"level":"info","message":"overdueMonitor reporting mechanism completed","timestamp":"2016-12-30 17:30:02"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:32:44"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.overview;","timestamp":"2016-12-30 17:32:44"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:32:44"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.annualReportSummary ORDER BY YEAR ASC;","timestamp":"2016-12-30 17:32:44"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:32:44"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_OneWeek ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 17:32:44"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:32:44"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_TwoWeek ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 17:32:44"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:32:44"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_NewOverdue ORDER BY PS_DD ASC;","timestamp":"2016-12-30 17:32:44"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:32:44"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_PastWeekOverdue ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 17:32:44"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:32:50"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_ProlongedOverdue ORDER BY DATEDIFF(day,DUE_DATE,GETDATE()) ASC;","timestamp":"2016-12-30 17:32:50"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:32:59"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.overview;","timestamp":"2016-12-30 17:32:59"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:32:59"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.annualReportSummary ORDER BY YEAR ASC;","timestamp":"2016-12-30 17:32:59"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:32:59"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_OneWeek ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 17:32:59"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:32:59"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_TwoWeek ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 17:32:59"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:32:59"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_NewOverdue ORDER BY PS_DD ASC;","timestamp":"2016-12-30 17:32:59"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:32:59"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_PastWeekOverdue ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 17:32:59"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:33:08"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.overview;","timestamp":"2016-12-30 17:33:08"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:33:08"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.annualReportSummary ORDER BY YEAR ASC;","timestamp":"2016-12-30 17:33:08"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:33:08"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_OneWeek ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 17:33:08"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:33:08"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_TwoWeek ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 17:33:08"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:33:08"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_NewOverdue ORDER BY PS_DD ASC;","timestamp":"2016-12-30 17:33:08"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:33:08"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_PastWeekOverdue ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 17:33:08"}
+{"level":"error","message":"overdueMonitor database connection failure: ConnectionError: Failed to connect to 127.0.0.1:1433 - connect ECONNREFUSED 127.0.0.1:1433","timestamp":"2016-12-30 17:33:09"}
+{"level":"error","message":"/overdueMonitor/overview route error: ConnectionError: Failed to connect to 127.0.0.1:1433 - connect ECONNREFUSED 127.0.0.1:1433","timestamp":"2016-12-30 17:33:09"}
+{"level":"error","message":"overdueMonitor database connection failure: ConnectionError: Failed to connect to 127.0.0.1:1433 - connect ECONNREFUSED 127.0.0.1:1433","timestamp":"2016-12-30 17:33:09"}
+{"level":"error","message":"/overdueMonitor/annualReportSummary route error: ConnectionError: Failed to connect to 127.0.0.1:1433 - connect ECONNREFUSED 127.0.0.1:1433","timestamp":"2016-12-30 17:33:09"}
+{"level":"error","message":"overdueMonitor database connection failure: ConnectionError: Failed to connect to 127.0.0.1:1433 - connect ECONNREFUSED 127.0.0.1:1433","timestamp":"2016-12-30 17:33:09"}
+{"level":"error","message":"/overdueMonitor/warning_OneWeek route error: ConnectionError: Failed to connect to 127.0.0.1:1433 - connect ECONNREFUSED 127.0.0.1:1433","timestamp":"2016-12-30 17:33:09"}
+{"level":"error","message":"overdueMonitor database connection failure: ConnectionError: Failed to connect to 127.0.0.1:1433 - connect ECONNREFUSED 127.0.0.1:1433","timestamp":"2016-12-30 17:33:09"}
+{"level":"error","message":"/overdueMonitor/warning_NewOverdue route error: ConnectionError: Failed to connect to 127.0.0.1:1433 - connect ECONNREFUSED 127.0.0.1:1433","timestamp":"2016-12-30 17:33:09"}
+{"level":"error","message":"overdueMonitor database connection failure: ConnectionError: Failed to connect to 127.0.0.1:1433 - connect ECONNREFUSED 127.0.0.1:1433","timestamp":"2016-12-30 17:33:09"}
+{"level":"error","message":"/overdueMonitor/warning_TwoWeek route error: ConnectionError: Failed to connect to 127.0.0.1:1433 - connect ECONNREFUSED 127.0.0.1:1433","timestamp":"2016-12-30 17:33:09"}
+{"level":"error","message":"overdueMonitor database connection failure: ConnectionError: Failed to connect to 127.0.0.1:1433 - connect ECONNREFUSED 127.0.0.1:1433","timestamp":"2016-12-30 17:33:09"}
+{"level":"error","message":"/overdueMonitor/warning_PastWeekOverdue route error: ConnectionError: Failed to connect to 127.0.0.1:1433 - connect ECONNREFUSED 127.0.0.1:1433","timestamp":"2016-12-30 17:33:09"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:33:09"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_ProlongedOverdue ORDER BY DATEDIFF(day,DUE_DATE,GETDATE()) ASC;","timestamp":"2016-12-30 17:33:09"}
+{"level":"error","message":"overdueMonitor database connection failure: ConnectionError: Failed to connect to 127.0.0.1:1433 - connect ECONNREFUSED 127.0.0.1:1433","timestamp":"2016-12-30 17:33:10"}
+{"level":"error","message":"/overdueMonitor/warning_ProlongedOverdue route error: ConnectionError: Failed to connect to 127.0.0.1:1433 - connect ECONNREFUSED 127.0.0.1:1433","timestamp":"2016-12-30 17:33:10"}
+{"level":"info","message":"overdueMonitor server in operation... (http://127.0.0.1:9003)","timestamp":"2016-12-30 17:37:50"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:37:51"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.overview;","timestamp":"2016-12-30 17:37:51"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:37:51"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.annualReportSummary ORDER BY YEAR ASC;","timestamp":"2016-12-30 17:37:51"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:37:51"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_OneWeek ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 17:37:51"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:37:51"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_TwoWeek ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 17:37:51"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:37:51"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_NewOverdue ORDER BY PS_DD ASC;","timestamp":"2016-12-30 17:37:51"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:37:51"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_PastWeekOverdue ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 17:37:51"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:37:51"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:37:51"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:37:51"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:37:51"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:37:51"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_ProlongedOverdue ORDER BY DATEDIFF(day,DUE_DATE,GETDATE()) ASC;","timestamp":"2016-12-30 17:37:51"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:37:51"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:37:51"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:37:51"}
+{"level":"info","message":"overdueMonitor server in operation... (http://127.0.0.1:9003)","timestamp":"2016-12-30 17:39:14"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:39:15"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.overview;","timestamp":"2016-12-30 17:39:15"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:39:15"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.annualReportSummary ORDER BY YEAR ASC;","timestamp":"2016-12-30 17:39:15"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:39:15"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_OneWeek ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 17:39:15"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:39:15"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_TwoWeek ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 17:39:15"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:39:15"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_NewOverdue ORDER BY PS_DD ASC;","timestamp":"2016-12-30 17:39:15"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:39:15"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_PastWeekOverdue ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 17:39:15"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:39:15"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:39:15"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:39:15"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:39:15"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_ProlongedOverdue ORDER BY DATEDIFF(day,DUE_DATE,GETDATE()) ASC;","timestamp":"2016-12-30 17:39:15"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:39:16"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:39:16"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:39:16"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:39:16"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:39:20"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.overview;","timestamp":"2016-12-30 17:39:20"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:39:20"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.annualReportSummary ORDER BY YEAR ASC;","timestamp":"2016-12-30 17:39:20"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:39:20"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_OneWeek ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 17:39:20"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:39:20"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_TwoWeek ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 17:39:20"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:39:20"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_NewOverdue ORDER BY PS_DD ASC;","timestamp":"2016-12-30 17:39:20"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:39:20"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_PastWeekOverdue ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 17:39:20"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:39:20"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:39:20"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_ProlongedOverdue ORDER BY DATEDIFF(day,DUE_DATE,GETDATE()) ASC;","timestamp":"2016-12-30 17:39:20"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:39:20"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:39:20"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:39:20"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:39:20"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:39:21"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:39:21"}
+{"level":"info","message":"overdueMonitor server in operation... (http://127.0.0.1:9003)","timestamp":"2016-12-30 17:42:02"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:42:03"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.overview;","timestamp":"2016-12-30 17:42:03"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:42:03"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.annualReportSummary ORDER BY YEAR ASC;","timestamp":"2016-12-30 17:42:03"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:42:03"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_OneWeek ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 17:42:03"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:42:03"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_TwoWeek ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 17:42:03"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:42:03"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_NewOverdue ORDER BY PS_DD ASC;","timestamp":"2016-12-30 17:42:03"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:42:03"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_PastWeekOverdue ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 17:42:03"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:42:03"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:42:03"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:42:03"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:42:03"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_ProlongedOverdue ORDER BY DATEDIFF(day,DUE_DATE,GETDATE()) ASC;","timestamp":"2016-12-30 17:42:03"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:42:03"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:42:03"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:42:03"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:42:03"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:42:08"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.overview;","timestamp":"2016-12-30 17:42:08"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:42:08"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.annualReportSummary ORDER BY YEAR ASC;","timestamp":"2016-12-30 17:42:08"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:42:08"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_OneWeek ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 17:42:08"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:42:08"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_TwoWeek ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 17:42:08"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:42:08"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_NewOverdue ORDER BY PS_DD ASC;","timestamp":"2016-12-30 17:42:08"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:42:08"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_PastWeekOverdue ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 17:42:08"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:42:08"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:42:08"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_ProlongedOverdue ORDER BY DATEDIFF(day,DUE_DATE,GETDATE()) ASC;","timestamp":"2016-12-30 17:42:08"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:42:08"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:42:08"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:42:08"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:42:08"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:42:08"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:42:08"}
+{"level":"info","message":"overdueMonitor server in operation... (http://127.0.0.1:9003)","timestamp":"2016-12-30 17:43:57"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:43:58"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.overview;","timestamp":"2016-12-30 17:43:58"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:43:58"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.annualReportSummary ORDER BY YEAR ASC;","timestamp":"2016-12-30 17:43:58"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:43:58"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_OneWeek ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 17:43:58"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:43:58"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_TwoWeek ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 17:43:58"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:43:58"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_NewOverdue ORDER BY PS_DD ASC;","timestamp":"2016-12-30 17:43:58"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:43:58"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_PastWeekOverdue ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 17:43:58"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:43:58"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:43:58"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:43:58"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:43:58"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_ProlongedOverdue ORDER BY DATEDIFF(day,DUE_DATE,GETDATE()) ASC;","timestamp":"2016-12-30 17:43:58"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:43:58"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:43:58"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:43:59"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:43:59"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:44:03"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.overview;","timestamp":"2016-12-30 17:44:03"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:44:03"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.annualReportSummary ORDER BY YEAR ASC;","timestamp":"2016-12-30 17:44:03"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:44:03"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_OneWeek ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 17:44:03"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:44:03"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_TwoWeek ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 17:44:03"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:44:03"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_NewOverdue ORDER BY PS_DD ASC;","timestamp":"2016-12-30 17:44:03"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:44:03"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_PastWeekOverdue ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 17:44:03"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:44:03"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:44:03"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_ProlongedOverdue ORDER BY DATEDIFF(day,DUE_DATE,GETDATE()) ASC;","timestamp":"2016-12-30 17:44:03"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:44:03"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:44:03"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:44:03"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:44:03"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:44:03"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:44:03"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:45:00"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_NewOverdue ORDER BY PS_DD ASC;","timestamp":"2016-12-30 17:45:00"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:45:00"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:45:30"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_PastWeekOverdue ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 17:45:30"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:45:30"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:46:00"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_OneWeek ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 17:46:00"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:46:01"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:46:30"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_TwoWeek ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 17:46:30"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:46:31"}
+{"level":"info","message":"overdueMonitor server in operation... (http://127.0.0.1:9003)","timestamp":"2016-12-30 17:55:01"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:55:02"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.overview;","timestamp":"2016-12-30 17:55:02"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:55:02"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.annualReportSummary ORDER BY YEAR ASC;","timestamp":"2016-12-30 17:55:02"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:55:02"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_OneWeek ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 17:55:02"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:55:02"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_TwoWeek ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 17:55:02"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:55:02"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_NewOverdue ORDER BY PS_DD ASC;","timestamp":"2016-12-30 17:55:02"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:55:02"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_PastWeekOverdue ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 17:55:02"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:55:02"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:55:02"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_ProlongedOverdue ORDER BY DATEDIFF(day,DUE_DATE,GETDATE()) ASC;","timestamp":"2016-12-30 17:55:02"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:55:02"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:55:02"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:55:02"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:55:02"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:55:02"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:55:02"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:55:07"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.overview;","timestamp":"2016-12-30 17:55:07"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:55:07"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.annualReportSummary ORDER BY YEAR ASC;","timestamp":"2016-12-30 17:55:07"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:55:07"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_OneWeek ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 17:55:07"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:55:07"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_TwoWeek ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 17:55:07"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:55:07"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_NewOverdue ORDER BY PS_DD ASC;","timestamp":"2016-12-30 17:55:07"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:55:07"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_PastWeekOverdue ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 17:55:07"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:55:07"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:55:07"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_ProlongedOverdue ORDER BY DATEDIFF(day,DUE_DATE,GETDATE()) ASC;","timestamp":"2016-12-30 17:55:07"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:55:07"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:55:07"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:55:07"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:55:07"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:55:07"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:55:07"}
+{"level":"info","message":"overdueMonitor server in operation... (http://127.0.0.1:9003)","timestamp":"2016-12-30 17:55:37"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:55:37"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.overview;","timestamp":"2016-12-30 17:55:37"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:55:38"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.annualReportSummary ORDER BY YEAR ASC;","timestamp":"2016-12-30 17:55:38"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:55:38"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_OneWeek ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 17:55:38"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:55:38"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_TwoWeek ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 17:55:38"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:55:38"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_NewOverdue ORDER BY PS_DD ASC;","timestamp":"2016-12-30 17:55:38"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:55:38"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_PastWeekOverdue ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 17:55:38"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:55:38"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:55:38"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:55:38"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:55:38"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:55:38"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_ProlongedOverdue ORDER BY DATEDIFF(day,DUE_DATE,GETDATE()) ASC;","timestamp":"2016-12-30 17:55:38"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:55:38"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:55:38"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:55:38"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:55:42"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.overview;","timestamp":"2016-12-30 17:55:42"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:55:42"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.annualReportSummary ORDER BY YEAR ASC;","timestamp":"2016-12-30 17:55:42"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:55:42"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_OneWeek ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 17:55:42"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:55:42"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_TwoWeek ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 17:55:42"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:55:42"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_NewOverdue ORDER BY PS_DD ASC;","timestamp":"2016-12-30 17:55:42"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:55:42"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_PastWeekOverdue ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 17:55:42"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:55:43"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:55:43"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_ProlongedOverdue ORDER BY DATEDIFF(day,DUE_DATE,GETDATE()) ASC;","timestamp":"2016-12-30 17:55:43"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:55:43"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:55:43"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:55:43"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:55:43"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:55:43"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:55:43"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:57:00"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_NewOverdue ORDER BY PS_DD ASC;","timestamp":"2016-12-30 17:57:00"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:57:00"}
+{"level":"error","message":"overdueMonitor database access failure: TypeError: serverConfig.broadcastServerUrl is not a function","timestamp":"2016-12-30 17:57:00"}
+{"level":"info","message":"overdueMonitor server in operation... (http://127.0.0.1:9003)","timestamp":"2016-12-30 17:59:49"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:59:50"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.overview;","timestamp":"2016-12-30 17:59:50"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:59:50"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.annualReportSummary ORDER BY YEAR ASC;","timestamp":"2016-12-30 17:59:50"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:59:50"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_OneWeek ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 17:59:50"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:59:50"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_TwoWeek ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 17:59:50"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:59:50"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_NewOverdue ORDER BY PS_DD ASC;","timestamp":"2016-12-30 17:59:50"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:59:50"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_PastWeekOverdue ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 17:59:50"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:59:50"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 17:59:50"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_ProlongedOverdue ORDER BY DATEDIFF(day,DUE_DATE,GETDATE()) ASC;","timestamp":"2016-12-30 17:59:50"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:59:50"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:59:50"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:59:50"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:59:51"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:59:51"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 17:59:51"}
+{"level":"info","message":"overdueMonitor reporting mechanism triggered","timestamp":"2016-12-30 18:00:00"}
+{"level":"info","message":"proceeding with scheduled [擷取金流狀況數據]","timestamp":"2016-12-30 18:00:00"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 18:00:00"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.overview;","timestamp":"2016-12-30 18:00:00"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 18:00:00"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_NewOverdue ORDER BY PS_DD ASC;","timestamp":"2016-12-30 18:00:00"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 18:00:00"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 18:00:00"}
+{"level":"info","message":"query: INSERT INTO overdueMonitor.dbo.cashFlowSnapshot VALUES('2016-12-30',101792980,105221445,34772005,'2016-12-30 18:00:00');","timestamp":"2016-12-30 18:00:00"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 18:00:00"}
+{"level":"error","message":"overdueMonitor database access failure: RequestError: Violation of PRIMARY KEY constraint 'PK_cashFlowSnapshot'. Cannot insert duplicate key in object 'dbo.cashFlowSnapshot'. The duplicate key value is (2016-12-30).","timestamp":"2016-12-30 18:00:00"}
+{"name":"StatusCodeError","statusCode":404,"message":"","error":"Cannot POST /\n","options":{"method":"POST","uri":"http://upgi.ddns.net:9001","form":{"chat_id":288237926,"text":"【逾期款監控系統】致業務員：李宛儒 - 客戶【ROMA】於昨日產生逾期款項 $185,833 (SA1051229004)。請注意！","token":"267738010:AAGT17aLumIfVPNeFWht8eUEPuC2HfAouGk"},"simple":true,"resolveWithFullResponse":false,"transform2xxOnly":false},"response":{"statusCode":404,"body":"Cannot POST /\n","headers":{"x-powered-by":"Express","access-control-allow-origin":"*","x-content-type-options":"nosniff","content-type":"text/html; charset=utf-8","content-length":"14","date":"Fri, 30 Dec 2016 10:00:00 GMT","connection":"close"},"request":{"uri":{"protocol":"http:","slashes":true,"auth":null,"host":"upgi.ddns.net:9001","port":"9001","hostname":"upgi.ddns.net","hash":null,"search":null,"query":null,"pathname":"/","path":"/","href":"http://upgi.ddns.net:9001/"},"method":"post","headers":{"content-type":"application/x-www-form-urlencoded","content-length":439}}},"level":"error","timestamp":"2016-12-30 18:00:00"}
+{"name":"StatusCodeError","statusCode":404,"message":"","error":"Cannot POST /\n","options":{"method":"POST","uri":"http://upgi.ddns.net:9001","form":{"chat_id":241630569,"text":"【逾期款監控系統】致業務員：李宛儒 - 客戶【ROMA】於昨日產生逾期款項 $185,833 (SA1051229004)。請注意！","token":"267738010:AAGT17aLumIfVPNeFWht8eUEPuC2HfAouGk"},"simple":true,"resolveWithFullResponse":false,"transform2xxOnly":false},"response":{"statusCode":404,"body":"Cannot POST /\n","headers":{"x-powered-by":"Express","access-control-allow-origin":"*","x-content-type-options":"nosniff","content-type":"text/html; charset=utf-8","content-length":"14","date":"Fri, 30 Dec 2016 10:00:00 GMT","connection":"close"},"request":{"uri":{"protocol":"http:","slashes":true,"auth":null,"host":"upgi.ddns.net:9001","port":"9001","hostname":"upgi.ddns.net","hash":null,"search":null,"query":null,"pathname":"/","path":"/","href":"http://upgi.ddns.net:9001/"},"method":"post","headers":{"content-type":"application/x-www-form-urlencoded","content-length":439}}},"level":"error","timestamp":"2016-12-30 18:00:00"}
+{"name":"StatusCodeError","statusCode":404,"message":"","error":"Cannot POST /\n","options":{"method":"POST","uri":"http://upgi.ddns.net:9001","form":{"chat_id":-150874076,"text":"【新增逾期款項】\n【ROMA】產生逾期款 $185,833。請注意！","token":"267738010:AAGT17aLumIfVPNeFWht8eUEPuC2HfAouGk"},"simple":true,"resolveWithFullResponse":false,"transform2xxOnly":false},"response":{"statusCode":404,"body":"Cannot POST /\n","headers":{"x-powered-by":"Express","access-control-allow-origin":"*","x-content-type-options":"nosniff","content-type":"text/html; charset=utf-8","content-length":"14","date":"Fri, 30 Dec 2016 10:00:00 GMT","connection":"close"},"request":{"uri":{"protocol":"http:","slashes":true,"auth":null,"host":"upgi.ddns.net:9001","port":"9001","hostname":"upgi.ddns.net","hash":null,"search":null,"query":null,"pathname":"/","path":"/","href":"http://upgi.ddns.net:9001/"},"method":"post","headers":{"content-type":"application/x-www-form-urlencoded","content-length":280}}},"level":"error","timestamp":"2016-12-30 18:00:00"}
+{"name":"StatusCodeError","statusCode":404,"message":"","error":"Cannot POST /\n","options":{"method":"POST","uri":"http://upgi.ddns.net:9001","form":{"chat_id":270251655,"text":"【逾期款監控系統】致業務員：李宛儒 - 客戶【ROMA】於昨日產生逾期款項 $185,833 (SA1051229004)。請注意！","token":"267738010:AAGT17aLumIfVPNeFWht8eUEPuC2HfAouGk"},"simple":true,"resolveWithFullResponse":false,"transform2xxOnly":false},"response":{"statusCode":404,"body":"Cannot POST /\n","headers":{"x-powered-by":"Express","access-control-allow-origin":"*","x-content-type-options":"nosniff","content-type":"text/html; charset=utf-8","content-length":"14","date":"Fri, 30 Dec 2016 10:00:00 GMT","connection":"close"},"request":{"uri":{"protocol":"http:","slashes":true,"auth":null,"host":"upgi.ddns.net:9001","port":"9001","hostname":"upgi.ddns.net","hash":null,"search":null,"query":null,"pathname":"/","path":"/","href":"http://upgi.ddns.net:9001/"},"method":"post","headers":{"content-type":"application/x-www-form-urlencoded","content-length":439}}},"level":"error","timestamp":"2016-12-30 18:00:00"}
+{"name":"StatusCodeError","statusCode":404,"message":"","error":"Cannot POST /\n","options":{"method":"POST","uri":"http://upgi.ddns.net:9001","form":{"chat_id":-157638300,"text":"【新增逾期款項】\n【ROMA】產生逾期款 $185,833。請注意！","token":"267738010:AAGT17aLumIfVPNeFWht8eUEPuC2HfAouGk"},"simple":true,"resolveWithFullResponse":false,"transform2xxOnly":false},"response":{"statusCode":404,"body":"Cannot POST /\n","headers":{"x-powered-by":"Express","access-control-allow-origin":"*","x-content-type-options":"nosniff","content-type":"text/html; charset=utf-8","content-length":"14","date":"Fri, 30 Dec 2016 10:00:00 GMT","connection":"close"},"request":{"uri":{"protocol":"http:","slashes":true,"auth":null,"host":"upgi.ddns.net:9001","port":"9001","hostname":"upgi.ddns.net","hash":null,"search":null,"query":null,"pathname":"/","path":"/","href":"http://upgi.ddns.net:9001/"},"method":"post","headers":{"content-type":"application/x-www-form-urlencoded","content-length":280}}},"level":"error","timestamp":"2016-12-30 18:00:00"}
+{"level":"verbose","message":"2016-12-30 18:00:00 overdueMonitor server reporting in","timestamp":"2016-12-30 18:00:02"}
+{"level":"info","message":"overdueMonitor reporting mechanism completed","timestamp":"2016-12-30 18:00:02"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 18:00:35"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_PastWeekOverdue ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 18:00:35"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 18:00:35"}
+{"name":"StatusCodeError","statusCode":404,"message":"","error":"Cannot POST /\n","options":{"method":"POST","uri":"http://upgi.ddns.net:9001","form":{"chat_id":270251655,"text":"【逾期款監控系統】致業務員：劉得臣 - 客戶【NEW GOLD P】於上週產生逾期款項 $1,109,269 (SA1050627003) 仍未付款。請注意！","token":"267738010:AAGT17aLumIfVPNeFWht8eUEPuC2HfAouGk"},"simple":true,"resolveWithFullResponse":false,"transform2xxOnly":false},"response":{"statusCode":404,"body":"Cannot POST /\n","headers":{"x-powered-by":"Express","access-control-allow-origin":"*","x-content-type-options":"nosniff","content-type":"text/html; charset=utf-8","content-length":"14","date":"Fri, 30 Dec 2016 10:00:35 GMT","connection":"close"},"request":{"uri":{"protocol":"http:","slashes":true,"auth":null,"host":"upgi.ddns.net:9001","port":"9001","hostname":"upgi.ddns.net","hash":null,"search":null,"query":null,"pathname":"/","path":"/","href":"http://upgi.ddns.net:9001/"},"method":"post","headers":{"content-type":"application/x-www-form-urlencoded","content-length":492}}},"level":"error","timestamp":"2016-12-30 18:00:35"}
+{"name":"StatusCodeError","statusCode":404,"message":"","error":"Cannot POST /\n","options":{"method":"POST","uri":"http://upgi.ddns.net:9001","form":{"chat_id":279766628,"text":"【逾期款監控系統】致業務員：劉得臣 - 客戶【NEW GOLD P】於上週產生逾期款項 $1,109,269 (SA1050627003) 仍未付款。請注意！","token":"267738010:AAGT17aLumIfVPNeFWht8eUEPuC2HfAouGk"},"simple":true,"resolveWithFullResponse":false,"transform2xxOnly":false},"response":{"statusCode":404,"body":"Cannot POST /\n","headers":{"x-powered-by":"Express","access-control-allow-origin":"*","x-content-type-options":"nosniff","content-type":"text/html; charset=utf-8","content-length":"14","date":"Fri, 30 Dec 2016 10:00:35 GMT","connection":"close"},"request":{"uri":{"protocol":"http:","slashes":true,"auth":null,"host":"upgi.ddns.net:9001","port":"9001","hostname":"upgi.ddns.net","hash":null,"search":null,"query":null,"pathname":"/","path":"/","href":"http://upgi.ddns.net:9001/"},"method":"post","headers":{"content-type":"application/x-www-form-urlencoded","content-length":492}}},"level":"error","timestamp":"2016-12-30 18:00:35"}
+{"level":"info","message":"overdueMonitor server in operation... (http://127.0.0.1:9003)","timestamp":"2016-12-30 18:02:37"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 18:02:38"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.overview;","timestamp":"2016-12-30 18:02:38"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 18:02:38"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.annualReportSummary ORDER BY YEAR ASC;","timestamp":"2016-12-30 18:02:38"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 18:02:38"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_OneWeek ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 18:02:38"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 18:02:38"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_TwoWeek ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 18:02:38"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 18:02:38"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_NewOverdue ORDER BY PS_DD ASC;","timestamp":"2016-12-30 18:02:38"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 18:02:38"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_PastWeekOverdue ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 18:02:38"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 18:02:38"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 18:02:38"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 18:02:38"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 18:02:38"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 18:02:38"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_ProlongedOverdue ORDER BY DATEDIFF(day,DUE_DATE,GETDATE()) ASC;","timestamp":"2016-12-30 18:02:38"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 18:02:39"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 18:02:39"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 18:02:39"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 18:03:00"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_NewOverdue ORDER BY PS_DD ASC;","timestamp":"2016-12-30 18:03:00"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 18:03:00"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：李宛儒 - 客戶【ROMA】於昨日產生逾期款項 $185,833 (SA1051229004)。請注意！","timestamp":"2016-12-30 18:03:00"}
+{"level":"info","message":"group message broadcasted: 【新增逾期款項】\n【ROMA】產生逾期款 $185,833。請注意！","timestamp":"2016-12-30 18:03:00"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：李宛儒 - 客戶【ROMA】於昨日產生逾期款項 $185,833 (SA1051229004)。請注意！","timestamp":"2016-12-30 18:03:00"}
+{"level":"info","message":"group message broadcasted: 【新增逾期款項】\n【ROMA】產生逾期款 $185,833。請注意！","timestamp":"2016-12-30 18:03:00"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：李宛儒 - 客戶【ROMA】於昨日產生逾期款項 $185,833 (SA1051229004)。請注意！","timestamp":"2016-12-30 18:03:00"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 18:03:30"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_PastWeekOverdue ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 18:03:30"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 18:03:30"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：劉得臣 - 客戶【NEW GOLD P】於上週產生逾期款項 $1,109,269 (SA1050627003) 仍未付款。請注意！","timestamp":"2016-12-30 18:03:30"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：劉得臣 - 客戶【NEW GOLD P】於上週產生逾期款項 $1,109,269 (SA1050627003) 仍未付款。請注意！","timestamp":"2016-12-30 18:03:30"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：李宛儒 - 客戶【A.C.S】於上週產生逾期款項 $768,984 (SA1051227003) 仍未付款。請注意！","timestamp":"2016-12-30 18:03:30"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：李宛儒 - 客戶【TEMPTATION】於上週產生逾期款項 $1,633,240 (SA1050630002) 仍未付款。請注意！","timestamp":"2016-12-30 18:03:30"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：李宛儒 - 客戶【TEMPTATION】於上週產生逾期款項 $1,568,481 (SA1050630008) 仍未付款。請注意！","timestamp":"2016-12-30 18:03:30"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：李宛儒 - 客戶【A.C.S】於上週產生逾期款項 $768,984 (SA1051227003) 仍未付款。請注意！","timestamp":"2016-12-30 18:03:30"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：李宛儒 - 客戶【TEMPTATION】於上週產生逾期款項 $1,568,481 (SA1050630008) 仍未付款。請注意！","timestamp":"2016-12-30 18:03:30"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：劉得臣 - 客戶【NEW GOLD P】於上週產生逾期款項 $1,109,269 (SA1050627003) 仍未付款。請注意！","timestamp":"2016-12-30 18:03:30"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：李宛儒 - 客戶【TEMPTATION】於上週產生逾期款項 $1,633,240 (SA1050630002) 仍未付款。請注意！","timestamp":"2016-12-30 18:03:30"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：李宛儒 - 客戶【A.C.S】於上週產生逾期款項 $768,984 (SA1051227003) 仍未付款。請注意！","timestamp":"2016-12-30 18:03:30"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：李宛儒 - 客戶【TEMPTATION】於上週產生逾期款項 $1,633,240 (SA1050630002) 仍未付款。請注意！","timestamp":"2016-12-30 18:03:30"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：陳治儒 - 客戶【Global Packaging FZE】於上週產生逾期款項 $99,414 (SA1051227002) 仍未付款。請注意！","timestamp":"2016-12-30 18:03:30"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：李宛儒 - 客戶【TEMPTATION】於上週產生逾期款項 $1,568,481 (SA1050630008) 仍未付款。請注意！","timestamp":"2016-12-30 18:03:30"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：陳治儒 - 客戶【SWISS】於上週產生逾期款項 $2,935,382 (SA1050908003) 仍未付款。請注意！","timestamp":"2016-12-30 18:03:30"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：陳治儒 - 客戶【SWISS】於上週產生逾期款項 $2,935,382 (SA1050908003) 仍未付款。請注意！","timestamp":"2016-12-30 18:03:30"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：陳治儒 - 客戶【Global Packaging FZE】於上週產生逾期款項 $99,414 (SA1051227002) 仍未付款。請注意！","timestamp":"2016-12-30 18:03:30"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：陳治儒 - 客戶【Global Packaging FZE】於上週產生逾期款項 $99,414 (SA1051227002) 仍未付款。請注意！","timestamp":"2016-12-30 18:03:30"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：李宛儒 - 客戶【Freedom】於上週產生逾期款項 $724,979 (SA1051226001) 仍未付款。請注意！","timestamp":"2016-12-30 18:03:30"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：陳治儒 - 客戶【SWISS】於上週產生逾期款項 $2,935,382 (SA1050908003) 仍未付款。請注意！","timestamp":"2016-12-30 18:03:31"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：李宛儒 - 客戶【Freedom】於上週產生逾期款項 $724,979 (SA1051226001) 仍未付款。請注意！","timestamp":"2016-12-30 18:03:31"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：郭芳伊 - 客戶【BARALAN】於上週產生逾期款項 $907,844 (SA1051109006) 仍未付款。請注意！","timestamp":"2016-12-30 18:03:31"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：郭芳伊 - 客戶【BARALAN】於上週產生逾期款項 $54,382 (SA1051109005) 仍未付款。請注意！","timestamp":"2016-12-30 18:03:31"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：林綺緁 - 客戶【PARISIS】於上週產生逾期款項 $1,674,240 (SA1050630004) 仍未付款。請注意！","timestamp":"2016-12-30 18:03:31"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：李宛儒 - 客戶【Freedom】於上週產生逾期款項 $724,979 (SA1051226001) 仍未付款。請注意！","timestamp":"2016-12-30 18:03:31"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：郭芳伊 - 客戶【BARALAN】於上週產生逾期款項 $54,382 (SA1051109005) 仍未付款。請注意！","timestamp":"2016-12-30 18:03:31"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：郭芳伊 - 客戶【BARALAN】於上週產生逾期款項 $907,844 (SA1051109006) 仍未付款。請注意！","timestamp":"2016-12-30 18:03:31"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：郭芳伊 - 客戶【PAGE PARFUMS】於上週產生逾期款項 $1,117,956 (SA1050629002) 仍未付款。請注意！","timestamp":"2016-12-30 18:03:31"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：郭芳伊 - 客戶【BARALAN】於上週產生逾期款項 $54,382 (SA1051109005) 仍未付款。請注意！","timestamp":"2016-12-30 18:03:31"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：林綺緁 - 客戶【PARISIS】於上週產生逾期款項 $1,674,240 (SA1050630004) 仍未付款。請注意！","timestamp":"2016-12-30 18:03:31"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：李宛儒 - 客戶【ROMA】於上週產生逾期款項 $185,833 (SA1051229004) 仍未付款。請注意！","timestamp":"2016-12-30 18:03:31"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：郭芳伊 - 客戶【PAGE PARFUMS】於上週產生逾期款項 $1,117,956 (SA1050629002) 仍未付款。請注意！","timestamp":"2016-12-30 18:03:31"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：李宛儒 - 客戶【ROMA】於上週產生逾期款項 $185,833 (SA1051229004) 仍未付款。請注意！","timestamp":"2016-12-30 18:03:31"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：林綺緁 - 客戶【PARISIS】於上週產生逾期款項 $1,674,240 (SA1050630004) 仍未付款。請注意！","timestamp":"2016-12-30 18:03:31"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：郭芳伊 - 客戶【PAGE PARFUMS】於上週產生逾期款項 $1,117,956 (SA1050629002) 仍未付款。請注意！","timestamp":"2016-12-30 18:03:31"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：郭芳伊 - 客戶【BARALAN】於上週產生逾期款項 $907,844 (SA1051109006) 仍未付款。請注意！","timestamp":"2016-12-30 18:03:31"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：廖珈慧 - 客戶【Inter Parfums】於上週產生逾期款項 $409,350 (SA1051026002) 仍未付款。請注意！","timestamp":"2016-12-30 18:03:31"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：李宛儒 - 客戶【ROMA】於上週產生逾期款項 $185,833 (SA1051229004) 仍未付款。請注意！","timestamp":"2016-12-30 18:03:31"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：廖珈慧 - 客戶【COTY】於上週產生逾期款項 $875,419 (SA1050826001) 仍未付款。請注意！","timestamp":"2016-12-30 18:03:31"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：廖珈慧 - 客戶【COTY】於上週產生逾期款項 $380,832 (SA1050830008) 仍未付款。請注意！","timestamp":"2016-12-30 18:03:31"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：廖珈慧 - 客戶【Inter Parfums】於上週產生逾期款項 $409,350 (SA1051026002) 仍未付款。請注意！","timestamp":"2016-12-30 18:03:31"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：廖珈慧 - 客戶【COTY】於上週產生逾期款項 $875,419 (SA1050826001) 仍未付款。請注意！","timestamp":"2016-12-30 18:03:31"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：廖珈慧 - 客戶【COTY】於上週產生逾期款項 $875,419 (SA1050826001) 仍未付款。請注意！","timestamp":"2016-12-30 18:03:31"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：廖珈慧 - 客戶【COTY】於上週產生逾期款項 $380,832 (SA1050830008) 仍未付款。請注意！","timestamp":"2016-12-30 18:03:31"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：廖珈慧 - 客戶【Inter Parfums】於上週產生逾期款項 $409,350 (SA1051026002) 仍未付款。請注意！","timestamp":"2016-12-30 18:03:31"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：廖珈慧 - 客戶【COTY】於上週產生逾期款項 $380,832 (SA1050830008) 仍未付款。請注意！","timestamp":"2016-12-30 18:03:31"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：廖珈慧 - 客戶【SPRAYE TEC】於上週產生逾期款項 $1,523,137 (SA1051024004) 仍未付款。請注意！","timestamp":"2016-12-30 18:03:31"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：廖珈慧 - 客戶【SPRAYE TEC】於上週產生逾期款項 $1,523,137 (SA1051024004) 仍未付款。請注意！","timestamp":"2016-12-30 18:03:31"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：廖珈慧 - 客戶【SPRAYE TEC】於上週產生逾期款項 $1,523,137 (SA1051024004) 仍未付款。請注意！","timestamp":"2016-12-30 18:03:31"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：趙婉伶 - 客戶【ARS】於上週產生逾期款項 $1,123,127 (SA1051228002) 仍未付款。請注意！","timestamp":"2016-12-30 18:03:31"}
+{"level":"info","message":"group message broadcasted: 【近期逾期款項目】\n【NEW GOLD P】上週逾期 $1,109,269\n【A.C.S】上週逾期 $768,984\n【TEMPTATION】上週逾期 $1,633,240\n【TEMPTATION】上週逾期 $1,568,481\n【Global Packaging FZE】上週逾期 $99,414\n【SWISS】上週逾期 $2,935,382\n【Freedom】上週逾期 $724,979\n【PARISIS】上週逾期 $1,674,240\n【PAGE PARFUMS】上週逾期 $1,117,956\n【BARALAN】上週逾期 $54,382\n【BARALAN】上週逾期 $907,844\n【ROMA】上週逾期 $185,833\n【Inter Parfums】上週逾期 $409,350\n【COTY】上週逾期 $875,419\n【COTY】上週逾期 $380,832\n【SPRAYE TEC】上週逾期 $1,523,137\n【ARS】上週逾期 $1,123,127","timestamp":"2016-12-30 18:03:31"}
+{"level":"info","message":"group message broadcasted: 【近期逾期款項目】\n【NEW GOLD P】上週逾期 $1,109,269\n【A.C.S】上週逾期 $768,984\n【TEMPTATION】上週逾期 $1,633,240\n【TEMPTATION】上週逾期 $1,568,481\n【Global Packaging FZE】上週逾期 $99,414\n【SWISS】上週逾期 $2,935,382\n【Freedom】上週逾期 $724,979\n【PARISIS】上週逾期 $1,674,240\n【PAGE PARFUMS】上週逾期 $1,117,956\n【BARALAN】上週逾期 $54,382\n【BARALAN】上週逾期 $907,844\n【ROMA】上週逾期 $185,833\n【Inter Parfums】上週逾期 $409,350\n【COTY】上週逾期 $875,419\n【COTY】上週逾期 $380,832\n【SPRAYE TEC】上週逾期 $1,523,137\n【ARS】上週逾期 $1,123,127","timestamp":"2016-12-30 18:03:31"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：趙婉伶 - 客戶【ARS】於上週產生逾期款項 $1,123,127 (SA1051228002) 仍未付款。請注意！","timestamp":"2016-12-30 18:03:31"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：趙婉伶 - 客戶【ARS】於上週產生逾期款項 $1,123,127 (SA1051228002) 仍未付款。請注意！","timestamp":"2016-12-30 18:03:31"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 18:04:00"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_OneWeek ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 18:04:00"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 18:04:01"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：郭芳伊 - 客戶【SODIP】於 2016-11-16 出貨金額 $2,712,466 (SA1051116002)，其繳費期限將於1日後到期，請注意催款時效。","timestamp":"2016-12-30 18:04:01"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：郭芳伊 - 客戶【SODIP】於 2016-11-16 出貨金額 $2,712,466 (SA1051116002)，其繳費期限將於1日後到期，請注意催款時效。","timestamp":"2016-12-30 18:04:01"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：郭芳伊 - 客戶【SODIP】於 2016-11-16 出貨金額 $2,712,466 (SA1051116002)，其繳費期限將於1日後到期，請注意催款時效。","timestamp":"2016-12-30 18:04:01"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：郭芳伊 - 客戶【UDV】於 2016-10-18 出貨金額 $1,187,088 (SA1051018001)，其繳費期限將於2日後到期，請注意催款時效。","timestamp":"2016-12-30 18:04:01"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：郭芳伊 - 客戶【UDV】於 2016-10-18 出貨金額 $1,187,088 (SA1051018001)，其繳費期限將於2日後到期，請注意催款時效。","timestamp":"2016-12-30 18:04:01"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：郭芳伊 - 客戶【UDV】於 2016-10-18 出貨金額 $1,187,088 (SA1051018001)，其繳費期限將於2日後到期，請注意催款時效。","timestamp":"2016-12-30 18:04:01"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：林綺緁 - 客戶【PANOUGE】於 2016-11-02 出貨金額 $1,522,169 (SA1051102003)，其繳費期限將於2日後到期，請注意催款時效。","timestamp":"2016-12-30 18:04:01"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：林綺緁 - 客戶【PANOUGE】於 2016-11-02 出貨金額 $1,522,169 (SA1051102003)，其繳費期限將於2日後到期，請注意催款時效。","timestamp":"2016-12-30 18:04:01"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：廖珈慧 - 客戶【Pochet】於 2016-11-03 出貨金額 $553,340 (SA1051103002)，其繳費期限將於3日後到期，請注意催款時效。","timestamp":"2016-12-30 18:04:01"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：廖珈慧 - 客戶【Pochet】於 2016-11-03 出貨金額 $553,340 (SA1051103002)，其繳費期限將於3日後到期，請注意催款時效。","timestamp":"2016-12-30 18:04:01"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：廖珈慧 - 客戶【Pochet】於 2016-11-03 出貨金額 $553,340 (SA1051103002)，其繳費期限將於3日後到期，請注意催款時效。","timestamp":"2016-12-30 18:04:01"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：廖珈慧 - 客戶【Inter Parfums】於 2016-11-07 出貨金額 $407,872 (SA1051107002)，其繳費期限將於7日後到期，請注意催款時效。","timestamp":"2016-12-30 18:04:01"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：廖珈慧 - 客戶【Inter Parfums】於 2016-11-07 出貨金額 $407,872 (SA1051107002)，其繳費期限將於7日後到期，請注意催款時效。","timestamp":"2016-12-30 18:04:01"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：林綺緁 - 客戶【PANOUGE】於 2016-11-02 出貨金額 $1,522,169 (SA1051102003)，其繳費期限將於2日後到期，請注意催款時效。","timestamp":"2016-12-30 18:04:01"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：廖珈慧 - 客戶【OSKAR KARL】於 2016-12-07 出貨金額 $33,108 (SA1051207001)，其繳費期限將於7日後到期，請注意催款時效。","timestamp":"2016-12-30 18:04:01"}
+{"level":"info","message":"group message broadcasted: 【本週即將逾期項目】\n【SODIP】出貨金額 $2,712,466 將於1日後到期。\n【UDV】出貨金額 $1,187,088 將於2日後到期。\n【PANOUGE】出貨金額 $1,522,169 將於2日後到期。\n【Pochet】出貨金額 $553,340 將於3日後到期。\n【Inter Parfums】出貨金額 $407,872 將於7日後到期。\n【OSKAR KARL】出貨金額 $33,108 將於7日後到期。","timestamp":"2016-12-30 18:04:01"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：廖珈慧 - 客戶【OSKAR KARL】於 2016-12-07 出貨金額 $33,108 (SA1051207001)，其繳費期限將於7日後到期，請注意催款時效。","timestamp":"2016-12-30 18:04:01"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：廖珈慧 - 客戶【Inter Parfums】於 2016-11-07 出貨金額 $407,872 (SA1051107002)，其繳費期限將於7日後到期，請注意催款時效。","timestamp":"2016-12-30 18:04:01"}
+{"level":"info","message":"group message broadcasted: 【本週即將逾期項目】\n【SODIP】出貨金額 $2,712,466 將於1日後到期。\n【UDV】出貨金額 $1,187,088 將於2日後到期。\n【PANOUGE】出貨金額 $1,522,169 將於2日後到期。\n【Pochet】出貨金額 $553,340 將於3日後到期。\n【Inter Parfums】出貨金額 $407,872 將於7日後到期。\n【OSKAR KARL】出貨金額 $33,108 將於7日後到期。","timestamp":"2016-12-30 18:04:01"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：廖珈慧 - 客戶【OSKAR KARL】於 2016-12-07 出貨金額 $33,108 (SA1051207001)，其繳費期限將於7日後到期，請注意催款時效。","timestamp":"2016-12-30 18:04:01"}
+{"level":"info","message":"overdueMonitor database access function triggered","timestamp":"2016-12-30 18:04:30"}
+{"level":"info","message":"query: SELECT * FROM overdueMonitor.dbo.warning_TwoWeek ORDER BY G_PERIOD_REMAIN ASC;","timestamp":"2016-12-30 18:04:30"}
+{"level":"info","message":"overdueMonitor database access completed","timestamp":"2016-12-30 18:04:31"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：陳治儒 - 客戶【EPW-EUROPEAN】於 2016-12-08 出貨金額 $543,934 (SA1051208003)，其繳費期限將於8日後到期，請注意催款時效。","timestamp":"2016-12-30 18:04:31"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：陳治儒 - 客戶【EPW-EUROPEAN】於 2016-12-08 出貨金額 $543,934 (SA1051208003)，其繳費期限將於8日後到期，請注意催款時效。","timestamp":"2016-12-30 18:04:31"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：陳治儒 - 客戶【EPW-EUROPEAN】於 2016-12-08 出貨金額 $543,934 (SA1051208003)，其繳費期限將於8日後到期，請注意催款時效。","timestamp":"2016-12-30 18:04:31"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：郭芳伊 - 客戶【UDV】於 2016-10-25 出貨金額 $859,421 (SA1051025002)，其繳費期限將於9日後到期，請注意催款時效。","timestamp":"2016-12-30 18:04:31"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：郭芳伊 - 客戶【UDV】於 2016-10-25 出貨金額 $859,421 (SA1051025002)，其繳費期限將於9日後到期，請注意催款時效。","timestamp":"2016-12-30 18:04:31"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：郭芳伊 - 客戶【UDV】於 2016-10-25 出貨金額 $859,421 (SA1051025002)，其繳費期限將於9日後到期，請注意催款時效。","timestamp":"2016-12-30 18:04:31"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：陳治儒 - 客戶【隆穩塑膠企】於 2016-10-12 出貨金額 $165,485 (SA1051012003)，其繳費期限將於11日後到期，請注意催款時效。","timestamp":"2016-12-30 18:04:31"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：陳治儒 - 客戶【隆穩塑膠企】於 2016-10-12 出貨金額 $165,485 (SA1051012003)，其繳費期限將於11日後到期，請注意催款時效。","timestamp":"2016-12-30 18:04:31"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：林綺緁 - 客戶【CORANIA】於 2016-09-13 出貨金額 $749,181 (SA1050913006)，其繳費期限將於12日後到期，請注意催款時效。","timestamp":"2016-12-30 18:04:31"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：陳治儒 - 客戶【隆穩塑膠企】於 2016-10-12 出貨金額 $165,485 (SA1051012003)，其繳費期限將於11日後到期，請注意催款時效。","timestamp":"2016-12-30 18:04:31"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：林綺緁 - 客戶【CORANIA】於 2016-09-13 出貨金額 $749,181 (SA1050913006)，其繳費期限將於12日後到期，請注意催款時效。","timestamp":"2016-12-30 18:04:31"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：郭芳伊 - 客戶【BARALAN】於 2016-11-28 出貨金額 $10,094 (SA1051128003)，其繳費期限將於13日後到期，請注意催款時效。","timestamp":"2016-12-30 18:04:31"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：廖珈慧 - 客戶【K.G. INTER】於 2016-12-13 出貨金額 $314,387 (SA1051213002)，其繳費期限將於13日後到期，請注意催款時效。","timestamp":"2016-12-30 18:04:31"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：林綺緁 - 客戶【CORANIA】於 2016-09-13 出貨金額 $749,181 (SA1050913006)，其繳費期限將於12日後到期，請注意催款時效。","timestamp":"2016-12-30 18:04:31"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：郭芳伊 - 客戶【BARALAN】於 2016-11-28 出貨金額 $10,094 (SA1051128003)，其繳費期限將於13日後到期，請注意催款時效。","timestamp":"2016-12-30 18:04:31"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：郭芳伊 - 客戶【BARALAN】於 2016-11-28 出貨金額 $10,094 (SA1051128003)，其繳費期限將於13日後到期，請注意催款時效。","timestamp":"2016-12-30 18:04:31"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：廖珈慧 - 客戶【K.G. INTER】於 2016-12-13 出貨金額 $314,387 (SA1051213002)，其繳費期限將於13日後到期，請注意催款時效。","timestamp":"2016-12-30 18:04:31"}
+{"level":"info","message":"group message broadcasted: 【兩週內即將逾期項目】\n【EPW-EUROPEAN】出貨金額 $543,934 將於8日後到期。\n【UDV】出貨金額 $859,421 將於9日後到期。\n【隆穩塑膠企】出貨金額 $165,485 將於11日後到期。\n【CORANIA】出貨金額 $749,181 將於12日後到期。\n【BARALAN】出貨金額 $10,094 將於13日後到期。\n【K.G. INTER】出貨金額 $314,387 將於13日後到期。","timestamp":"2016-12-30 18:04:31"}
+{"level":"info","message":"group message broadcasted: 【兩週內即將逾期項目】\n【EPW-EUROPEAN】出貨金額 $543,934 將於8日後到期。\n【UDV】出貨金額 $859,421 將於9日後到期。\n【隆穩塑膠企】出貨金額 $165,485 將於11日後到期。\n【CORANIA】出貨金額 $749,181 將於12日後到期。\n【BARALAN】出貨金額 $10,094 將於13日後到期。\n【K.G. INTER】出貨金額 $314,387 將於13日後到期。","timestamp":"2016-12-30 18:04:31"}
+{"level":"info","message":"individual message broadcasted: 【逾期款監控系統】致業務員：廖珈慧 - 客戶【K.G. INTER】於 2016-12-13 出貨金額 $314,387 (SA1051213002)，其繳費期限將於13日後到期，請注意催款時效。","timestamp":"2016-12-30 18:04:31"}

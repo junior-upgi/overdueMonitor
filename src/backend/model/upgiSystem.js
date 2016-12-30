@@ -1,7 +1,7 @@
-let telegramChat = require('./telegramChat.js');
-let telegramUser = require('./telegramUser.js');
+const telegramChat = require('./telegramChat.js');
+const telegramUser = require('./telegramUser.js');
 
-let list = [{
+const list = [{
     id: 'wasteReduction',
     setting: {},
     jobList: []
@@ -14,10 +14,11 @@ let list = [{
         type: 'periodicFunction',
         online: true,
         broadcast: true,
-        schedule: '0 0 9 * * *', // everyday at 09:00
-        // schedule: '0 * * * * *', // testing
+        // schedule: '0 0 9 * * *', // everyday at 09:00
+        schedule: '0 3 18 * * *', // testing
         targetGroupIDList: [
-            telegramChat.getChatID('業務群組')
+            telegramChat.getChatID('業務群組'),
+            telegramChat.getChatID('資訊群組')
         ],
         targetUserIDList: [
             telegramUser.getUserID('翁宏達'),
@@ -29,10 +30,11 @@ let list = [{
         type: 'periodicFunction',
         online: true,
         broadcast: true,
-        schedule: '30 0 9 * * 1', // every Monday at 09:00:30
-        // schedule: '*/30 * * * * *', // testing
+        // schedule: '30 0 9 * * 1', // every Monday at 09:00:30
+        schedule: '30 3 18 * * *', // testing
         targetGroupIDList: [
-            telegramChat.getChatID('業務群組')
+            telegramChat.getChatID('業務群組'),
+            telegramChat.getChatID('資訊群組')
         ],
         targetUserIDList: [
             telegramUser.getUserID('蔡佳佑'),
@@ -44,10 +46,11 @@ let list = [{
         type: 'periodicFunction',
         online: true,
         broadcast: true,
-        schedule: '0 1 9 * * 1', // every Monday at 09:01
-        // schedule: '*/30 * * * * *', // testing
+        // schedule: '0 1 9 * * 1', // every Monday at 09:01
+        schedule: '0 4 18 * * *', // testing
         targetGroupIDList: [
-            telegramChat.getChatID('業務群組')
+            telegramChat.getChatID('業務群組'),
+            telegramChat.getChatID('資訊群組')
         ],
         targetUserIDList: [
             telegramUser.getUserID('蔡佳佑'),
@@ -59,10 +62,11 @@ let list = [{
         type: 'periodicFunction',
         online: true,
         broadcast: true,
-        schedule: '30 1 9 * * 1', // every Monday at 09:01:30
-        // schedule: '*/30 * * * * *', // testing
+        // schedule: '30 1 9 * * 1', // every Monday at 09:01:30
+        schedule: '30 4 18 * * *', // testing
         targetGroupIDList: [
-            telegramChat.getChatID('業務群組')
+            telegramChat.getChatID('業務群組'),
+            telegramChat.getChatID('資訊群組')
         ],
         targetUserIDList: [
             telegramUser.getUserID('蔡佳佑'),

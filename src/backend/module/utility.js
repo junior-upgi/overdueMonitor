@@ -1,38 +1,114 @@
-let fs = require('fs');
-let moment = require('moment-timezone');
-let httpRequest = require('request-promise');
+const CronJob = require('cron').CronJob;
+const fs = require('fs');
+const moment = require('moment-timezone');
+const mssql = require('mssql');
+const httpRequest = require('request-promise');
+const winston = require('winston');
 
-let serverConfig = require('./serverConfig.js');
+const serverConfig = require('./serverConfig.js');
 
-let telegramUser = require('../model/telegramUser.js');
-let telegramBot = require('../model/telegramBot.js');
+const telegramUser = require('../model/telegramUser.js');
+const telegramBot = require('../model/telegramBot.js');
 
-function alertSystemError(systemReference, functionReference, errorMessage) {
-    let currentDatetime = moment(moment(), 'YYYY-MM-DD HH:mm:ss').format('YYYY-MM-DD HH:mm:ss');
-    let messageHeading = httpRequest({ // broadcast alert when error encountered
+// Create the log directory if it does not exist
+if (!fs.existsSync(serverConfig.logDir)) {
+    fs.mkdirSync(serverConfig.logDir);
+}
+const logger = new(winston.Logger)({
+    transports: [
+        // colorize the output to the console
+        new(winston.transports.Console)({
+            timestamp: function() {
+                return moment(moment(), 'YYYY-MM-DD HH:mm:ss').format('YYYY-MM-DD HH:mm:ss');
+            },
+            colorize: true,
+            level: 'debug'
+        }),
+        new(winston.transports.File)({
+            filename: `${serverConfig.logDir}/results.log`,
+            timestamp: function() {
+                return moment(moment(), 'YYYY-MM-DD HH:mm:ss').format('YYYY-MM-DD HH:mm:ss');
+            },
+            level: serverConfig.development ? 'debug' : 'info'
+        })
+    ]
+});
+
+function executeQuery(queryString, callback) {
+    logger.info(`${serverConfig.systemReference} database access function triggered`);
+    logger.info(`query: ${queryString}`);
+    let mssqlConnection = new mssql.Connection(serverConfig.mssqlConfig);
+    mssqlConnection.connect()
+        .then(function() {
+            let mssqlRequest = new mssql.Request(mssqlConnection);
+            mssqlRequest.query(queryString)
+                .then(function(recordset) {
+                    mssqlConnection.close();
+                    logger.info(`${serverConfig.systemReference} database access completed`);
+                    return callback(recordset);
+                })
+                .catch(function(error) {
+                    logger.error(`${serverConfig.systemReference} database access failure: ${error}`);
+                    alertSystemError('database query', error);
+                    return callback(null, error);
+                });
+        })
+        .catch(function(error) {
+            logger.error(`${serverConfig.systemReference} database connection failure: ${error}`);
+            alertSystemError('database connection', error);
+            return callback(null, error);
+        });
+}
+
+let statusReport = new CronJob('00 00,30 00,01,05-23 * * *', function() {
+    logger.info(`${serverConfig.systemReference} reporting mechanism triggered`);
+    let issuedDatetime = moment(moment(), 'YYYY-MM-DD HH:mm:ss').format('YYYY-MM-DD HH:mm:ss');
+    let message = `${issuedDatetime} ${serverConfig.systemReference} server reporting in`;
+    httpRequest({
         method: 'post',
-        uri: serverConfig.broadcastAPIUrl,
-        form: {
+        uri: serverConfig.botAPIUrl + telegramBot.getToken('upgiITBot') + '/sendMessage',
+        body: {
             chat_id: telegramUser.getUserID('蔡佳佑'),
-            text: `error encountered while executing [${systemReference}][${functionReference}] @ ${currentDatetime}`,
+            text: `${message}`,
             token: telegramBot.getToken('upgiITBot')
-        }
-    });
-    let messageBody = httpRequest({
-        method: 'post',
-        uri: serverConfig.broadcastAPIUrl,
-        form: {
-            chat_id: telegramUser.getUserID('蔡佳佑'),
-            text: `${errorMessage}`,
-            token: telegramBot.getToken('upgiITBot')
-        }
-    });
-    messageHeading().then(function() {
-        return messageBody();
-    }).then(function() {
-        return console.log('error message had been alerted');
+        },
+        json: true
+    }).then(function(response) {
+        logger.verbose(`${message}`);
+        return logger.info(`${serverConfig.systemReference} reporting mechanism completed`);
     }).catch(function(error) {
-        return console.log(error);
+        alertSystemError('statusReport', error);
+        return logger.error(`${serverConfig.systemReference} reporting mechanism failure ${error}`);
+    });
+}, null, true, serverConfig.workingTimezone);
+
+function alertSystemError(functionRef, message) {
+    let currentDatetime = moment(moment(), 'YYYY-MM-DD HH:mm:ss').format('YYYY-MM-DD HH:mm:ss');
+    httpRequest({ // broadcast alert when error encountered
+        method: 'post',
+        uri: serverConfig.botAPIUrl + telegramBot.getToken('upgiITBot') + '/sendMessage',
+        body: {
+            chat_id: telegramUser.getUserID('蔡佳佑'),
+            text: `error encountered while executing [${serverConfig.systemReference}][${functionRef}] @ ${currentDatetime}`,
+            token: telegramBot.getToken('upgiITBot')
+        },
+        json: true
+    }).then(function(response) {
+        httpRequest({
+            method: 'post',
+            uri: serverConfig.botAPIUrl + telegramBot.getToken('upgiITBot') + '/sendMessage',
+            form: {
+                chat_id: telegramUser.getUserID('蔡佳佑'),
+                text: `error message: ${message}`,
+                token: telegramBot.getToken('upgiITBot')
+            }
+        }).then(function(response) {
+            return console.log(`${currentDatetime} ${serverConfig.systemReference} ${functionRef} alert sent`);
+        }).catch(function(error) {
+            return console.log(`${currentDatetime} ${serverConfig.systemReference} ${functionRef} failure: ${error}`);
+        });
+    }).catch(function(error) {
+        return console.log(`${currentDatetime} ${serverConfig.systemReference} ${functionRef} failure: ${error}`);
     });
 }
 
@@ -53,18 +129,10 @@ function fileRemoval(completeFilePath, callback) {
     });
 }
 
-function uuidGenerator() {
-    let d = new Date().getTime();
-    let uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-        let r = (d + Math.random() * 16) % 16 | 0;
-        d = Math.floor(d / 16);
-        return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
-    });
-    return uuid;
-}
-
 module.exports = {
     alertSystemError: alertSystemError,
+    executeQuery: executeQuery,
     fileRemoval: fileRemoval,
-    uuidGenerator: uuidGenerator
+    logger: logger,
+    statusReport: statusReport
 };

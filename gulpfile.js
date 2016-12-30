@@ -1,128 +1,20 @@
-const babelify = require('babelify');
-const browserify = require('browserify');
-const browserSync = require('browser-sync');
-const del = require('del');
 const gulp = require('gulp');
+const requireDir = require('require-dir');
+
+const browserSync = require('browser-sync');
 const $ = require('gulp-load-plugins')({
     lazy: true,
     camelize: true
 });
-const vinylSourceStream = require('vinyl-source-stream');
-const yargs = require('yargs').argv;
 
 const serverConfig = require('./src/backend/module/serverConfig.js');
+const utility = require('./gulpTask/utility.js');
+
+requireDir('./gulpTask');
 
 gulp.task('help', $.taskListing);
 
-gulp.task('removePublic', function() {
-    let dir = './public';
-    log('cleaning: ' + $.util.colors.blue(dir));
-    return del.sync(dir);
-});
-
-gulp.task('removeBuild', function() {
-    let dir = './build';
-    log('cleaning: ' + $.util.colors.blue(dir));
-    return del.sync(dir);
-});
-
-gulp.task('removeTemp', function() {
-    let dir = './temp';
-    log('cleaning: ' + $.util.colors.blue(dir));
-    return del.sync(dir);
-});
-
-gulp.task('cleanUp', ['removePublic', 'removeBuild', 'removeTemp'], function() {
-    return;
-});
-
-gulp.task('lint', function() {
-    log('code analysation with Eslint and JSCS');
-    fileList = [
-        './src/**/*.js',
-        './*.js'
-    ];
-    return gulp
-        .src(fileList)
-        .pipe($.if(yargs.verbose, $.print()))
-        .pipe($.jscs())
-        .pipe($.jscsStylish())
-        .pipe($.jscs.reporter('fail'))
-        .pipe($.eslint())
-        .pipe($.eslint.format())
-        .pipe($.eslint.failAfterError());
-});
-
-gulp.task('transpile', function() {
-    log('transpile frontend javascript');
-    let entryScript = './src/frontend/js/entry.js';
-    let destDir = './public/js';
-    return browserify(entryScript)
-        .transform(babelify, { presets: ['es2015'] })
-        .bundle()
-        .pipe(vinylSourceStream('bundle.js'))
-        .pipe(gulp.dest(destDir));
-});
-
-gulp.task('bootstrapCss', function() {
-    log('processing bootstrap css files');
-    let destDir = './public/css';
-    return gulp
-        .src('./node_modules/bootstrap/dist/css/*.min.*')
-        .pipe(gulp.dest(destDir));
-});
-
-gulp.task('bootstrapFont', function() {
-    log('processing bootstrap font files');
-    let destDir = './public/fonts';
-    return gulp.src('./node_modules/bootstrap/dist/fonts/*.*').pipe(gulp.dest(destDir));
-});
-
-gulp.task('staticHtml', function() {
-    log('processing static HTML files');
-    let destDir = './public';
-    return gulp.src('./src/frontend/*.html').pipe(gulp.dest(destDir));
-});
-
-gulp.task('favicon', function() {
-    log('processing the favicon');
-    let destDir = './public';
-    return gulp.src('./src/frontend/*.png').pipe(gulp.dest(destDir));
-});
-
-gulp.task('jqueryScript', function() {
-    log('import jquery dependency...');
-    let destDir = './public/js';
-    return gulp.src('./node_modules/jquery/dist/jquery.min.*').pipe(gulp.dest(destDir));
-});
-
-gulp.task('bootstrapScript', function() {
-    log('import bootstrap dependency...');
-    let destDir = './public/js';
-    return gulp.src('./node_modules/bootstrap/dist/js/*.min.js').pipe(gulp.dest(destDir));
-});
-
-gulp.task('staticFrontendFiles', ['bootstrapCss', 'bootstrapFont', 'staticHtml', 'favicon', 'jqueryScript', 'bootstrapScript'], function() {
-    return;
-});
-
-gulp.task('startWatcher', ['staticFrontendFiles', 'transpile'], function() {
-    let watchList = {
-        frontendFileList: ['./src/frontend/**/*.js'],
-        staticFrontendFileList: ['./src/frontend/**/*.html']
-    };
-    gulp.watch(watchList.frontendFileList, ['transpile']);
-    gulp.watch(watchList.staticFrontendFileList, ['staticFrontendFiles']);
-});
-
-gulp.task('buildBackend', function() {
-    log('building backend server files...');
-    return gulp
-        .src('./src/backend/**/*.js')
-        .pipe(gulp.dest('./build'));
-});
-
-gulp.task('startServer', ['cleanUp', 'buildBackend', 'startWatcher'], function() {
+gulp.task('startServer', ['preRebuild', 'lint', 'buildBackend'], function() {
     let nodemonOption = {
         script: './build/server.js',
         delayTime: 1,
@@ -131,27 +23,84 @@ gulp.task('startServer', ['cleanUp', 'buildBackend', 'startWatcher'], function()
             'NODE_ENV': serverConfig.development ? 'development' : 'production'
         },
         verbose: false,
-        watch: ['./src/backend'],
-        tasks: ['removeBuild', 'buildBackend']
+        ext: 'html js mustache',
+        watch: ['./src/backend/'],
+        tasks: ['preRebuild', 'lint', 'buildBackend']
     };
     return $.nodemon(nodemonOption)
         .on('start', function() {
-            log('*** server started on: ' + serverConfig.serverUrl);
+            utility.log('*** server started on: ' + serverConfig.serverUrl);
+        })
+        .on('restart', function(event) {
+            utility.log('*** server restarted and operating on: ' + serverConfig.serverUrl);
+            utility.log('files triggered the restart:\n' + event);
+        })
+        .on('crash', function() {
+            utility.log('*** server had crashed...');
+        })
+        .on('shutdown', function() {
+            utility.log('*** server had been shutdown...');
+        });
+});
+
+gulp.task('frontendMonitor', function() {
+    let watchList = {
+        scriptList: ['./src/frontend/**/*.js'],
+        staticFileList: ['./src/frontend/**/*.html', './src/frontend/**/*.css']
+    };
+    gulp.watch(watchList.scriptList, ['transpile']).on('change', function(event) {
+        setTimeout(function() {
+            utility.log('File ' + event.path + ' was ' + event.type);
+            browserSync.notify('伺服器重新啟動，頁面即將同步重置...');
+            browserSync.reload({
+                stream: false
+            });
+        }, 5000);
+    });
+    gulp.watch(watchList.staticFileList, ['favicon', 'html', 'css']).on('change', function(event) {
+        setTimeout(function() {
+            utility.log('File ' + event.path + ' was ' + event.type);
+            browserSync.notify('伺服器重新啟動，頁面即將同步重置...');
+            browserSync.reload({
+                stream: false
+            });
+        }, 5000);
+    });
+});
+
+gulp.task('startDevelopmentServer', ['preRebuild', 'lint', 'buildBackend', 'buildFrontend', 'frontendMonitor'], function() {
+    let nodemonOption = {
+        script: './build/server.js',
+        delayTime: 1,
+        env: {
+            'PORT': serverConfig.serverPort,
+            'NODE_ENV': serverConfig.development ? 'development' : 'production'
+        },
+        verbose: false,
+        ext: 'html js handlebars',
+        watch: ['./src/backend/'],
+        tasks: ['preRebuild', 'lint', 'buildBackend', 'buildFrontend']
+    };
+    return $.nodemon(nodemonOption)
+        .on('start', function() {
+            utility.log('*** server started on: ' + serverConfig.serverUrl);
             startBrowserSync();
         })
         .on('restart', function(event) {
-            log('*** server restarted and operating on: ' + serverConfig.serverUrl);
-            log('files triggered the restart:\n' + event);
+            utility.log('*** server restarted and operating on: ' + serverConfig.serverUrl);
+            utility.log('files triggered the restart:\n' + event);
             setTimeout(function() {
                 browserSync.notify('伺服器重新啟動，頁面即將同步重置...');
-                browserSync.reload({ stream: false });
+                browserSync.reload({
+                    stream: false
+                });
             }, 5000);
         })
         .on('crash', function() {
-            log('*** server had crashed...');
+            utility.log('*** server had crashed...');
         })
         .on('shutdown', function() {
-            log('*** server had been shutdown...');
+            utility.log('*** server had been shutdown...');
         });
 });
 
@@ -162,7 +111,7 @@ function startBrowserSync() {
     let option = {
         proxy: 'http://localhost:' + serverConfig.serverPort + '/overdueMonitor/mobileReport.html',
         port: 9999,
-        files: ['./src/frontend/**/*.*'],
+        files: ['./src/frontend/** /*.*'],
         ghostMode: {
             clicks: true,
             location: false,
@@ -177,17 +126,5 @@ function startBrowserSync() {
         reloadDelay: 1000
     };
     browserSync(option);
-    log('start browserSync on port: ' + serverConfig.serverPort);
-}
-
-function log(msg) {
-    if (typeof (msg) === 'object') {
-        for (let item in msg) {
-            if (msg.hasOwnProperty(item)) {
-                $.util.log($.util.colors.blue(msg[item]));
-            }
-        }
-    } else {
-        $.util.log($.util.colors.blue(msg));
-    }
+    utility.log('start browserSync on port: ' + serverConfig.serverPort);
 }

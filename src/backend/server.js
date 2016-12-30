@@ -1,37 +1,39 @@
-let cors = require('cors');
-let CronJob = require('cron').CronJob;
-let express = require('express');
-let moment = require('moment-timezone');
-let morgan = require('morgan');
-let httpRequest = require('request-promise');
-let favicon = require('serve-favicon');
+const cors = require('cors');
+const CronJob = require('cron').CronJob;
+const express = require('express');
+const moment = require('moment-timezone');
+// const morgan = require('morgan');
+const httpRequest = require('request-promise');
+const favicon = require('serve-favicon');
 
-let database = require('./module/database.js');
-let serverConfig = require('./module/serverConfig.js');
-let utility = require('./module/utility.js');
+const serverConfig = require('./module/serverConfig.js');
+const utility = require('./module/utility.js');
 
-let queryString = require('./model/queryString.js');
-let upgiSystem = require('./model/upgiSystem.js');
-let telegramUser = require('./model/telegramUser.js');
-let telegramBot = require('./model/telegramBot.js');
+const queryString = require('./model/queryString.js');
+const upgiSystem = require('./model/upgiSystem.js');
+const telegramUser = require('./model/telegramUser.js');
+const telegramBot = require('./model/telegramBot.js');
 
 let app = express();
 app.use(cors());
-app.use(morgan('dev'));
-app.use(favicon('./public/upgiLogo.png'));
+// app.use(morgan('dev'));
+
+app.use(favicon(__dirname + '/../public/upgiLogo.png')); // middleware to serve favicon
 app.use('/overdueMonitor', express.static('./public')); // serve static files
+app.use('/overdueMonitor/bower_components', express.static('./bower_components')); // serve static files
 
 app.get('/status', function(request, response) {
     return response.status(200).json({
-        system: serverConfig.systsem,
-        status: 'online'
+        system: serverConfig.systemReference,
+        status: 'online',
+        timestamp: moment(moment(), 'YYYY-MM-DD HH:mm:ss').format('YYYY-MM-DD HH:mm:ss')
     });
 });
 
 app.get('/overdueMonitor/overview', function(request, response) {
-    database.executeQuery(queryString.overview, function(overviewData, error) {
+    utility.executeQuery(queryString.overview, function(overviewData, error) {
         if (error) {
-            console.log(error);
+            utility.logger.error(`/overdueMonitor/overview route error: ${error}`);
             return response.status(500).send([{}]);
         } else {
             return response.status(200).json(overviewData);
@@ -40,10 +42,10 @@ app.get('/overdueMonitor/overview', function(request, response) {
 });
 
 app.get('/overdueMonitor/annualReportSummary', function(request, response) {
-    database.executeQuery(queryString.annualReportSummary,
+    utility.executeQuery(queryString.annualReportSummary,
         function(annualReportSummaryData, error) {
             if (error) {
-                console.log(error);
+                utility.logger.error(`/overdueMonitor/annualReportSummary route error: ${error}`);
                 return response.status(500).send([{}]);
             } else {
                 return response.status(200).json(annualReportSummaryData);
@@ -52,10 +54,10 @@ app.get('/overdueMonitor/annualReportSummary', function(request, response) {
 });
 
 app.get('/overdueMonitor/warning_NewOverdue', function(request, response) {
-    database.executeQuery(queryString.warning_NewOverdue,
+    utility.executeQuery(queryString.warning_NewOverdue,
         function(warning_NewOverdueData, error) {
             if (error) {
-                console.log(error);
+                utility.logger.error(`/overdueMonitor/warning_NewOverdue route error: ${error}`);
                 return response.status(500).send([{}]);
             } else {
                 return response.status(200).json(warning_NewOverdueData);
@@ -64,10 +66,10 @@ app.get('/overdueMonitor/warning_NewOverdue', function(request, response) {
 });
 
 app.get('/overdueMonitor/warning_OneWeek', function(request, response) {
-    database.executeQuery(queryString.warning_OneWeek,
+    utility.executeQuery(queryString.warning_OneWeek,
         function(warning_OneWeekData, error) {
             if (error) {
-                console.log(error);
+                utility.logger.error(`/overdueMonitor/warning_OneWeek route error: ${error}`);
                 return response.status(500).send([{}]);
             } else {
                 return response.status(200).json(warning_OneWeekData);
@@ -76,10 +78,10 @@ app.get('/overdueMonitor/warning_OneWeek', function(request, response) {
 });
 
 app.get('/overdueMonitor/warning_TwoWeek', function(request, response) {
-    database.executeQuery(queryString.warning_TwoWeek,
+    utility.executeQuery(queryString.warning_TwoWeek,
         function(warning_TwoWeekData, error) {
             if (error) {
-                console.log(error);
+                utility.logger.error(`/overdueMonitor/warning_TwoWeek route error: ${error}`);
                 return response.status(500).send([{}]);
             } else {
                 return response.status(200).json(warning_TwoWeekData);
@@ -88,10 +90,10 @@ app.get('/overdueMonitor/warning_TwoWeek', function(request, response) {
 });
 
 app.get('/overdueMonitor/warning_PastWeekOverdue', function(request, response) {
-    database.executeQuery(queryString.warning_PastWeekOverdue,
+    utility.executeQuery(queryString.warning_PastWeekOverdue,
         function(warning_PastWeekOverdueData, error) {
             if (error) {
-                console.log(error);
+                utility.logger.error(`/overdueMonitor/warning_PastWeekOverdue route error: ${error}`);
                 return response.status(500).send([{}]);
             } else {
                 return response.status(200).json(warning_PastWeekOverdueData);
@@ -100,10 +102,10 @@ app.get('/overdueMonitor/warning_PastWeekOverdue', function(request, response) {
 });
 
 app.get('/overdueMonitor/warning_ProlongedOverdue', function(request, response) {
-    database.executeQuery(queryString.warning_ProlongedOverdue,
+    utility.executeQuery(queryString.warning_ProlongedOverdue,
         function(warning_ProlongedOverdueData, error) {
             if (error) {
-                console.log(error);
+                utility.logger.error(`/overdueMonitor/warning_ProlongedOverdue route error: ${error}`);
                 return response.status(500).send([{}]);
             } else {
                 return response.status(200).json(warning_ProlongedOverdueData);
@@ -111,36 +113,34 @@ app.get('/overdueMonitor/warning_ProlongedOverdue', function(request, response) 
         });
 });
 
-app.listen(serverConfig.serverPort, function(error) {
+app.listen(serverConfig.serverPort, function(error) { // start backend server
     if (error) {
-        console.error(error);
+        utility.logger.error(`error starting ${serverConfig.systemReference} server: ${error}`);
     } else {
-        console.log('overdueMonitor server running on... (' + serverConfig.serverUrl + ')');
+        utility.logger.info(`${serverConfig.systemReference} server in operation... (${serverConfig.serverUrl})`);
     }
 });
 
+utility.statusReport.start(); // start the server status reporting function
+
 // record cash flow information periodically
 let captureCashFlowSnapshot = new CronJob(upgiSystem.list[1].jobList[4].schedule, function() { // perform everyday at 17:00
-    let currentDatetime = moment(moment(), 'YYYY-MM-DD HH:mm:ss').format('YYYY-MM-DD HH:mm:ss');
-    console.log(`
-${currentDatetime} proceeding with scheduled [${upgiSystem.list[1].jobList[4].reference}]`);
-    database.executeQuery(queryString.overview, function(recordset, error) {
+    utility.logger.info(`proceeding with scheduled [${upgiSystem.list[1].jobList[4].reference}]`);
+    utility.executeQuery(queryString.overview, function(recordset, error) {
         if (error) {
-            return utility.alertSystemError(upgiSystem.list[1].id,
-                upgiSystem.list[1].jobList[4].reference,
+            return utility.alertSystemError(upgiSystem.list[1].jobList[4].reference,
                 'error encountered while executing scheduled captureCashFlowSnapshot function: ' + error);
         }
-        database.executeQuery(queryString.cashFlowSnapshotInsertQuery(
+        utility.executeQuery(queryString.cashFlowSnapshotInsertQuery(
             recordset[0].AMTN_PENDING,
             recordset[0].AMTN_OVERDUE,
             recordset[0].AMTN_DEPOSIT
         ), function(recordset, error) {
             if (error) {
-                return utility.alertSystemError(upgiSystem.list[1].id,
-                    upgiSystem.list[1].jobList[4].reference,
+                return utility.alertSystemError(upgiSystem.list[1].jobList[4].reference,
                     'error encountered while executing cashFlowSnapshotInsertQuery: ' + error);
             }
-            return console.log('captureCashFlowSnapshot completed successfully...');
+            return utility.logger.info('captureCashFlowSnapshot completed successfully...');
         });
     });
 }, null, true, serverConfig.workingTimezone);
@@ -192,7 +192,7 @@ function broadcastMonitorResult(monitoredJob, groupMessageTitle, jobSQLScript) {
         let currentDatetime = moment(moment(), 'YYYY-MM-DD HH:mm:ss').format('YYYY-MM-DD HH:mm:ss');
         console.log(`${currentDatetime} proceeding with scheduled [${monitoredJob.reference}]`);
         // query the database for designated overdue related data
-        database.executeQuery(jobSQLScript, function(recordset, error) {
+        utility.executeQuery(jobSQLScript, function(recordset, error) {
             if (error) {
                 return utility.alertSystemError(upgiSystem.list[1].id, monitoredJob.id, error);
             }
@@ -205,14 +205,16 @@ function broadcastMonitorResult(monitoredJob, groupMessageTitle, jobSQLScript) {
                         broadcastTargetIDList.forEach(function(broadcastTargetID) { // loop through broadcastTargetIDList and broadcast
                             httpRequest({ // broadcast individual message
                                 method: 'post',
-                                uri: serverConfig.broadcastAPIUrl,
+                                uri: serverConfig.broadcastServerUrl,
                                 form: {
                                     chat_id: broadcastTargetID,
                                     text: record.verboseMessage,
                                     token: telegramBot.getToken('overdueMonitorBot')
                                 }
+                            }).then(function(response) {
+                                utility.logger.info(`individual message broadcasted: ${record.verboseMessage}`);
                             }).catch(function(error) {
-                                console.log(error);
+                                utility.logger.error(error);
                                 utility.alertSystemError(upgiSystem.list[1].id, monitoredJob.id, error);
                             });
                         });
@@ -222,14 +224,16 @@ function broadcastMonitorResult(monitoredJob, groupMessageTitle, jobSQLScript) {
                     monitoredJob.targetGroupIDList.forEach(function(targetGroupID) {
                         httpRequest({ // broadcast group message
                             method: 'post',
-                            uri: serverConfig.broadcastAPIUrl,
+                            uri: serverConfig.broadcastServerUrl,
                             form: {
                                 chat_id: targetGroupID,
                                 text: groupMessage,
                                 token: telegramBot.getToken('overdueMonitorBot')
                             }
+                        }).then(function(response) {
+                            utility.logger.info(`group message broadcasted: ${groupMessage}`);
                         }).catch(function(error) {
-                            console.log(error);
+                            utility.logger.error(error);
                             utility.alertSystemError(upgiSystem.list[1].id, monitoredJob.id, error);
                         });
                     });
