@@ -18,6 +18,7 @@ let app = express();
 app.use(cors());
 // app.use(morgan('dev'));
 
+// app.use(favicon(__dirname + '/../src/frontend/upgiLogo.png')); // middleware to serve favicon
 app.use(favicon(__dirname + '/../public/upgiLogo.png')); // middleware to serve favicon
 app.use('/overdueMonitor', express.static('./public')); // serve static files
 app.use('/overdueMonitor/bower_components', express.static('./bower_components')); // serve static files
@@ -140,10 +141,11 @@ let captureCashFlowSnapshot = new CronJob(upgiSystem.list[1].jobList[4].schedule
                 return utility.alertSystemError(upgiSystem.list[1].jobList[4].reference,
                     'error encountered while executing cashFlowSnapshotInsertQuery: ' + error);
             }
+            utility.sendMessage([telegramUser.getUserID('蔡佳佑')], ['captureCashFlowSnapshot completed successfully...']);
             return utility.logger.info('captureCashFlowSnapshot completed successfully...');
         });
     });
-}, null, true, serverConfig.workingTimezone);
+}, null, false, serverConfig.workingTimezone);
 captureCashFlowSnapshot.start();
 
 // overdue alert and warning cron jobs
@@ -157,28 +159,28 @@ let newOverdueMonitorTask =
         function() {
             broadcastMonitorResult(newOverdueMonitorJob, '【新增逾期款項】', queryString.warning_NewOverdue);
         },
-        null, true, serverConfig.workingTimezone);
+        null, false, serverConfig.workingTimezone);
 let recentOverdueMonitorTask =
     new CronJob(
         recentOverdueMonitorJob.schedule,
         function() {
             broadcastMonitorResult(recentOverdueMonitorJob, '【近期逾期款項目】', queryString.warning_PastWeekOverdue);
         },
-        null, true, serverConfig.workingTimezone);
+        null, false, serverConfig.workingTimezone);
 let oneWeekWarningMonitorTask =
     new CronJob(
         oneWeekWarningMonitorJob.schedule,
         function() {
             broadcastMonitorResult(oneWeekWarningMonitorJob, '【本週即將逾期項目】', queryString.warning_OneWeek);
         },
-        null, true, serverConfig.workingTimezone);
+        null, false, serverConfig.workingTimezone);
 let twoWeekWarningMonitorTask =
     new CronJob(
         twoWeekWarningMonitorJob.schedule,
         function() {
             broadcastMonitorResult(twoWeekWarningMonitorJob, '【兩週內即將逾期項目】', queryString.warning_TwoWeek);
         },
-        null, true, serverConfig.workingTimezone);
+        null, false, serverConfig.workingTimezone);
 newOverdueMonitorTask.start();
 recentOverdueMonitorTask.start();
 oneWeekWarningMonitorTask.start();
@@ -186,40 +188,52 @@ twoWeekWarningMonitorTask.start();
 
 // template function to execute scheduled cron alert and warning jobs
 function broadcastMonitorResult(monitoredJob, groupMessageTitle, jobSQLScript) {
-    let broadcastTargetIDList = []; // list to hold a list of broadcast recipients
+    utility.logger.info(`${monitoredJob.reference} cronjob triggered`);
+    let individualMessage = {}; // list to hold a list of broadcast recipients
     let groupMessage = groupMessageTitle; // string to hold group message
     if (monitoredJob.online === true) { // only execute the cron job if the 'online' property is true
-        let currentDatetime = moment(moment(), 'YYYY-MM-DD HH:mm:ss').format('YYYY-MM-DD HH:mm:ss');
-        console.log(`${currentDatetime} proceeding with scheduled [${monitoredJob.reference}]`);
+        utility.logger.info(`proceeding with scheduled [${monitoredJob.reference}]`);
         // query the database for designated overdue related data
         utility.executeQuery(jobSQLScript, function(recordset, error) {
             if (error) {
-                return utility.alertSystemError(upgiSystem.list[1].id, monitoredJob.id, error);
+                utility.alertSystemError(monitoredJob.id, error);
+                return utility.logger.error(`${monitoredJob.reference} cronjob data access failure ${error}`);
             }
-            if (recordset.length > 0) {
-                recordset.forEach(function(record) { // loop through each record in the list
+            if (recordset.length > 0) { // if query yields data
+                utility.logger.info(`${recordset.length} record(s) to process`);
+                // loop through each data record and prepare group and individual message
+                recordset.forEach(function(record) {
                     groupMessage += '\n' + record.content;
-                    broadcastTargetIDList = monitoredJob.targetUserIDList.slice(); // reinitialize
-                    broadcastTargetIDList.push(telegramUser.getUserID(record.SAL_NAME)); // add staff that came up in the current record
-                    if (monitoredJob.broadcast === true) { // only broadcast if the 'broadcast' property is true
-                        broadcastTargetIDList.forEach(function(broadcastTargetID) { // loop through broadcastTargetIDList and broadcast
-                            httpRequest({ // broadcast individual message
-                                method: 'post',
-                                uri: serverConfig.broadcastServerUrl,
-                                form: {
-                                    chat_id: broadcastTargetID,
-                                    text: record.verboseMessage,
-                                    token: telegramBot.getToken('overdueMonitorBot')
-                                }
-                            }).then(function(response) {
-                                utility.logger.info(`individual message broadcasted: ${record.verboseMessage}`);
-                            }).catch(function(error) {
-                                utility.logger.error(error);
-                                utility.alertSystemError(upgiSystem.list[1].id, monitoredJob.id, error);
-                            });
-                        });
+                    if (individualMessage[telegramUser.getUserID(record.SAL_NAME)] === undefined) {
+                        individualMessage[telegramUser.getUserID(record.SAL_NAME)] = `${monitoredJob.reference}致${record.SAL_NAME}\n${record.content}`;
+                    } else {
+                        individualMessage[telegramUser.getUserID(record.SAL_NAME)] += `\n${record.content}`;
                     }
                 });
+                // broadcast messages for individuals
+                for (let salesErpID in individualMessage) {
+                    // add additional broadcast targets from upgiSystem (if specified)
+                    let broadcastTargetIDList = [parseInt(salesErpID)].concat(monitoredJob.targetUserIDList);
+                    // loop through each broadcast target and make the broadcast request
+                    broadcastTargetIDList.forEach(function(broadcastTargetID) {
+                        httpRequest({
+                            method: 'post',
+                            uri: serverConfig.broadcastServerUrl,
+                            form: {
+                                chat_id: broadcastTargetID,
+                                text: individualMessage[salesErpID],
+                                token: telegramBot.getToken('overdueMonitorBot')
+                            }
+                        }).then(function(response) {
+                            utility.logger.info('individual message for ${telegramUser.getUserName(broadcastTargetID)} had been sent to the broadcast server');
+                        }).catch(function(error) {
+                            utility.alertSystemError(monitoredJob.id, error);
+                            utility.logger.error(`${monitoredJob.reference} broadcasting cronjob for ${telegramUser.getUserName(broadcastTargetID)} concluded with error`);
+                            utility.logger.error(error);
+                        });
+                    });
+                }
+                // broadcast messages to sales group
                 if (monitoredJob.broadcast === true) { // only broadcast if the 'broadcast' property is true
                     monitoredJob.targetGroupIDList.forEach(function(targetGroupID) {
                         httpRequest({ // broadcast group message
@@ -231,27 +245,34 @@ function broadcastMonitorResult(monitoredJob, groupMessageTitle, jobSQLScript) {
                                 token: telegramBot.getToken('overdueMonitorBot')
                             }
                         }).then(function(response) {
-                            utility.logger.info(`group message broadcasted: ${groupMessage}`);
+                            utility.logger.info('group message sent to broadcast server');
+                            return utility.logger.info(`${monitoredJob.reference} broadcasting cronjob completed`);
                         }).catch(function(error) {
-                            utility.logger.error(error);
-                            utility.alertSystemError(upgiSystem.list[1].id, monitoredJob.id, error);
+                            utility.alertSystemError(monitoredJob.id, error);
+                            utility.logger.error(`${monitoredJob.reference} broadcasting cronjob concluded with error`);
+                            return utility.logger.error(error);
                         });
                     });
                 }
-            } else {
+            } else { // query did not yield any data
                 if (monitoredJob.broadcast === true) { // only broadcast if the 'broadcast' property is true
                     monitoredJob.targetGroupIDList.forEach(function(targetGroupID) {
                         httpRequest({ // broadcast group message
                             method: 'post',
-                            uri: serverConfig.broadcastAPIUrl,
+                            uri: serverConfig.broadcastServerUrl,
                             form: {
                                 chat_id: targetGroupID,
-                                text: '【昨日無新增逾期款項】',
+                                text: `${monitoredJob.reference} 目前無相關資料`,
                                 token: telegramBot.getToken('overdueMonitorBot')
                             }
+                        }).then(function() {
+                            utility.logger.info('message sent to broadcast server');
+                            utility.logger.info(`${monitoredJob.reference} cronjob - no data to broadcast`);
+                            return utility.logger.info(`${monitoredJob.reference} broadcasting cronjob completed`);
                         }).catch(function(error) {
-                            console.log(error);
-                            utility.alertSystemError(upgiSystem.list[1].id, monitoredJob.id, error);
+                            utility.alertSystemError(monitoredJob.id, error);
+                            utility.logger.error(`${monitoredJob.reference} broadcasting cronjob concluded with error`);
+                            return utility.logger.error(error);
                         });
                     });
                 }
@@ -259,3 +280,39 @@ function broadcastMonitorResult(monitoredJob, groupMessageTitle, jobSQLScript) {
         });
     }
 }
+
+// reminder to each sales to look at the customized overview page
+let notifyCustomOverviewPage = new CronJob('0 5 9 * * *', function() {
+    utility.executeQuery('SELECT * FROM overdueMonitor.dbo.activeSalesStaffDetail;', function(recordset, error) {
+        if (error) {
+            utility.logger.error(error);
+        }
+        if (recordset.length > 0) {
+            recordset.forEach(function(record) {
+                let message = '';
+                if (record.principle === 1) {
+                    message = `<a href="${serverConfig.publicServerUrl}/overdueMonitor/mobileReport.html">${record.first_name} 請點選此訊息連結查看業務整體逾期帳款現況</a>`;
+                } else {
+                    message = `<a href="${serverConfig.publicServerUrl}/overdueMonitor/mobileReport.html?SAL_NO=${record.erpID}">${record.first_name} 請點選此訊息連結查看個人業務逾期帳款現況</a>`;
+                }
+                httpRequest({
+                    method: 'post',
+                    uri: serverConfig.broadcastServerUrl,
+                    form: {
+                        chat_id: record.telegramID,
+                        text: message,
+                        token: telegramBot.getToken('overdueMonitorBot')
+                    }
+                }).then(function(response) {
+                    utility.logger.info(`custom page notification sent to ${record.full_name}`);
+                }).catch(function(error) {
+                    utility.alertSystemError(notifyCustomOverviewPage, 'error');
+                });
+            });
+        } else {
+            return;
+        }
+        return;
+    });
+}, null, false, serverConfig.workingTimezone);
+notifyCustomOverviewPage.start();

@@ -103,23 +103,22 @@ function alertSystemError(functionRef, message) {
                 token: telegramBot.getToken('upgiITBot')
             }
         }).then(function(response) {
-            return console.log(`${currentDatetime} ${serverConfig.systemReference} ${functionRef} alert sent`);
+            return logger.info(`${serverConfig.systemReference} ${functionRef} alert sent`);
         }).catch(function(error) {
-            return console.log(`${currentDatetime} ${serverConfig.systemReference} ${functionRef} failure: ${error}`);
+            return logger.error(`${serverConfig.systemReference} ${functionRef} failure: ${error}`);
         });
     }).catch(function(error) {
-        return console.log(`${currentDatetime} ${serverConfig.systemReference} ${functionRef} failure: ${error}`);
+        return logger.error(`${serverConfig.systemReference} ${functionRef} failure: ${error}`);
     });
 }
 
 function fileRemoval(completeFilePath, callback) {
-    console.log(completeFilePath);
     fs.unlink(completeFilePath, function(error) {
         if (error !== null) {
-            console.log('file removal failure (may not be critical failure): ' + error);
+            logger.error('file removal failure (may not be critical failure): ' + error);
             return false;
         } else {
-            console.log(completeFilePath + ' removed successfully');
+            logger.info(completeFilePath + ' removed successfully');
             if (callback === undefined) {
                 return true;
             } else {
@@ -129,8 +128,30 @@ function fileRemoval(completeFilePath, callback) {
     });
 }
 
+function sendMessage(recipientIDList, messageList) {
+    recipientIDList.forEach(function(recipientID) {
+        messageList.forEach(function(message) {
+            httpRequest({
+                method: 'post',
+                uri: serverConfig.botAPIUrl + telegramBot.getToken('upgiITBot') + '/sendMessage',
+                form: {
+                    chat_id: recipientID,
+                    text: message,
+                    token: telegramBot.getToken('upgiITBot')
+                }
+            }).then(function(response) {
+                logger.info(`message sent to ${telegramUser.getUserName(parseInt(recipientID))}`);
+            }).catch(function(error) {
+                logger.error(`messaging failure for ${message} ${telegramUser.getUserName(parseInt(recipientID))}`);
+            });
+        });
+    });
+    return;
+}
+
 module.exports = {
     alertSystemError: alertSystemError,
+    sendMessage: sendMessage,
     executeQuery: executeQuery,
     fileRemoval: fileRemoval,
     logger: logger,
