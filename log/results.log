@@ -552,3 +552,5 @@
 {"level":"info","message":"overdueMonitor reporting mechanism triggered","timestamp":"2017-01-02 20:00:00"}
 {"level":"verbose","message":"2017-01-02 20:00:00 overdueMonitor server reporting in","timestamp":"2017-01-02 20:00:02"}
 {"level":"info","message":"overdueMonitor reporting mechanism completed","timestamp":"2017-01-02 20:00:02"}
+{"level":"info","message":"overdueMonitor server in operation... (http://127.0.0.1:9003)","timestamp":"2017-01-03 08:25:00"}
+{"level":"info","message":"overdueMonitor server in operation... (http://127.0.0.1:9003)","timestamp":"2017-01-03 08:27:36"}
