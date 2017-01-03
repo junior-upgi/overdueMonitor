@@ -1,3 +1,5 @@
+const systemReference = 'overdueMonitor';
+
 const development = true;
 
 function serverHost() {
@@ -10,5 +12,6 @@ function serverHost() {
 const serverPort = '9003';
 
 module.exports = {
-    serverUrl: serverHost() + ':' + serverPort
+    serverUrl: serverHost() + ':' + serverPort,
+    systemReference: systemReference
 };

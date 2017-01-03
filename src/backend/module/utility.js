@@ -80,7 +80,7 @@ let statusReport = new CronJob('00 00,30 00,01,05-23 * * *', function() {
         alertSystemError('statusReport', error);
         return logger.error(`${serverConfig.systemReference} reporting mechanism failure ${error}`);
     });
-}, null, true, serverConfig.workingTimezone);
+}, null, false, serverConfig.workingTimezone);
 
 function alertSystemError(functionRef, message) {
     let currentDatetime = moment(moment(), 'YYYY-MM-DD HH:mm:ss').format('YYYY-MM-DD HH:mm:ss');

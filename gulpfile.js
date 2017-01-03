@@ -109,7 +109,7 @@ function startBrowserSync() {
         return;
     }
     let option = {
-        proxy: 'http://localhost:' + serverConfig.serverPort + '/overdueMonitor/mobileReport.html',
+        proxy: 'http://localhost:' + serverConfig.serverPort + '/overdueMonitor/index.html',
         port: 9999,
         files: ['./src/frontend/** /*.*'],
         ghostMode: {
