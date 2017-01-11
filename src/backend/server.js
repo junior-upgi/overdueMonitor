@@ -225,7 +225,7 @@ function broadcastMonitorResult(monitoredJob, groupMessageTitle, jobSQLScript) {
                                 token: telegramBot.getToken('overdueMonitorBot')
                             }
                         }).then(function(response) {
-                            utility.logger.info('individual message for ${telegramUser.getUserName(broadcastTargetID)} had been sent to the broadcast server');
+                            utility.logger.info(`individual message for ${telegramUser.getUserName(broadcastTargetID)} had been sent to the broadcast server`);
                         }).catch(function(error) {
                             utility.alertSystemError(monitoredJob.id, error);
                             utility.logger.error(`${monitoredJob.reference} broadcasting cronjob for ${telegramUser.getUserName(broadcastTargetID)} concluded with error`);
