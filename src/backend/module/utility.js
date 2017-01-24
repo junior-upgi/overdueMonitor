@@ -60,7 +60,7 @@ function executeQuery(queryString, callback) {
         });
 }
 
-let statusReport = new CronJob('00 00,30 00,01,05-23 * * *', function() {
+let statusReport = new CronJob('0 0 8,22 * * *', function() {
     logger.info(`${serverConfig.systemReference} reporting mechanism triggered`);
     let issuedDatetime = moment(moment(), 'YYYY-MM-DD HH:mm:ss').format('YYYY-MM-DD HH:mm:ss');
     let message = `${issuedDatetime} ${serverConfig.systemReference} server reporting in`;
