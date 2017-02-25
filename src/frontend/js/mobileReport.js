@@ -25,9 +25,11 @@ $('document').ready(function() {
                 $('tbody#annualReportSummary').append(
                     `<tr>
                         <td class="text-center">${annualReportSummaryData.YEAR}</td>
-                        <td class="text-center">${numeral(annualReportSummaryData.AMTN_OVERDUE).format('$0,0')}</td>
                         <td class="text-center danger">
-                            <span class="text-danger">${numeral(annualReportSummaryData.AMTN_PENDING).format('$0,0')}<span>
+                            <span class="text-danger">${numeral(annualReportSummaryData.AMTN_OVERDUE).format('$0,0')}<span>
+                        </td>
+                        <td class="text-center">
+                            ${numeral(annualReportSummaryData.AMTN_PENDING).format('$0,0')}
                         </td>
                     </tr>`);
             });
