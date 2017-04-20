@@ -18,7 +18,7 @@ export const chatList = [
 
 export const userList = [
     { id: 241630569, username: 'junior_upgi', first_name: '佳佑', last_name: '蔡', email: 'junior@upgi.com.tw', erpId: '05060001' },
-    { id: 252069370, username: 'upgi_spark', first_name: '于斌', last_name: '林', email: 'it@upgi.com.tw', erpId: '16080003' },
+    // { id: 252069370, username: 'upgi_spark', first_name: '于斌', last_name: '林', email: 'it@upgi.com.tw', erpId: '16080003' },
     { id: 240006091, username: 'Ray0626', first_name: '治儒', last_name: '陳', email: null, erpId: '15050003' },
     { id: 261033177, username: 'Samhuang', first_name: '顯鈞', last_name: '黃', email: null, erpId: '16010002' },
     { id: 270251655, username: 'Wenghungta', first_name: '宏達', last_name: '翁', email: 'mis@upgi.com.tw', erpId: '99030003' },
@@ -33,7 +33,7 @@ export const userList = [
     { id: 285600420, username: 'Phoebe0830', first_name: '珈慧', last_name: '廖', email: 'phoebe@upgi.com.tw', erpId: '12090006' },
     { id: 225829917, username: 'UPGI_ChungChou', first_name: '川洲', last_name: '林', email: null, erpId: '11020002' },
     { id: 277098776, username: 'David0937614299', first_name: '志鑫', last_name: '林', email: 'davidlin@upgi.com.tw', erpId: '03090001' },
-    { id: 281948128, username: 'EvitaUPG', first_name: '文君', last_name: '莊', email: 'evita@upgi.com.tw', erpId: '12020012' },
+    // { id: 281948128, username: 'EvitaUPG', first_name: '文君', last_name: '莊', email: 'evita@upgi.com.tw', erpId: '12020012' },
     { id: 281458056, username: 'Jeffrey_upgi', first_name: '政宏', last_name: '蔡', email: null, erpId: '11080005' },
     { id: 290457488, username: 'upgi_shen0445', first_name: '昌言', last_name: '沈', email: null, erpId: '03070001' },
     { id: 288942651, username: 'hugo0831', first_name: '雨利', last_name: '陳', email: 'hugo@upgi.com.tw', erpId: '93120001' },

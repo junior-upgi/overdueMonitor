@@ -27,9 +27,7 @@ router.post('/login', (request, response) => {
             logger.info(`${loginId} account info validated, checking access rights`);
             // continue to check if user has rights to access the website of the system selected
             const knex = require('knex')(mssqlConfig);
-            knex.select('*')
-                .from('productDatabase.dbo.privilegeDetail').debug(false)
-                .where({ SAL_NO: loginId })
+            knex('overdueMonitor.dbo.privilegeDetail').select('*').where({ SAL_NO: loginId }).debug(false)
                 .then((resultset) => {
                     if (resultset.length === 0) {
                         return response.status(403)

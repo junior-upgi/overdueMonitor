@@ -3,7 +3,7 @@ export const systemReference = 'overdueMonitor';
 export const systemName = 'overdueMonitor';
 export const development = true;
 export const administrator = 241630569; // telegram account of system admin
-export const uploadDir = 'upload';
+// export const uploadDir = 'upload';
 export const logDir = 'log';
 export function passphrase() { // can be later changed to pull something from other locations
     return 'This is not a passphrase';
