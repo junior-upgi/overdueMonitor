@@ -1,7 +1,0 @@
-SELECT
-    [YEAR]
-    ,[MONTH]
-    ,SUM(AMTN_PENDING) AS AMTN_PENDING
-    ,[STATUS]
-FROM overdueMonitor.dbo.pending
-GROUP BY [YEAR],[MONTH],[STATUS];

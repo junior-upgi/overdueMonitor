@@ -1,12 +1,10 @@
 {
-    "name": "broadcast",
-    "description": "provide broadcast service through telegram bots",
-    "main": "entry.js",
-    "authors": [
-        "Chia-Yu Tsai"
-    ],
-    "license": "ISC",
-    "homepage": "",
+    "name": "overdue-monitor",
+    "description": "project overdueMonitor rewrite using boilerplate code",
+    "main": "public/main.js",
+    "authors": ["Chia-Yu Tsai"],
+    "license": "MIT",
+    "homepage": "https://github.com/junior-upgi/overdueMonitor",
     "private": true,
     "ignore": [
         "**/.*",
@@ -14,12 +12,7 @@
         "bower_components"
     ],
     "dependencies": {
-        "jquery-ui": "^1.12.1",
-        "jquery": "^3.1.1",
         "bootstrap": "^3.3.7",
-        "moment": "^2.17.1",
-        "moment-timezone": "^0.5.10",
-        "chart.js": "chartjs#^2.4.0",
-        "numeral": "^2.0.2"
+        "jquery": "^3.1.1"
     }
 }

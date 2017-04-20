@@ -1,1 +1,0 @@
-SELECT CUS_NO FROM overdueMonitor.dbo.overdueClientTotal;

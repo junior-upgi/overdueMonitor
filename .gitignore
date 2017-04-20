@@ -1,3 +1,7 @@
+.DS_Store
+node_modules
+dist/build.js
+dist/build.css
 node_modules
 bower_components
 build
@@ -5,3 +9,9 @@ public
 debug.log
 npm-debug.log
 log
+deprecated
+src/frontend/deprecated
+src/backend/deprecated
+temp
+reference
+upload
