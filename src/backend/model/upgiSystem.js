@@ -17,12 +17,13 @@ const list = [{
         schedule: '0 0 9 * * *', // everyday at 09:00
         // schedule: '0 * * * * *', // testing
         targetGroupIDList: [
-            telegramChat.getChatID('資訊群組'),
-            telegramChat.getChatID('業務群組')
+            // telegramChat.getChatID('資訊群組'), /* ** */
+            telegramChat.getChatID('統義業務部') /* ** */
         ],
         targetUserIDList: [
             // telegramUser.getUserID('翁宏達'),
-            telegramUser.getUserID('蔡佳佑')
+            telegramUser.getUserID('資訊課統義玻璃') /* ** */
+            // telegramUser.getUserID('TsaiChia-Yu') /* ** */
         ]
     }, {
         id: 'recentOverdueMonitorTask',
@@ -33,12 +34,13 @@ const list = [{
         schedule: '30 0 9 * * *', // every Monday at 09:00:30
         // schedule: '0 * * * * *', // testing
         targetGroupIDList: [
-            telegramChat.getChatID('資訊群組'),
-            telegramChat.getChatID('業務群組')
+            // telegramChat.getChatID('資訊群組'), /* ** */
+            telegramChat.getChatID('統義業務部') /* ** */
         ],
         targetUserIDList: [
             // telegramUser.getUserID('翁宏達'),
-            telegramUser.getUserID('蔡佳佑')
+            telegramUser.getUserID('資訊課統義玻璃') /* ** */
+            // telegramUser.getUserID('TsaiChia-Yu') /* ** */
         ]
     }, {
         id: 'oneWeekWarningMonitorTask',
@@ -49,12 +51,13 @@ const list = [{
         schedule: '0 1 9 * * *', // every Monday at 09:01
         // schedule: '0 * * * * *', // testing
         targetGroupIDList: [
-            telegramChat.getChatID('資訊群組'),
-            telegramChat.getChatID('業務群組')
+            // telegramChat.getChatID('資訊群組'), /* ** */
+            telegramChat.getChatID('統義業務部') /* ** */
         ],
         targetUserIDList: [
             // telegramUser.getUserID('翁宏達'),
-            telegramUser.getUserID('蔡佳佑')
+            telegramUser.getUserID('資訊課統義玻璃') /* ** */
+            // telegramUser.getUserID('TsaiChia-Yu') /* ** */
         ]
     }, {
         id: 'twoWeekWarningMonitorTask',
@@ -65,12 +68,13 @@ const list = [{
         schedule: '30 1 9 * * *', // every Monday at 09:01:30
         // schedule: '0 * * * * *', // testing
         targetGroupIDList: [
-            telegramChat.getChatID('資訊群組'),
-            telegramChat.getChatID('業務群組')
+            // telegramChat.getChatID('資訊群組'), /* ** */
+            telegramChat.getChatID('統義業務部') /* ** */
         ],
         targetUserIDList: [
             // telegramUser.getUserID('翁宏達'),
-            telegramUser.getUserID('蔡佳佑')
+            telegramUser.getUserID('資訊課統義玻璃') /* ** */
+            // telegramUser.getUserID('TsaiChia-Yu') /* ** */
         ]
     }, {
         id: 'captureCashFlowSnapShot',
@@ -81,7 +85,10 @@ const list = [{
         schedule: '0 0 18 * * *', // perform everyday at 18:00
         // schedule: '*/10 * * * * *', // testing
         targetGroupIDList: [],
-        targetUserIDList: [telegramUser.getUserID('蔡佳佑')]
+        targetUserIDList: [
+            telegramUser.getUserID('資訊課統義玻璃') /* ** */
+            // telegramUser.getUserID('TsaiChia-Yu') /* ** */
+        ]
     }]
 }, {
     id: 'seedCount',

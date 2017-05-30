@@ -1,6 +1,44 @@
 const telegramChat = require('./telegramChat.js');
 
-const list = [{
+const list = [{ /* ** */
+    id: 373228139,
+    /* ** */
+    user_name: 'upgiItDepartment',
+    /* ** */
+    first_name: '統義玻璃',
+    /* ** */
+    last_name: '資訊課',
+    /* ** */
+    status: ['admin', 'user'],
+    /* ** */
+    email: '',
+    /* ** */
+    joinedGroupIDList: [ /* ** */
+        telegramChat.list[0].id, /* ** */
+        telegramChat.list[1].id /* ** */
+    ],
+    /* ** */
+    upgEmployeeID: '' /* ** */
+}, { /* ** */
+    id: 396145285,
+    /* ** */
+    user_name: 'chiayutsaipersonal',
+    /* ** */
+    first_name: 'Chia-Yu',
+    /* ** */
+    last_name: 'Tsai',
+    /* ** */
+    status: ['admin', 'user'],
+    /* ** */
+    email: 'junior@upgi.com.tw',
+    /* ** */
+    joinedGroupIDList: [ /* ** */
+        telegramChat.list[0].id, /* ** */
+        telegramChat.list[1].id /* ** */
+    ],
+    /* ** */
+    upgEmployeeID: '05060001' /* ** */
+}, { /* ** */
     id: 241630569,
     user_name: 'junior_upgi',
     first_name: '佳佑',

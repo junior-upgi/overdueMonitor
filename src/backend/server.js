@@ -1,5 +1,6 @@
+const cron = require('node-cron');
 const cors = require('cors');
-const CronJob = require('cron').CronJob;
+// const CronJob = require('cron').CronJob;
 const express = require('express');
 const moment = require('moment-timezone');
 // const morgan = require('morgan');
@@ -125,7 +126,9 @@ app.listen(serverConfig.serverPort, function(error) { // start backend server
 utility.statusReport.start(); // start the server status reporting function
 
 // record cash flow information periodically
-let captureCashFlowSnapshot = new CronJob(upgiSystem.list[1].jobList[4].schedule, function() { // perform everyday at 17:00
+let captureCashFlowSnapshot = cron.schedule(upgiSystem.list[1].jobList[4].schedule, function() { // perform everyday at 17:00
+    /* ** */
+    // let captureCashFlowSnapshot = new CronJob(upgiSystem.list[1].jobList[4].schedule, function() { // perform everyday at 17:00
     utility.logger.info(`proceeding with scheduled [${upgiSystem.list[1].jobList[4].reference}]`);
     utility.executeQuery(queryString.overview, function(recordset, error) {
         if (error) {
@@ -141,11 +144,14 @@ let captureCashFlowSnapshot = new CronJob(upgiSystem.list[1].jobList[4].schedule
                 return utility.alertSystemError(upgiSystem.list[1].jobList[4].reference,
                     'error encountered while executing cashFlowSnapshotInsertQuery: ' + error);
             }
-            utility.sendMessage([telegramUser.getUserID('蔡佳佑')], ['captureCashFlowSnapshot completed successfully...']);
+            utility.sendMessage( /* ** */
+                [telegramUser.getUserID('資訊課統義玻璃')], ['captureCashFlowSnapshot completed successfully...']
+            ); /* ** */
             return utility.logger.info('captureCashFlowSnapshot completed successfully...');
         });
     });
-}, null, false, serverConfig.workingTimezone);
+    // }, null, false, serverConfig.workingTimezone); /* ** */
+}, false);
 captureCashFlowSnapshot.start();
 
 // overdue alert and warning cron jobs
@@ -154,33 +160,41 @@ let recentOverdueMonitorJob = upgiSystem.list[1].jobList[1];
 let oneWeekWarningMonitorJob = upgiSystem.list[1].jobList[2];
 let twoWeekWarningMonitorJob = upgiSystem.list[1].jobList[3];
 let newOverdueMonitorTask =
-    new CronJob(
+    cron.schedule(
+        // new CronJob( /* ** */
         newOverdueMonitorJob.schedule,
         function() {
             broadcastMonitorResult(newOverdueMonitorJob, '【新增逾期款項】', queryString.warning_NewOverdue);
         },
-        null, false, serverConfig.workingTimezone);
+        // null, false, serverConfig.workingTimezone); /* ** */
+        false);
 let recentOverdueMonitorTask =
-    new CronJob(
+    cron.schedule(
+        // new CronJob( /* ** */
         recentOverdueMonitorJob.schedule,
         function() {
             broadcastMonitorResult(recentOverdueMonitorJob, '【近期逾期款項目】', queryString.warning_PastWeekOverdue);
         },
-        null, false, serverConfig.workingTimezone);
+        // null, false, serverConfig.workingTimezone); /* ** */
+        false);
 let oneWeekWarningMonitorTask =
-    new CronJob(
+    cron.schedule(
+        // new CronJob( /* ** */
         oneWeekWarningMonitorJob.schedule,
         function() {
             broadcastMonitorResult(oneWeekWarningMonitorJob, '【本週即將逾期項目】', queryString.warning_OneWeek);
         },
-        null, false, serverConfig.workingTimezone);
+        // null, false, serverConfig.workingTimezone); /* ** */
+        false);
 let twoWeekWarningMonitorTask =
-    new CronJob(
+    cron.schedule(
+        // new CronJob( /* ** */
         twoWeekWarningMonitorJob.schedule,
         function() {
             broadcastMonitorResult(twoWeekWarningMonitorJob, '【兩週內即將逾期項目】', queryString.warning_TwoWeek);
         },
-        null, false, serverConfig.workingTimezone);
+        // null, false, serverConfig.workingTimezone); /* ** */
+        false);
 newOverdueMonitorTask.start();
 recentOverdueMonitorTask.start();
 oneWeekWarningMonitorTask.start();
@@ -222,7 +236,7 @@ function broadcastMonitorResult(monitoredJob, groupMessageTitle, jobSQLScript) {
                             form: {
                                 chat_id: broadcastTargetID,
                                 text: individualMessage[salesErpID],
-                                token: telegramBot.getToken('overdueMonitorBot')
+                                token: telegramBot.getToken('upgiItBot') /* ** */
                             }
                         }).then(function(response) {
                             utility.logger.info(`individual message for ${telegramUser.getUserName(broadcastTargetID)} had been sent to the broadcast server`);
@@ -242,7 +256,7 @@ function broadcastMonitorResult(monitoredJob, groupMessageTitle, jobSQLScript) {
                             form: {
                                 chat_id: targetGroupID,
                                 text: groupMessage,
-                                token: telegramBot.getToken('overdueMonitorBot')
+                                token: telegramBot.getToken('upgiItBot') /* ** */
                             }
                         }).then(function(response) {
                             utility.logger.info('group message sent to broadcast server');
@@ -263,7 +277,7 @@ function broadcastMonitorResult(monitoredJob, groupMessageTitle, jobSQLScript) {
                             form: {
                                 chat_id: targetGroupID,
                                 text: `${monitoredJob.reference} 目前無相關資料`,
-                                token: telegramBot.getToken('overdueMonitorBot')
+                                token: telegramBot.getToken('upgiItBot') /* ** */
                             }
                         }).then(function() {
                             utility.logger.info('message sent to broadcast server');
@@ -282,7 +296,8 @@ function broadcastMonitorResult(monitoredJob, groupMessageTitle, jobSQLScript) {
 }
 
 // reminder to each sales to look at the customized overview page
-let notifyCustomOverviewPage = new CronJob('0 5 9 * * *', function() {
+let notifyCustomOverviewPage = cron.schedule('0 5 9 * * *', function() {
+    // new CronJob('0 5 9 * * *', function() { /* ** */
     utility.executeQuery('SELECT * FROM overdueMonitor.dbo.activeSalesStaffDetail;', function(recordset, error) {
         if (error) {
             utility.logger.error(error);
@@ -299,9 +314,10 @@ let notifyCustomOverviewPage = new CronJob('0 5 9 * * *', function() {
                     method: 'post',
                     uri: serverConfig.broadcastServerUrl,
                     form: {
-                        chat_id: record.telegramID,
+                        chat_id: 373228139, // to admin it account
+                        // chat_id: record.telegramID, // to individual sales
                         text: message,
-                        token: telegramBot.getToken('overdueMonitorBot')
+                        token: telegramBot.getToken('upgiItBot') /* ** */
                     }
                 }).then(function(response) {
                     utility.logger.info(`custom page notification sent to ${record.full_name}`);
@@ -314,5 +330,6 @@ let notifyCustomOverviewPage = new CronJob('0 5 9 * * *', function() {
         }
         return;
     });
-}, null, false, serverConfig.workingTimezone);
-notifyCustomOverviewPage.start();
+}, false);
+// null, false, serverConfig.workingTimezone); /* ** */
+notifyCustomOverviewPage.start(); // disabled

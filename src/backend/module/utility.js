@@ -1,4 +1,5 @@
-const CronJob = require('cron').CronJob;
+const cron = require('node-cron');
+// const CronJob = require('cron').CronJob;
 const fs = require('fs');
 const moment = require('moment-timezone');
 const mssql = require('mssql');
@@ -60,17 +61,18 @@ function executeQuery(queryString, callback) {
         });
 }
 
-let statusReport = new CronJob('0 0 8,22 * * *', function() {
+let statusReport = cron.schedule('0 0 8,22 * * *', function() {
+    // let statusReport = new CronJob('0 0 8,22 * * *', function() {
     logger.info(`${serverConfig.systemReference} reporting mechanism triggered`);
     let issuedDatetime = moment(moment(), 'YYYY-MM-DD HH:mm:ss').format('YYYY-MM-DD HH:mm:ss');
     let message = `${issuedDatetime} ${serverConfig.systemReference} server reporting in`;
     httpRequest({
         method: 'post',
-        uri: serverConfig.botAPIUrl + telegramBot.getToken('upgiITBot') + '/sendMessage',
+        uri: serverConfig.botAPIUrl + telegramBot.getToken('upgiItBot') + '/sendMessage',
         body: {
-            chat_id: telegramUser.getUserID('蔡佳佑'),
+            chat_id: telegramUser.getUserID('資訊課統義玻璃'),
             text: `${message}`,
-            token: telegramBot.getToken('upgiITBot')
+            token: telegramBot.getToken('upgiItBot')
         },
         json: true
     }).then(function(response) {
@@ -80,27 +82,28 @@ let statusReport = new CronJob('0 0 8,22 * * *', function() {
         alertSystemError('statusReport', error);
         return logger.error(`${serverConfig.systemReference} reporting mechanism failure ${error}`);
     });
-}, null, false, serverConfig.workingTimezone);
+    // }, null, false, serverConfig.workingTimezone);
+}, false);
 
 function alertSystemError(functionRef, message) {
     let currentDatetime = moment(moment(), 'YYYY-MM-DD HH:mm:ss').format('YYYY-MM-DD HH:mm:ss');
     httpRequest({ // broadcast alert when error encountered
         method: 'post',
-        uri: serverConfig.botAPIUrl + telegramBot.getToken('upgiITBot') + '/sendMessage',
+        uri: serverConfig.botAPIUrl + telegramBot.getToken('upgiItBot') + '/sendMessage',
         body: {
-            chat_id: telegramUser.getUserID('蔡佳佑'),
+            chat_id: telegramUser.getUserID('資訊課統義玻璃'),
             text: `error encountered while executing [${serverConfig.systemReference}][${functionRef}] @ ${currentDatetime}`,
-            token: telegramBot.getToken('upgiITBot')
+            token: telegramBot.getToken('upgiItBot')
         },
         json: true
     }).then(function(response) {
         httpRequest({
             method: 'post',
-            uri: serverConfig.botAPIUrl + telegramBot.getToken('upgiITBot') + '/sendMessage',
+            uri: serverConfig.botAPIUrl + telegramBot.getToken('upgiItBot') + '/sendMessage',
             form: {
-                chat_id: telegramUser.getUserID('蔡佳佑'),
+                chat_id: telegramUser.getUserID('資訊課統義玻璃'),
                 text: `error message: ${message}`,
-                token: telegramBot.getToken('upgiITBot')
+                token: telegramBot.getToken('upgiItBot')
             }
         }).then(function(response) {
             return logger.info(`${serverConfig.systemReference} ${functionRef} alert sent`);
@@ -133,11 +136,11 @@ function sendMessage(recipientIDList, messageList) {
         messageList.forEach(function(message) {
             httpRequest({
                 method: 'post',
-                uri: serverConfig.botAPIUrl + telegramBot.getToken('upgiITBot') + '/sendMessage',
+                uri: serverConfig.botAPIUrl + telegramBot.getToken('upgiItBot') + '/sendMessage',
                 form: {
                     chat_id: recipientID,
                     text: message,
-                    token: telegramBot.getToken('upgiITBot')
+                    token: telegramBot.getToken('upgiItBot')
                 }
             }).then(function(response) {
                 logger.info(`message sent to ${telegramUser.getUserName(parseInt(recipientID))}`);
