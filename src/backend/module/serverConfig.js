@@ -39,7 +39,7 @@ function publicServerUrl() {
 }
 const upgiSystemAccount = 'upgiSystem';
 const upgiSystemPassword = 'upgiSystem';
-const smtpTransportAccount = 'smtps://junior.upgi@gmail.com:cHApPPZV@smtp.gmail.com';
+const smtpTransportAccount = 'smtps://unipresidentglassinc@gmail.com:decoration168168@smtp.gmail.com';
 const workingTimezone = 'Asia/Taipei';
 
 const botAPIUrl = 'https://api.telegram.org/bot';
